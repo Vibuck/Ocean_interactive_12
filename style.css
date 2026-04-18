@@ -1,0 +1,89 @@
+body {
+  margin: 0;
+  height: 100vh;
+
+  background-image: url("asset/Frame1.png");
+  background-position: center;
+  background-repeat: no-repeat;
+}
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+/* Thanh menu */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 15px 40px;
+  background: white;
+  border-bottom: 1px solid #ccc;
+}
+
+/* Logo */
+.logo {
+  font-weight: bold;
+}
+
+/* Menu */
+.menu {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+  margin: 0;
+  padding: 0;
+}
+
+.menu a {
+  text-decoration: none;
+  color: black;
+  font-weight: 500;
+}
+
+.menu a:hover {
+  color: blue;
+}
+body {
+  margin: 0;
+  overflow-x: hidden;
+  font-family: Arial;
+}
+
+/* Hero */
+.hero {
+  height: 100vh;
+  background: url("asset/bg.png") center/cover no-repeat;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  transition: transform 1s ease;
+}
+
+.title {
+  font-size: 50px;
+  color: white;
+  transition: transform 0.8s ease;
+}
+
+/* Animation khi click */
+.hero.active .title {
+  transform: translateY(-100px); /* chữ bay lên */
+}
+
+.hero.active {
+  transform: translateY(-100vh); /* nền trượt lên */
+}
+
+/* Section tiếp theo */
+.next {
+  height: 100vh;
+  background: #111;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
