@@ -2,7 +2,7 @@ body {
   margin: 0;
   height: 100vh;
 
-  background-image: url("asset/Frame1.png");
+  background-image: url("asset/Images/Background/Frame1.png");
   background-position: center;
   background-repeat: no-repeat;
 }
