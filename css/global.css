@@ -101,3 +101,23 @@ section {
 #dive-btn:hover {
     background-color: rgba(255, 255, 255, 0.1); 
 }
+/* 1. Nhúng 2 phông chữ Montserrat và Inter từ Google */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Montserrat:wght@700;800;900&display=swap');
+
+/* 2. ÉP FONT MẶC ĐỊNH CHO TOÀN BỘ TRANG (Body Text) */
+body, html {
+    font-family: 'Inter', sans-serif; /* Mặc định mọi chữ đều là Inter dễ đọc */
+    font-size: 16px;
+    line-height: 1.6; /* Khoảng cách dòng cho dễ đọc */
+    color: white; 
+}
+
+/* 3. ÉP FONT CHO TẤT CẢ TIÊU ĐỀ VÀ NÚT BẤM (Headings & UI) */
+h1, h2, h3, h4, h5, h6, 
+#dive-btn, 
+#main-navigation span {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800; /* In đậm */
+    text-transform: uppercase; /* Tự động viết hoa toàn bộ cho ngầu */
+    letter-spacing: 2px; /* Chữ giãn ra một chút cho hiện đại */
+}
