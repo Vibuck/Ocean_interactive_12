@@ -1,3 +1,6 @@
+/* 1. Nhúng 2 phông chữ Montserrat và Inter từ Google (BẮT BUỘC ĐỂ TRÊN CÙNG) */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Montserrat:wght@700;800;900&display=swap');
+
 /* =========================================
    1. RESET CSS (Xóa khoảng cách mặc định)
    ========================================= */
@@ -8,11 +11,21 @@
 }
 
 body, html {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Bạn có thể đổi font tùy ý */
+    font-family: 'Inter', sans-serif; /* Mặc định mọi chữ đều là Inter dễ đọc */
+    font-size: 16px;
+    line-height: 1.6;
     width: 100%;
     overflow-x: hidden; /* Cấm cuộn ngang để không bị vỡ layout */
     background-color: #001e36; /* Màu nền dự phòng (Xanh biển đậm) */
-    color: white; /* Chữ mặc định màu trắng cho dễ nhìn dưới biển */
+    color: white; 
+}
+
+/* ÉP FONT CHO TẤT CẢ TIÊU ĐỀ VÀ NÚT BẤM (Headings & UI) */
+h1, h2, h3, h4, h5, h6, #dive-btn, #main-navigation span {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800; /* In đậm */
+    text-transform: uppercase; /* Tự động viết hoa toàn bộ cho ngầu */
+    letter-spacing: 2px; /* Chữ giãn ra một chút cho hiện đại */
 }
 
 /* =========================================
@@ -33,6 +46,11 @@ body, html {
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
+#main-navigation span {
+    margin: 0 15px;
+    cursor: pointer;
+}
+
 /* =========================================
    3. KHUNG CƠ BẢN CHO TỪNG TẦNG BIỂN
    ========================================= */
@@ -47,22 +65,11 @@ section {
     overflow: hidden; /* Tránh việc cá bơi tràn ra ngoài khu vực của tầng khác */
 }
 
-/* Set sẵn màu nền (dải gradient hoặc ảnh) cho từng khu vực để dễ phân biệt lúc code */
-#sunlight-zone {
-    background: linear-gradient(to bottom, #0077be, #005c97);
-}
+#sunlight-zone { background: linear-gradient(to bottom, #0077be, #005c97); }
+#twilight-zone { background: linear-gradient(to bottom, #005c97, #003366); }
+#midnight-zone { background: linear-gradient(to bottom, #003366, #001133); }
+#abyssal-zone { background: linear-gradient(to bottom, #001133, #000000); }
 
-#twilight-zone {
-    background: linear-gradient(to bottom, #005c97, #003366);
-}
-
-#midnight-zone {
-    background: linear-gradient(to bottom, #003366, #001133);
-}
-
-#abyssal-zone {
-    background: linear-gradient(to bottom, #001133, #000000);
-}
 /* =========================================
    MÀN HÌNH CHÀO MỪNG (HERO SECTION)
    ========================================= */
@@ -70,30 +77,21 @@ section {
     position: relative;
     width: 100%;
     height: 100vh; 
-    
-    /* Import hình nền Frame1.png */
     background-image: url('../asset/Images/Background/Frame1.png');
     background-size: cover; 
     background-position: center; 
     background-repeat: no-repeat;
-    
-    
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 10;
 }
 
-/* Khu vực bấm "LETS DIVE" */
 #dive-btn {
     font-size: 5rem; 
-    font-weight: bold;
-    text-align: center;
     color: transparent; 
     cursor: pointer; 
     padding: 20px 50px;
-    
-    
     transition: background-color 0.3s ease;
     border-radius: 20px;
 }
@@ -101,23 +99,45 @@ section {
 #dive-btn:hover {
     background-color: rgba(255, 255, 255, 0.1); 
 }
-/* 1. Nhúng 2 phông chữ Montserrat và Inter từ Google */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Montserrat:wght@700;800;900&display=swap');
 
-/* 2. ÉP FONT MẶC ĐỊNH CHO TOÀN BỘ TRANG (Body Text) */
-body, html {
-    font-family: 'Inter', sans-serif; /* Mặc định mọi chữ đều là Inter dễ đọc */
-    font-size: 16px;
-    line-height: 1.6; /* Khoảng cách dòng cho dễ đọc */
-    color: white; 
+/* =========================================
+   HIỆU ỨNG CHUYỂN CẢNH TRÀN MÀN HÌNH (New)
+   ========================================= */
+#transition-overlay {
+    position: fixed; /* Ghim cố định */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh; /* Full màn hình */
+    z-index: 9999; /* Luôn nổi lên trên cùng */
+    pointer-events: none; /* Tránh việc người dùng tương tác trong lúc chuyển cảnh */
+    display: flex;
+    justify-content: center;
+    align-items: flex-end; /* Sóng nổi từ dưới lên */
+    opacity: 0; /* Ban đầu tàng hình */
+    visibility: hidden; /* Ban đầu ẩn hoàn toàn */
 }
 
-/* 3. ÉP FONT CHO TẤT CẢ TIÊU ĐỀ VÀ NÚT BẤM (Headings & UI) */
-h1, h2, h3, h4, h5, h6, 
-#dive-btn, 
-#main-navigation span {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 800; /* In đậm */
-    text-transform: uppercase; /* Tự động viết hoa toàn bộ cho ngầu */
-    letter-spacing: 2px; /* Chữ giãn ra một chút cho hiện đại */
+.reveal-wave {
+    width: 100%;
+    height: 100%; /* Ban đầu chiếm hết màn hình */
+    background: linear-gradient(to top, rgba(0, 119, 190, 0.9), rgba(0, 92, 151, 0.7), transparent);
+    transform: translateY(100%); /* Đẩy xuống ngoài màn hình */
+}
+
+.reveal-bubbles {
+    position: absolute;
+    bottom: -100px; /* Bắt đầu ngoài màn hình */
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.reveal-bubbles span {
+    width: 15px;
+    height: 15px;
+    background: rgba(255, 255, 255, 0.5); 
+    border-radius: 50%;
+    box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.8);
+    opacity: 0;
 }
