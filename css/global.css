@@ -29,26 +29,93 @@ h1, h2, h3, h4, h5, h6, #dive-btn, #main-navigation span {
 }
 
 /* =========================================
-   2. THANH ĐIỀU HƯỚNG (NAVBAR) 
+   THANH ĐIỀU HƯỚNG (TOP NAVBAR)
    ========================================= */
-#main-navigation {
-    position: fixed; /* Ghim cố định menu trên cùng màn hình */
+#top-navbar {
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    height: 60px;
-    background: rgba(0, 0, 0, 0.5); /* Nền trong suốt màu đen */
-    backdrop-filter: blur(5px); /* Hiệu ứng kính mờ (nếu muốn) */
-    z-index: 1000; /* Luôn nổi lên trên cùng, không bị cá che lấp */
+    height: 80px;
+    padding: 0 50px;
     display: flex;
-    justify-content: center;
+    justify-content: space-between; /* Đẩy logo sang trái, menu sang phải */
     align-items: center;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    z-index: 10000; /* Quan trọng: Lớn hơn mức 9999 của transition-overlay */
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), transparent); /* Đổ bóng nhẹ cho dễ đọc */
+    pointer-events: auto;
 }
 
-#main-navigation span {
-    margin: 0 15px;
+.logo {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    font-size: 28px;
+    letter-spacing: 3px;
+    color: white;
+    cursor: default; /* Không tương tác */
+    user-select: none;
+}
+
+.nav-links span {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    margin-left: 40px;
     cursor: pointer;
+    color: rgba(255, 255, 255, 0.7); /* Màu trắng hơi chìm lúc bình thường */
+    transition: all 0.3s ease; /* Chuyển động mượt khi di chuột */
+}
+
+/* Hiệu ứng phát sáng khi đưa chuột vào menu */
+.nav-links span:hover {
+    color: white;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.9), 0 0 30px rgba(0, 191, 255, 0.8); /* Sáng viền xanh như đại dương */
+}
+
+/* =========================================
+   CÁC TRANG THÔNG TIN (UI PANELS)
+   ========================================= */
+.ui-panel {
+    position: fixed;
+    z-index: 9995; /* Nằm dưới Navbar (10000) nhưng trên toàn bộ biển và sóng */
+    background: rgba(0, 15, 30, 0.95); /* Màu xanh đen biển sâu, hơi mờ */
+    backdrop-filter: blur(15px); /* Làm nhòe background phía sau (Kính mờ) */
+    color: white;
+    /* Transition sử dụng cubic-bezier tạo cảm giác trượt nhanh lúc đầu, phanh mượt lúc sau */
+    transition: transform 0.6s cubic-bezier(0.8, 0, 0.2, 1); 
+    overflow-y: auto;
+}
+
+.panel-content {
+    padding: 100px 50px 50px 50px; /* Chừa 100px ở trên để không bị Navbar đè mất chữ */
+    width: 100%;
+    height: 100%;
+}
+
+/* Tấm Contact: Trồi từ dưới lên (Cao cỡ 60% màn hình) */
+.bottom-panel {
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 60vh;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    transform: translateY(100%); /* Giấu hoàn toàn xuống dưới mép màn hình */
+}
+
+/* Tấm About Us: Lướt từ phải sang, chiếm trọn màn hình */
+.right-panel {
+    top: 0;
+    right: 0;
+    width: 100vw;
+    height: 100vh;
+    transform: translateX(100%); /* Giấu hoàn toàn sang lề phải */
+}
+
+/* Class kích hoạt (Dùng JS để gắn vào) */
+.ui-panel.active {
+    transform: translateY(0) translateX(0); /* Đưa về vị trí số 0 (hiện ra màn hình) */
 }
 
 /* =========================================
@@ -140,4 +207,56 @@ section {
     border-radius: 50%;
     box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.8);
     opacity: 0;
+}
+/* Container chính của About Us */
+#about-overlay .panel-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* Chiếm toàn bộ chiều cao màn hình */
+    padding: 80px 50px 40px 50px;
+}
+
+#about-overlay h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #00bfff; /* Màu xanh neon cho hợp vibe biển */
+}
+
+/* 🟢 Lưới thành viên - Chìa khóa chia đều khoảng cách */
+.members-grid {
+    flex: 1; /* Chiếm toàn bộ phần không gian còn lại sau cái tiêu đề h2 */
+    display: flex;
+    flex-direction: column; /* Xếp theo chiều dọc */
+    justify-content: space-around; /* Chia đều khoảng cách ở giữa và 2 đầu */
+    align-items: center; /* Căn giữa các card theo chiều ngang */
+}
+
+/* Style cho từng thẻ thành viên */
+.member-card {
+    width: 80%;
+    max-width: 600px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.05);
+    border-left: 5px solid #00bfff;
+    border-radius: 10px;
+    transition: all 0.4s ease;
+    cursor: pointer;
+}
+
+/* Hiệu ứng khi di chuột vào từng thành viên */
+.member-card:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateX(20px); /* Hơi lệch sang phải một chút cho sinh động */
+    box-shadow: 0 0 20px rgba(0, 191, 255, 0.3);
+}
+
+.member-info h3 {
+    font-size: 1.5rem;
+    margin-bottom: 5px;
+    color: white;
+}
+
+.member-info p {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.6);
 }

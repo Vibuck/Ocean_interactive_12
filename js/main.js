@@ -81,3 +81,63 @@ if (diveButton) {
         playRevealTransition('#sunlight-zone');
     });
 }
+// ==========================================
+// 🟢 LOGIC NAVBAR VÀ TRANG THÔNG TIN (UI PANELS)
+// ==========================================
+
+const btnHome = document.getElementById('nav-home');
+const btnContact = document.getElementById('nav-contact');
+const btnAbout = document.getElementById('nav-about');
+
+const panelContact = document.getElementById('contact-overlay');
+const panelAbout = document.getElementById('about-overlay');
+
+// Hàm dọn dẹp: Đóng mọi panel đang mở
+function closeAllPanels() {
+    panelContact.classList.remove('active');
+    panelAbout.classList.remove('active');
+    
+    // (Tuỳ chọn) Nếu đang khóa cuộn trang, thì mở lại ở đây
+    document.body.style.overflow = '';
+}
+
+// 1. Nhấn HOME
+btnHome.addEventListener('click', () => {
+    // Chỉ cần đóng hết panel là người dùng tự thấy lại màn hình đại dương đang xem dở
+    closeAllPanels();
+});
+
+// 2. Nhấn CONTACT
+btnContact.addEventListener('click', () => {
+    // Nếu đang mở About, rút About về ngay lập tức rồi mới đẩy Contact lên
+    if (panelAbout.classList.contains('active')) {
+        panelAbout.classList.remove('active');
+        // Chờ About lướt ra ngoài 400ms rồi mới cho Contact trồi lên cho đỡ rối mắt
+        setTimeout(() => {
+            panelContact.classList.add('active');
+        }, 400); 
+    } else {
+        // Nếu About ko mở, thì cứ bật/tắt Contact như bình thường
+        panelContact.classList.toggle('active');
+    }
+});
+
+// 3. Nhấn ABOUT US
+btnAbout.addEventListener('click', () => {
+    // Ngược lại với Contact
+    if (panelContact.classList.contains('active')) {
+        panelContact.classList.remove('active');
+        setTimeout(() => {
+            panelAbout.classList.add('active');
+        }, 400);
+    } else {
+        panelAbout.classList.toggle('active');
+    }
+    
+    // Khi mở Full-screen About Us, ta nên khóa cuộn chuột để ko bị trôi đại dương ở sau
+    if (panelAbout.classList.contains('active')) {
+        document.body.style.overflow = 'hidden';
+    } else {
+        document.body.style.overflow = '';
+    }
+});
