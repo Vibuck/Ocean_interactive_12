@@ -54,7 +54,7 @@ function playNaturalWave(target) {
 }
 
 // EVENTS
-document.getElementById('dive-btn').onclick = () => playNaturalWave('#sunlight-zone');
+document.getElementById('dive-btn').onclick = () => playNaturalWave('#sunlight-wrapper');
 
 document.getElementById('nav-about').onclick = () => {
     document.getElementById('about-overlay').classList.add('active');
@@ -71,30 +71,19 @@ document.getElementById('nav-home').onclick = () => {
     gsap.to(window, { scrollTo: 0, duration: 1 });
 };
 
-// AUTO SCROLL TRIGGER
-gsap.utils.toArray('section').forEach((section, i, sections) => {
-    if (i < sections.length - 1) {
-        ScrollTrigger.create({
-            trigger: section, start: 'bottom 98%',
-            onEnter: () => playNaturalWave(sections[i+1])
-        });
-    }
-});
 // ==========================================
 // 🔴 ÁP DỤNG: CỨ CHẠY ĐẾN CUỐI TẦNG LỚN LÀ KÍCH HOẠT SÓNG
 // ==========================================
-
 const oceanZones = gsap.utils.toArray('.ocean-zone');
 
 oceanZones.forEach((zone, i) => {
     ScrollTrigger.create({
         trigger: zone,
-        // Kích hoạt khi ĐÁY của Tầng lớn (tức là đáy của phần Fish) chạm vào ĐÁY màn hình
         start: 'bottom bottom', 
         onEnter: () => {
-            // Nếu không phải tầng cuối cùng, kích hoạt sóng chuyển sang tầng lớn tiếp theo
             if (i < oceanZones.length - 1) {
-                playRevealTransition(oceanZones[i+1]);
+                // Sửa thành playNaturalWave thay vì playRevealTransition cũ
+                playNaturalWave(oceanZones[i+1]); 
             }
         }
     });
