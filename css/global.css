@@ -1,103 +1,93 @@
-/* =========================================
-   1. RESET CSS (Xóa khoảng cách mặc định)
-   ========================================= */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@800;900&family=Inter:wght@400;500&display=swap');
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body, html { font-family: 'Inter', sans-serif; background: #000; color: white; overflow-x: hidden; }
+
+/* NAVBAR */
+#top-navbar {
+    position: fixed; top: 0; width: 100%; height: 80px; padding: 0 50px;
+    display: flex; justify-content: space-between; align-items: center;
+    z-index: 10000; background: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent);
+}
+.logo { font-family: 'Montserrat'; font-weight: 900; font-size: 24px; letter-spacing: 2px; }
+.nav-links span { font-family: 'Montserrat'; margin-left: 30px; cursor: pointer; opacity: 0.7; transition: 0.3s; }
+.nav-links span:hover { opacity: 1; text-shadow: 0 0 10px white; }
+
+/* HERO */
+#hero-section {
+    width: 100%; height: 100vh;
+    background: url('../asset/Images/Background/Frame1.png') center/cover no-repeat;
+    display: flex; justify-content: center; align-items: center;
+}
+#dive-btn {
+    font-family: 'Montserrat'; font-size: 5rem; cursor: pointer; color: transparent;
+    padding: 20px 40px; border-radius: 20px; transition: 0.3s;
 }
 
-body, html {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Bạn có thể đổi font tùy ý */
-    width: 100%;
-    overflow-x: hidden; /* Cấm cuộn ngang để không bị vỡ layout */
-    background-color: #001e36; /* Màu nền dự phòng (Xanh biển đậm) */
-    color: white; /* Chữ mặc định màu trắng cho dễ nhìn dưới biển */
-}
+/* UI PANELS */
+.ui-panel { position: fixed; z-index: 9995; background: rgba(0,10,20,0.95); backdrop-filter: blur(15px); transition: 0.8s cubic-bezier(0.8,0,0.2,1); }
+.right-panel { top: 0; right: 0; width: 100%; height: 100vh; transform: translateX(100%); }
+.bottom-panel { bottom: 0; left: 0; width: 100%; height: 50vh; transform: translateY(100%); border-top: 2px solid #00bfff; }
+.ui-panel.active { transform: translate(0,0); }
 
-/* =========================================
-   2. THANH ĐIỀU HƯỚNG (NAVBAR) 
-   ========================================= */
-#main-navigation {
-    position: fixed; /* Ghim cố định menu trên cùng màn hình */
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 60px;
-    background: rgba(0, 0, 0, 0.5); /* Nền trong suốt màu đen */
-    backdrop-filter: blur(5px); /* Hiệu ứng kính mờ (nếu muốn) */
-    z-index: 1000; /* Luôn nổi lên trên cùng, không bị cá che lấp */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+/* ABOUT US GRID (CHIA ĐỀU 5 THÀNH VIÊN) */
+.panel-content { height: 100%; display: flex; flex-direction: column; padding: 100px 10% 50px; }
+.panel-title { color: #00bfff; font-size: 3rem; margin-bottom: 20px; text-align: center; }
+.members-grid { 
+    flex-grow: 1; 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: space-evenly; /* Chia đều 5 card trong khung hình */
 }
+.member-card { 
+    background: rgba(255,255,255,0.03); 
+    padding: 20px 40px; 
+    border-left: 4px solid #00bfff; 
+    transition: all 0.4s ease; 
+    cursor: pointer;
+}
+.member-card:hover { 
+    background: rgba(0, 191, 255, 0.1); 
+    transform: translateX(30px); /* Dịch chuyển nhẹ khi hover */
+    box-shadow: 0 0 20px rgba(0, 191, 255, 0.2);
+}
+.member-card h3 { font-family: 'Montserrat'; color: #fff; font-size: 1.5rem; }
+.member-card p { opacity: 0.6; }
 
+/* SÓNG VÀ BONG BÓNG */
+#transition-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; z-index: 9999; pointer-events: none; visibility: hidden; }
+.reveal-wave {
+    width: 100%; height: 120%; 
+    background: linear-gradient(to top, #fff 0%, rgba(255,255,255,0.8) 50%, transparent 100%);
+    transform: translateY(100%);
+}
+.bubble { 
+    position: absolute; background: rgba(255,255,255,0.4); 
+    border-radius: 50%; pointer-events: none; opacity: 0; 
+}
 /* =========================================
-   3. KHUNG CƠ BẢN CHO TỪNG TẦNG BIỂN
+   3. KHUNG CƠ BẢN CHO TỪNG TẦNG BIỂN 
    ========================================= */
-section {
-    position: relative; /* Rất quan trọng để các bạn khác đặt vị trí cá (absolute) bên trong */
+
+/* Lớp vỏ bao bọc của cả 1 tầng lớn (chứa 2 phần) */
+.ocean-zone {
     width: 100%;
-    min-height: 100vh; /* Mỗi tầng biển sẽ cao bằng đúng 100% màn hình thiết bị (Full-page) */
+    position: relative;
+    /* Đổ màu gradient cho từng lớp vỏ, để 2 phần bên trong tự động thừa hưởng màu */
+}
+#sunlight-wrapper { background: linear-gradient(to bottom, #0077be, #005c97); }
+#twilight-wrapper { background: linear-gradient(to bottom, #005c97, #003366); }
+#midnight-wrapper { background: linear-gradient(to bottom, #003366, #001133); }
+#abyssal-wrapper { background: linear-gradient(to bottom, #001133, #000000); }
+
+/* Các phần nhỏ bên trong (Thông tin / Cá) */
+.zone-part {
+    position: relative; 
+    width: 100%;
+    min-height: 100vh; /* Mỗi phần sẽ bằng đúng 1 màn hình máy tính */
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    overflow: hidden; /* Tránh việc cá bơi tràn ra ngoài khu vực của tầng khác */
-}
-
-/* Set sẵn màu nền (dải gradient hoặc ảnh) cho từng khu vực để dễ phân biệt lúc code */
-#sunlight-zone {
-    background: linear-gradient(to bottom, #0077be, #005c97);
-}
-
-#twilight-zone {
-    background: linear-gradient(to bottom, #005c97, #003366);
-}
-
-#midnight-zone {
-    background: linear-gradient(to bottom, #003366, #001133);
-}
-
-#abyssal-zone {
-    background: linear-gradient(to bottom, #001133, #000000);
-}
-/* =========================================
-   MÀN HÌNH CHÀO MỪNG (HERO SECTION)
-   ========================================= */
-#hero-section {
-    position: relative;
-    width: 100%;
-    height: 100vh; 
-    
-    /* Import hình nền Frame1.png */
-    background-image: url('../asset/Images/Background/Frame1.png');
-    background-size: cover; 
-    background-position: center; 
-    background-repeat: no-repeat;
-    
-    
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 10;
-}
-
-/* Khu vực bấm "LETS DIVE" */
-#dive-btn {
-    font-size: 5rem; 
-    font-weight: bold;
-    text-align: center;
-    color: transparent; 
-    cursor: pointer; 
-    padding: 20px 50px;
-    
-    
-    transition: background-color 0.3s ease;
-    border-radius: 20px;
-}
-
-#dive-btn:hover {
-    background-color: rgba(255, 255, 255, 0.1); 
+    overflow: hidden; 
 }

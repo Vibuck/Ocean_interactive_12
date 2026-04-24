@@ -3,55 +3,92 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ocean Interactive Exploration</title>
-    
+    <title>Ocean Interactive - Group 10</title>
     <link rel="stylesheet" href="css/global.css">
     <link rel="stylesheet" href="css/sunlight.css">
     <link rel="stylesheet" href="css/twilight.css">
     <link rel="stylesheet" href="css/midnight.css">
     <link rel="stylesheet" href="css/abyssal.css">
-</head>checkout
+</head>
 <body>
 
-    <header id="hero-section">
-        <div id="dive-btn">LETS<br>DIVE</div>
-    </header>
-
-    <nav id="main-navigation">
-        <div class="nav-container">
-            <span>SUNLIGHT</span>
-            <span>TWILIGHT</span>
-            <span>MIDNIGHT</span>
-            <span>ABYSSAL</span>
+    <nav id="top-navbar">
+        <div class="logo">GROUP 10</div>
+        <div class="nav-links">
+            <span id="nav-home">HOME</span>
+            <span id="nav-contact">CONTACT</span>
+            <span id="nav-about">ABOUT US</span>
         </div>
     </nav>
 
-    <section id="sunlight-zone">
-        <h2>Sunlight Zone</h2>
-    </section>
+    <header id="hero-section">
+        <div id="dive-btn">LETS DIVE</div>
+    </header>
 
-    <section id="twilight-zone">
-        <h2>Twilight Zone</h2>
-    </section>
+    <div class="ocean-zone" id="sunlight-wrapper">
+        <section class="zone-part info-part" id="sunlight-info">
+            <h2>Sunlight Zone - Thông tin</h2>
+        </section>
+        <section class="zone-part fish-part" id="sunlight-fish">
+            <h2>Sunlight Zone - Các loài cá</h2>
+        </section>
+    </div>
 
-    <section id="midnight-zone">
-        <h2>Midnight Zone</h2>
-    </section>
+    <div class="ocean-zone" id="twilight-wrapper">
+        <section class="zone-part info-part" id="twilight-info">
+            <h2>Twilight Zone - Thông tin</h2>
+        </section>
+        <section class="zone-part fish-part" id="twilight-fish">
+            <h2>Twilight Zone - Các loài cá</h2>
+        </section>
+    </div>
 
-    <section id="abyssal-zone">
-        <h2>Abyssal Zone</h2>
-    </section>
+    <div class="ocean-zone" id="midnight-wrapper">
+        <section class="zone-part info-part" id="midnight-info">
+            <h2>Midnight Zone - Thông tin</h2>
+        </section>
+        <section class="zone-part fish-part" id="midnight-fish">
+            <h2>Midnight Zone - Các loài cá</h2>
+        </section>
+    </div>
 
+    <div class="ocean-zone" id="abyssal-wrapper">
+        <section class="zone-part info-part" id="abyssal-info">
+            <h2>Abyssal Zone - Thông tin</h2>
+        </section>
+        <section class="zone-part fish-part" id="abyssal-fish">
+            <h2>Abyssal Zone - Các loài cá</h2>
+        </section>
+    </div>
+    <div id="about-overlay" class="ui-panel right-panel">
+        <div class="panel-content">
+            <h2 class="panel-title">OUR TEAM</h2>
+            <div class="members-grid">
+                <div class="member-card"><h3>NGUYỄN THÀNH VINH</h3><p>Project Leader</p></div>
+                <div class="member-card"><h3>NGUYỄN SƠN TÙNG</h3><p>Frontend Developer</p></div>
+                <div class="member-card"><h3>CAO THỊ PHƯƠNG ANH</h3><p>UI/UX Designer</p></div>
+                <div class="member-card"><h3>NGUYỄN THỊ PHƯƠNG MAI</h3><p>Data Researcher</p></div>
+                <div class="member-card"><h3>NGUYỄN ĐÌNH PHƯỚC</h3><p>Content Creator</p></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="contact-overlay" class="ui-panel bottom-panel">
+        <div class="panel-content">
+            <h2>CONTACT US</h2>
+            <p>Email: 24023095@vnu.edu.vn</p>
+            <p>Phone: 0869 521 006</p>
+        </div>
+    </div>
+
+    <div id="transition-overlay">
+        <div class="reveal-wave"></div>
+        <div id="bubble-container" class="reveal-bubbles"></div>
+    </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
-
-    <script src="js/sunlight.js"></script>
-    <script src="js/twilight.js"></script>
-    <script src="js/midnight.js"></script>
-    <script src="js/abyssal.js"></script>
-    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script src="js/main.js"></script>
-
 </body>
 </html>
