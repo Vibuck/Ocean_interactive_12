@@ -1,35 +1,75 @@
-/* Gom mọi thứ vào giữa và chỉnh khoảng cách giữa H2 và P bằng "gap" */
-#twilight-info {
+/* Bố cục chính: Lưới 2 cột */
+.zone-layout {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr; /* Cột chữ (1.2) sẽ rộng hơn cột ảnh (1) một chút */
+    gap: 40px; /* Khoảng cách giữa 2 cột */
+    padding: 120px 50px 50px 50px; /* Khớp lề 50px với Navbar, đẩy padding-top 120px để không bị Navbar đè lên */
+    width: 100%;
+    align-items: center; /* Căn giữa các khối theo chiều dọc */
+}
+
+/* ================================
+   CỘT TRÁI: BONG BÓNG KÍNH
+   ================================ */
+.glass-bubble {
+    background: rgba(255, 255, 255, 0.08); /* Nền trắng siêu mờ */
+    backdrop-filter: blur(16px); /* Làm mờ cảnh phía sau (Hiệu ứng kính) */
+    -webkit-backdrop-filter: blur(16px); /* Dành cho Safari */
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Viền sáng nhẹ */
+    border-radius: 25px; /* Bo góc tròn trịa */
+    padding: 40px 50px; /* Khoảng cách từ viền kính đến chữ */
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3); /* Đổ bóng để khối kính nổi lên */
+}
+
+/* Tiêu đề bên trong kính */
+.glass-bubble .zone-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.5rem;
+    color: #00bfff; /* Chữ màu xanh cyan */
+    text-shadow: 0 0 15px rgba(0, 191, 255, 0.5); /* Hiệu ứng phát sáng lướt nhẹ */
+    margin-top: 0;
+    margin-bottom: 25px;
+    text-align: left;
+}
+
+/* Đoạn văn bên trong kính */
+.glass-bubble p {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    line-height: 1.8;
+    color: #ffffff;
+    opacity: 0.9;
+    text-align: justify;
+    margin: 0;
+}
+.glass-bubble p:not(:last-child) {
+    margin-bottom: 15px; /* Cách các đoạn văn với nhau */
+}
+
+/* ================================
+   CỘT PHẢI: ẢNH VÀ VIDEO
+   ================================ */
+.media-stack {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 20px; /* Bạn tăng giảm số này để Title và Văn bản xa hay gần nhau nhé */
+    gap: 25px; /* Khoảng cách giữa ảnh và video */
 }
 
-/* Chuẩn font Montserrat cho Tiêu đề */
-#twilight-info h2 {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 800;
-    font-size: 1.75rem;
-    margin: 0; 
-    text-align: center;
+.media-box {
+    width: 100%;
+    border-radius: 20px; /* Bo góc khung ảnh/video */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+    object-fit: cover; /* Tránh làm méo ảnh */
+    background: #000; /* Phòng khi video chưa load kịp sẽ hiện nền đen */
 }
 
-/* Chuẩn font Inter cho Văn bản */
-#twilight-info p {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 400;
-    max-width: 800px; /* Gom chữ lại cho dễ đọc */
-    width: 90%;
-    text-align: justify;
-    line-height: 1.8;
-    font-size: 1rem;
-    margin: 0;
-    opacity: 0.85;
+/* Tinh chỉnh chiều cao cho ảnh và video để layout cân đối */
+img.media-box {
+    height: 250px; 
 }
 
-/* Cách 2 đoạn văn ra một chút xíu */
-#twilight-info p:not(:last-child) {
-    margin-bottom: 15px; 
+video.media-box {
+    height: 250px; 
 }
+
