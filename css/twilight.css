@@ -53,6 +53,7 @@
     display: flex;
     flex-direction: column;
     gap: 25px; /* Khoảng cách giữa ảnh và video */
+
 }
 
 .media-box {
@@ -62,6 +63,12 @@
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
     object-fit: cover; /* Tránh làm méo ảnh */
     background: #000; /* Phòng khi video chưa load kịp sẽ hiện nền đen */
+    position: relative; /* MỚI THÊM: Bắt buộc phải có relative thì z-index mới hoạt động */
+    z-index: 10; /* MỚI THÊM: Ép khối ảnh/video này nổi lên lớp cao nhất, không ai đè được */
+    position: relative;
+    z-index: 999 !important; /* Tăng hẳn lên 999 và thêm !important cho chắc cốp */
+    pointer-events: auto !important; /* Lệnh ép buộc: Bắt buộc phải nhận click chuột */
+
 }
 
 /* Tinh chỉnh chiều cao cho ảnh và video để layout cân đối */
