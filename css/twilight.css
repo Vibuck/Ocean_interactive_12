@@ -1,0 +1,35 @@
+/* Gom mọi thứ vào giữa và chỉnh khoảng cách giữa H2 và P bằng "gap" */
+#twilight-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px; /* Bạn tăng giảm số này để Title và Văn bản xa hay gần nhau nhé */
+}
+
+/* Chuẩn font Montserrat cho Tiêu đề */
+#twilight-info h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    font-size: 1.75rem;
+    margin: 0; 
+    text-align: center;
+}
+
+/* Chuẩn font Inter cho Văn bản */
+#twilight-info p {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    max-width: 800px; /* Gom chữ lại cho dễ đọc */
+    width: 90%;
+    text-align: justify;
+    line-height: 1.8;
+    font-size: 1rem;
+    margin: 0;
+    opacity: 0.85;
+}
+
+/* Cách 2 đoạn văn ra một chút xíu */
+#twilight-info p:not(:last-child) {
+    margin-bottom: 15px; 
+}
