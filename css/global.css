@@ -13,15 +13,26 @@ body, html { font-family: 'Inter', sans-serif; background: #000; color: white; o
 .nav-links span { font-family: 'Montserrat'; margin-left: 30px; cursor: pointer; opacity: 0.7; transition: 0.3s; }
 .nav-links span:hover { opacity: 1; text-shadow: 0 0 10px white; }
 
-/* HERO */
-#hero-section {
-    width: 100%; height: 100vh;
-    background: url('../asset/Images/Background/Frame1.png') center/cover no-repeat;
-    display: flex; justify-content: center; align-items: center;
+.Ocean_explore{
+    position:relative;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
-#dive-btn {
-    font-family: 'Montserrat'; font-size: 5rem; cursor: pointer; color: transparent;
-    padding: 20px 40px; border-radius: 20px; transition: 0.3s;
+
+#text{
+    position:absolute;
+    font-size: 2cm ;
+    color:aliceblue;
+
+}
+.Ocean_explore img{
+    position:absolute;
+    top:0;
+    left:0;
+    width:20%;
+    pointer-events: none;
 }
 
 /* UI PANELS */

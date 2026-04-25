@@ -16,14 +16,7 @@ document.getElementById('nav-home').onclick = () => {
     gsap.to(window, { scrollTo: 0, duration: 1 });
 };
 
-// DIVE BUTTON - CUỘN THẲNG XUỐNG SUNLIGHT
-document.getElementById('dive-btn').onclick = () => {
-    gsap.to(window, { 
-        scrollTo: "#sunlight-wrapper", 
-        duration: 1.5, 
-        ease: "power2.inOut" 
-    });
-};
+
 
 // HIỆU ỨNG XUẤT HIỆN NỘI DUNG KHI CUỘN (TÙY CHỌN - GIỮ LẠI ĐỂ WEB KHÔNG BỊ TRỐNG)
 const sections = gsap.utils.toArray('.zone-part');
