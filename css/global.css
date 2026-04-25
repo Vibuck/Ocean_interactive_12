@@ -13,17 +13,92 @@ body, html { font-family: 'Inter', sans-serif; background: #000; color: white; o
 .nav-links span { font-family: 'Montserrat'; margin-left: 30px; cursor: pointer; opacity: 0.7; transition: 0.3s; }
 .nav-links span:hover { opacity: 1; text-shadow: 0 0 10px white; }
 
-/* HERO */
-#hero-section {
-    width: 100%; height: 100vh;
-    background: url('../asset/Images/Background/Frame1.png') center/cover no-repeat;
-    display: flex; justify-content: center; align-items: center;
-}
-#dive-btn {
-    font-family: 'Montserrat'; font-size: 5rem; cursor: pointer; color: transparent;
-    padding: 20px 40px; border-radius: 20px; transition: 0.3s;
+.Ocean_explore {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden; 
 }
 
+#background1 {
+    width: 100%;
+    height: 100vh;
+    object-fit: cover; 
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1; 
+}
+
+#island_ { 
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 35%; 
+    height: auto;
+    z-index: 2; 
+}
+
+#island_right { 
+    position:absolute;
+    bottom: 17%;
+    right: 0;
+    width: 30%; 
+    height: auto;
+    z-index: 2;
+}
+
+#text {
+    position: absolute;
+    top: 50%; left: 50%; transform: translate(-50%, -50%);
+    font-family: 'Montserrat', sans-serif; 
+    font-size: clamp(3rem, 8vw, 6rem); 
+    font-weight: 900; 
+    text-transform: uppercase; 
+    letter-spacing: 15px; 
+    white-space: nowrap; 
+    z-index: 10;
+    background: linear-gradient(
+        to right, 
+        #00d2ff 0%,    
+        #ffffff 25%,   
+        #0072ff 50%,   
+        #ffffff 75%,   
+        #00d2ff 100%   
+    );
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 15px rgba(0, 210, 255, 0.4));
+    animation: shine 5s linear infinite;
+    transition: transform 0.1s ease-out, opacity 0.3s ease-out;
+}
+
+@keyframes shine {
+    to {
+        background-position: 200% center;
+    }
+}
+
+#bird_left, #bird_right { 
+    position: absolute;
+    width: 7%; 
+    height: auto;
+    z-index: 4; 
+}
+
+#bird_left { 
+    top: 10%; 
+    left: 25%; 
+}
+
+#bird_right { 
+    top: 25%; 
+    right: 25%; 
+}
+#island_, #island_right, #bird_left, #bird_right, #text {
+    transition: transform 0.1s ease-out, opacity 0.3s ease-out; 
+}
 /* UI PANELS */
 .ui-panel { position: fixed; z-index: 9995; background: rgba(0,10,20,0.95); backdrop-filter: blur(15px); transition: 0.8s cubic-bezier(0.8,0,0.2,1); }
 .right-panel { top: 0; right: 0; width: 100%; height: 100vh; transform: translateX(100%); }
@@ -54,17 +129,7 @@ body, html { font-family: 'Inter', sans-serif; background: #000; color: white; o
 .member-card h3 { font-family: 'Montserrat'; color: #fff; font-size: 1.5rem; }
 .member-card p { opacity: 0.6; }
 
-/* SÓNG VÀ BONG BÓNG */
-#transition-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; z-index: 9999; pointer-events: none; visibility: hidden; }
-.reveal-wave {
-    width: 100%; height: 120%; 
-    background: linear-gradient(to top, #fff 0%, rgba(255,255,255,0.8) 50%, transparent 100%);
-    transform: translateY(100%);
-}
-.bubble { 
-    position: absolute; background: rgba(255,255,255,0.4); 
-    border-radius: 50%; pointer-events: none; opacity: 0; 
-}
+
 /* =========================================
    3. KHUNG CƠ BẢN CHO TỪNG TẦNG BIỂN 
    ========================================= */
@@ -90,4 +155,120 @@ body, html { font-family: 'Inter', sans-serif; background: #000; color: white; o
     justify-content: center;
     align-items: center;
     overflow: hidden; 
+}
+/* =========================================
+   MINI DIAGRAM (BẢN ĐỒ THU NHỎ KÉO THẢ)
+   ========================================= */
+.mini-diagram-container {
+    position: fixed;
+    top: 100px;
+    right: 50px;
+    width: 200px;
+    height: 320px; /* Tỉ lệ chuẩn 1/32 diện tích màn hình */
+    border: 2px solid rgba(0, 191, 255, 0.5);
+    border-radius: 12px;
+    z-index: 10005; /* Nổi bần bật trên cùng */
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+    opacity: 0;
+    pointer-events: none; /* Ẩn hoàn toàn khi chưa click */
+    transform: scale(0.8) translateY(-20px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+/* Class kích hoạt khi bấm vào chữ DIAGRAM trên Nav */
+.mini-diagram-container.show {
+    opacity: 1;
+    pointer-events: auto;
+    transform: scale(1) translateY(0);
+}
+
+.diagram-header {
+    background: #001122;
+    color: #00bfff;
+    text-align: center;
+    padding: 8px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    font-weight: 900;
+    cursor: grab;
+    user-select: none;
+    border-bottom: 1px solid rgba(0, 191, 255, 0.3);
+}
+.diagram-header:active { cursor: grabbing; }
+
+.diagram-body {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.diagram-zone {
+    flex: 1;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    transition: filter 0.3s ease;
+    overflow: hidden;
+}
+.diagram-zone:last-child { border-bottom: none; }
+
+/* HOVER TẦNG BIỂN TỰ SÁNG LÊN */
+.diagram-zone:hover {
+    filter: brightness(1.4); /* Làm tầng biển sáng hẳn lên */
+}
+
+.zone-name {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    font-weight: bold;
+    color: rgba(255,255,255,0.6);
+    pointer-events: none;
+    transition: opacity 0.3s, transform 0.3s;
+}
+
+/* Đồ họa nhỏ (cá, rêu) bơi lơ lửng */
+@keyframes miniFloat {
+    0% { transform: translateY(0) translateX(0); }
+    50% { transform: translateY(-3px) translateX(3px); }
+    100% { transform: translateY(0) translateX(0); }
+}
+.zone-decoration {
+    position: absolute;
+    font-size: 14px;
+    opacity: 0.4;
+    left: 10px;
+    pointer-events: none;
+    animation: miniFloat 3s infinite ease-in-out;
+}
+
+/* NÚT VISIT */
+.visit-btn {
+    position: absolute;
+    background: #fff;
+    color: #000;
+    border: none;
+    padding: 6px 18px;
+    border-radius: 20px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    font-weight: 900;
+    cursor: pointer;
+    opacity: 0; /* Ẩn mặc định */
+    transform: translateY(15px);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Hover tầng biển thì giấu tên, đẩy nút Visit lên */
+.diagram-zone:hover .zone-name { opacity: 0; transform: translateY(-15px); }
+.diagram-zone:hover .visit-btn { opacity: 1; transform: translateY(0); }
+
+.visit-btn:hover {
+    background: #00bfff;
+    color: white;
+    box-shadow: 0 0 15px #00bfff;
 }

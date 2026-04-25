@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ocean Interactive - Group 10</title>
+    <title>Ocean Interactive - Group 12</title>
     <link rel="stylesheet" href="css/global.css">
     <link rel="stylesheet" href="css/sunlight.css">
     <link rel="stylesheet" href="css/twilight.css">
@@ -13,17 +13,23 @@
 <body>
 
     <nav id="top-navbar">
-        <div class="logo">GROUP 10</div>
+        <div class="logo">GROUP 12</div>
         <div class="nav-links">
+            <span id="nav-diagram">DIAGRAM</span>
             <span id="nav-home">HOME</span>
             <span id="nav-contact">CONTACT</span>
             <span id="nav-about">ABOUT US</span>
         </div>
     </nav>
-
-    <header id="hero-section">
-        <div id="dive-btn">LETS DIVE</div>
-    </header>
+    
+    <section class="Ocean_explore">
+        <h2 id="text">OCEAN REALM</h2>
+        <img src="asset/Images/Background/background1.jpg" id="background1">
+        <img src="asset/Images/Background/island_.png" id="island_">
+        <img src="asset/Images/Background/island_right.png" id="island_right">
+        <img src="asset/Images/Background/bird_left.png" id="bird_left">
+        <img src="asset/Images/Background/bird_right.png" id="bird_right">
+    </section>
 
     <div class="ocean-zone" id="sunlight-wrapper">
         <section class="zone-part info-part" id="sunlight-info">
@@ -94,11 +100,38 @@
             <p>Phone: 0869 521 006</p>
         </div>
     </div>
-
-    <div id="transition-overlay">
-        <div class="reveal-wave"></div>
-        <div id="bubble-container" class="reveal-bubbles"></div>
+    <div id="mini-diagram" class="mini-diagram-container">
+        <div id="diagram-header" class="diagram-header">🗺️ MAP </div>
+        
+        <div class="diagram-body">
+            <div class="diagram-zone" data-target="#hero-section" style="background: #2976a6;">
+                <span class="zone-decoration">🌅⛵ </span>
+                <span class="zone-name">Home</span>
+                <button class="visit-btn">Visit</button>
+            </div>
+            <div class="diagram-zone" data-target="#sunlight-wrapper" style="background: #0077be;">
+                <span class="zone-decoration">🐟 🌿</span>
+                <span class="zone-name">Sunlight</span>
+                <button class="visit-btn">Visit</button>
+            </div>
+            <div class="diagram-zone" data-target="#twilight-wrapper" style="background: #005c97;">
+                <span class="zone-decoration" style="animation-delay: 0.5s;">🦑</span>
+                <span class="zone-name">Twilight</span>
+                <button class="visit-btn">Visit</button>
+            </div>
+            <div class="diagram-zone" data-target="#midnight-wrapper" style="background: #003366;">
+                <span class="zone-decoration" style="animation-delay: 1s;">🐋 🫧</span>
+                <span class="zone-name">Midnight</span>
+                <button class="visit-btn">Visit</button>
+            </div>
+            <div class="diagram-zone" data-target="#abyssal-wrapper" style="background: #001133;">
+                <span class="zone-decoration" style="animation-delay: 1.5s;">🐡 🪸</span>
+                <span class="zone-name">Abyssal</span>
+                <button class="visit-btn">Visit</button>
+            </div>
+        </div>
     </div>
+    
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
