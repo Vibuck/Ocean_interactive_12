@@ -32,22 +32,22 @@ function playNaturalWave(target) {
 
     tl.set(overlay, { visibility: 'visible' })
     // SÓNG DÂNG NHANH
-    .to(wave, { duration: 0.8, yPercent: 0, ease: "power2.in" })
+    .to(wave, { duration: 0.9, yPercent: 0, ease: "power2.in" })
     // BONG BÓNG BAY LOẠN XẠ
     .to(bubbles, {
         duration: 1.5, opacity: 1,
         y: () => -(window.innerHeight + 200),
         x: () => (Math.random() - 0.5) * 200,
-        stagger: { amount: 0.8, from: "random" },
+        stagger: { amount: 0.9, from: "random" },
         ease: "power1.out"
     }, 0)
     // CHUYỂN TRANG
     .to(window, { duration: 0.1, scrollTo: target }, 0.7)
     // SÓNG TAN BIẾN TỰ NHIÊN (VỪA CUỘN LÊN VỪA MỜ VỪA CO LẠI)
     .to(wave, {
-        duration: 1.2,
+        duration: 1.4,
         yPercent: -120,
-        opacity: 0,
+        opacity: 0.1,
         scaleY: 0.5,
         ease: "power2.out"
     }, "+=0.1");
