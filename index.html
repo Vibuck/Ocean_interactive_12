@@ -11,6 +11,7 @@
     <nav id="top-navbar">
         <div class="logo">GROUP 12</div>
         <div class="nav-links">
+            <span id="nav-diagram">DIAGRAM</span>
             <span id="nav-home">HOME</span>
             <span id="nav-contact">CONTACT</span>
             <span id="nav-about">ABOUT US</span>
@@ -76,11 +77,38 @@
             <p>Phone: 0869 521 006</p>
         </div>
     </div>
-
-    <div id="transition-overlay">
-        <div class="reveal-wave"></div>
-        <div id="bubble-container" class="reveal-bubbles"></div>
+    <div id="mini-diagram" class="mini-diagram-container">
+        <div id="diagram-header" class="diagram-header">🗺️ MAP </div>
+        
+        <div class="diagram-body">
+            <div class="diagram-zone" data-target="#hero-section" style="background: #2976a6;">
+                <span class="zone-decoration">🌅⛵ </span>
+                <span class="zone-name">Home</span>
+                <button class="visit-btn">Visit</button>
+            </div>
+            <div class="diagram-zone" data-target="#sunlight-wrapper" style="background: #0077be;">
+                <span class="zone-decoration">🐟 🌿</span>
+                <span class="zone-name">Sunlight</span>
+                <button class="visit-btn">Visit</button>
+            </div>
+            <div class="diagram-zone" data-target="#twilight-wrapper" style="background: #005c97;">
+                <span class="zone-decoration" style="animation-delay: 0.5s;">🦑</span>
+                <span class="zone-name">Twilight</span>
+                <button class="visit-btn">Visit</button>
+            </div>
+            <div class="diagram-zone" data-target="#midnight-wrapper" style="background: #003366;">
+                <span class="zone-decoration" style="animation-delay: 1s;">🐋 🫧</span>
+                <span class="zone-name">Midnight</span>
+                <button class="visit-btn">Visit</button>
+            </div>
+            <div class="diagram-zone" data-target="#abyssal-wrapper" style="background: #001133;">
+                <span class="zone-decoration" style="animation-delay: 1.5s;">🐡 🪸</span>
+                <span class="zone-name">Abyssal</span>
+                <button class="visit-btn">Visit</button>
+            </div>
+        </div>
     </div>
+    
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
