@@ -93,3 +93,20 @@ diagramZones.forEach(zone => {
         });
     };
 });
+let text = document.getElementById('text')
+let background = document.getElementById('background1')
+let island_ = document.getElementById('island_')
+let island_right = document.getElementById('island_right')
+let bird_left = document.getElementById('bird_left')
+let bird_right = document.getElementById('bird_right')
+
+window.addEventListener('scroll', () => {
+    let value = window.scrollY;
+    text.style.transform = `translate(-50%, calc(-50% + ${value * 1.5}px))`;
+    text.style.opacity = 1 - value * 0.002; 
+    bird_left.style.transform = `translate(${value * -1.5}px, ${value * -0.8}px) rotate(${value * -0.05}deg)`; 
+    bird_right.style.transform = `translate(${value * 1.5}px, ${value * -0.8}px) rotate(${value * 0.05}deg)`; 
+
+    island_.style.transform = `translateX(${value * -1.5}px) scale(${1 + value * 0.002})`; 
+    island_right.style.transform = `translateX(${value * 1.5}px) scale(${1 + value * 0.002})`; 
+});
