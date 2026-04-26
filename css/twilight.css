@@ -80,3 +80,53 @@ video.media-box {
     height: 250px; 
 }
 
+/* ================================
+   1. BỐ CỤC ZÍC ZẮC 3 CON CÁ
+   ================================ */
+#twilight-fish {
+    padding: 50px 20px 100px 20px;
+}
+#twilight-fish h2 {
+    text-align: center; margin-bottom: 80px;
+    font-size: 2.5rem; color: #00bfff;
+}
+.fish-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr; 
+    row-gap: 120px; column-gap: 80px; 
+    max-width: 1000px; margin: 0 auto;
+}
+
+/* Vị trí chuẩn zíc zắc */
+.fish-card:nth-child(1) { grid-column: 1; grid-row: 1; justify-self: center; }
+.fish-card:nth-child(2) { grid-column: 2; grid-row: 1 / span 2; align-self: center; justify-self: center; }
+.fish-card:nth-child(3) { grid-column: 1; grid-row: 2; justify-self: center; }
+
+.fish-card { text-align: center; width: 100%; max-width: 450px; cursor: pointer; }
+.fish-img { width: 100%; height: auto; max-width: 350px; object-fit: contain; margin-bottom: 20px; filter: drop-shadow(0 15px 20px rgba(0,0,0,0.6)); }
+/* Riêng cá nhà táng to hơn */
+.fish-card:nth-child(1) .fish-img { max-width: 450px; }
+
+.fish-name { font-size: 2rem; color: #00bfff; margin-bottom: 10px; }
+.fish-card p { font-size: 1rem; color: #e0e0e0; line-height: 1.5; }
+
+/* ================================
+   2. GIAO DIỆN CHI TIẾT (BẢN VẼ KHỐI CHỮ NHẬT)
+   ================================ */
+#detail-view { width: 100%; max-width: 1200px; margin: 0 auto; color: white; }
+#back-btn { background: transparent; color: #00bfff; border: 1px solid #00bfff; padding: 10px 20px; border-radius: 5px; cursor: pointer; margin-bottom: 30px; font-family: 'Montserrat'; transition: 0.3s; }
+#back-btn:hover { background: #00bfff; color: #000; }
+
+.detail-layout { display: flex; align-items: center; gap: 30px; }
+.col-left { flex: 1; }
+.col-center { flex: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+.col-right { flex: 1.5; display: flex; flex-direction: column; align-items: center; text-align: center; }
+
+/* Khối đen */
+.box { background: #000; border: 1px solid #333; display: flex; align-items: center; justify-content: center; font-family: sans-serif; text-align: center; padding: 20px;}
+.box-model { height: 350px; }
+.box-img { height: 165px; }
+
+#target-image-container { width: 100%; min-height: 250px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; }
+#target-image-container .fish-img { max-width: 500px; filter: drop-shadow(0 20px 30px rgba(0, 191, 255, 0.4)); }
+#detail-title { font-size: 2.5rem; color: #00bfff; margin-bottom: 15px;}

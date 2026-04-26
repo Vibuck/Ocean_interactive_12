@@ -42,26 +42,94 @@
 
 <div id="twilight-wrapper" class="ocean-zone">
 
-    <div id="twilight-info" class="zone-layout">
-        
-        <div class="glass-bubble">
-            <h2 class="zone-title">Twilight Zone - Thông tin</h2>
-            <p>Tầng chạng vạng của đại dương là lớp nước nằm ở độ sâu khoảng 200 đến 1000 mét dưới mặt biển. Đây là vùng chuyển tiếp giữa tầng có ánh sáng ở phía trên và tầng tối hoàn toàn ở phía dưới. Ánh sáng mặt trời chỉ còn rất yếu khi xuống tới đây, không đủ để thực hiện quá trình quang hợp, vì vậy môi trường trở nên lạnh, áp suất cao và khá khắc nghiệt.</p>
-            <p>Điều kiện sống khó khăn nhưng tầng chạng vạng đóng vai trò rất quan trọng đối với hệ sinh thái biển và cả khí hậu toàn cầu. Nó là nguồn thức ăn cho nhiều loài động vật lớn hơn như cá ngừ hay cá voi, đồng thời góp phần hấp thụ và lưu trữ carbon, giúp giảm lượng CO2 trong khí quyển. Tuy nhiên, do độ sâu trung gian và điều kiện khó tiếp cận, khu vực này vẫn còn rất ít được khám phá và chứa đựng nhiều bí ẩn đối với các nhà khoa học.</p>
+        <div id="twilight-info" class="zone-layout">
+            <div class="glass-bubble">
+                <h2 class="zone-title">Twilight Zone - Thông tin</h2>
+                <p>Tầng chạng vạng của đại dương là lớp nước nằm ở độ sâu khoảng 200 đến 1000 mét dưới mặt biển. Đây là vùng chuyển tiếp giữa tầng có ánh sáng ở phía trên và tầng tối hoàn toàn ở phía dưới. Ánh sáng mặt trời chỉ còn rất yếu khi xuống tới đây, không đủ để thực hiện quá trình quang hợp, vì vậy môi trường trở nên lạnh, áp suất cao và khá khắc nghiệt.</p>
+                <p>Điều kiện sống khó khăn nhưng tầng chạng vạng đóng vai trò rất quan trọng đối với hệ sinh thái biển và cả khí hậu toàn cầu. Nó là nguồn thức ăn cho nhiều loài động vật lớn hơn như cá ngừ hay cá voi, đồng thời góp phần hấp thụ và lưu trữ carbon, giúp giảm lượng CO2 trong khí quyển. Tuy nhiên, do độ sâu trung gian và điều kiện khó tiếp cận, khu vực này vẫn còn rất ít được khám phá và chứa đựng nhiều bí ẩn đối với các nhà khoa học.</p>
+            </div>
+
+            <div class="media-stack">
+                <img src="asset/Images/twilightzone.jpg" alt="Sinh vật biển sâu" class="media-box">
+                <video src="asset/Images/twilightvideo.mp4" controls class="media-box"></video> 
+            </div>
         </div>
 
-        <div class="media-stack">
-            <img src="asset/Images/twilightzone.jpg" alt="Sinh vật biển sâu" class="media-box">
-            <video src="asset/Images/twilightvideo.mp4" controls class="media-box"></video> 
-    </div>
+        <section class="zone-part fish-part" id="twilight-fish">
+            <h2>Twilight Zone - Các loài cá</h2>
+            
+            
+         <div class="fish-container">
+            
+            <div class="fish-card" 
+                 data-model="asset/Images/model-nhatang.png" 
+                 data-img1="asset/Images/nhatang-1.jpg" 
+                 data-img2="asset/Images/nhatang-2.jpg" 
+                 data-img3="asset/Images/nhatang-3.jpg" 
+                 data-img4="asset/Images/nhatang-4.jpg">
+                <img src="asset/Images/canhatang.png" alt="Cá nhà táng" class="fish-img">
+                <h3 class="fish-name">Cá nhà táng</h3>
+                <p>Cá nhà táng là loài động vật có răng lớn nhất trên Trái Đất...</p>
+            </div>
 
-    </div>
+            <div class="fish-card" 
+                 data-model="asset/Images/model-longden.png" 
+                 data-img1="asset/Images/longden-1.jpg" 
+                 data-img2="asset/Images/longden-2.jpg" 
+                 data-img3="asset/Images/longden-3.jpg" 
+                 data-img4="asset/Images/longden-4.jpg">
+                <img src="asset/Images/calongden.png" alt="Cá lồng đèn" class="fish-img">
+                <h3 class="fish-name">Cá lồng đèn</h3>
+                <p>Cá lồng đèn có một chiếc cần phát sáng trên đầu để nhử mồi...</p>
+            </div>
 
-    <section class="zone-part fish-part" id="twilight-fish">
-        <h2>Twilight Zone - Các loài cá</h2>
-    </section>
+            <div class="fish-card" 
+                 data-model="asset/Images/model-muc.png" 
+                 data-img1="asset/Images/muc-1.jpg" 
+                 data-img2="asset/Images/muc-2.jpg" 
+                 data-img3="asset/Images/muc-3.jpg" 
+                 data-img4="asset/Images/muc-4.jpg">
+                <img src="asset/Images/mucdomdom.png" alt="Mực đom đóm" class="fish-img">
+                <h3 class="fish-name">Mực đom đóm</h3>
+                <p>Mực đom đóm có thể phát ra ánh sáng màu xanh dương tuyệt đẹp...</p>
+            </div>
 
-</div>
+        </div>
+
+        <div id="detail-view" style="display: none; padding: 50px 0;">
+            <button id="back-btn" style="background:none; color:#00bfff; border:1px solid #00bfff; padding:10px; cursor:pointer; margin-bottom:20px;">⬅ Quay lại</button>
+            <div class="detail-layout" style="display: flex; gap: 30px; align-items: center;">
+                
+                <div class="col-left detail-fade" style="flex: 1;">
+                    <div class="box box-model" style="padding:0; overflow:hidden;">
+                        <img id="detail-model" src="" style="width:100%; height:100%; object-fit:contain;" alt="Model 3D">
+                    </div>
+                </div>
+
+                <div class="col-center detail-fade" style="flex: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                    <div class="box box-img" style="padding:0; overflow:hidden;">
+                        <img id="detail-img1" src="" style="width:100%; height:100%; object-fit:cover;" alt="Ảnh 1">
+                    </div>
+                    <div class="box box-img" style="padding:0; overflow:hidden;">
+                        <img id="detail-img2" src="" style="width:100%; height:100%; object-fit:cover;" alt="Ảnh 2">
+                    </div>
+                    <div class="box box-img" style="padding:0; overflow:hidden;">
+                        <img id="detail-img3" src="" style="width:100%; height:100%; object-fit:cover;" alt="Ảnh 3">
+                    </div>
+                    <div class="box box-img" style="padding:0; overflow:hidden;">
+                        <img id="detail-img4" src="" style="width:100%; height:100%; object-fit:cover;" alt="Ảnh 4">
+                    </div>
+                </div>
+
+                <div class="col-right" style="flex: 1.5; text-align: center;">
+                    <div id="target-image-container"></div> 
+                    <h1 id="detail-title" class="detail-fade" style="color:#00bfff;"></h1>
+                    <p id="detail-desc" class="detail-fade"></p>
+                </div>
+            </div>
+        </div>
+        </section>
+ </div>
 
     <div class="ocean-zone" id="midnight-wrapper">
         <section class="zone-part info-part" id="midnight-info">
@@ -135,7 +203,9 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/Flip.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/twilight.js"></script>
 </body>
 </html>
