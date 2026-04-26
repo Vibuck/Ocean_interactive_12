@@ -52,9 +52,28 @@
     <div class="ocean-zone" id="midnight-wrapper">
         <section class="zone-part info-part" id="midnight-info">
             <h2>Midnight Zone - Thông tin</h2>
+                <p>Ở tầng biển đen, ánh sáng Mặt Trời không thể xuyên tới độ sâu từ khoảng 1000 m trở xuống nên môi trường gần như tối hoàn toàn. Điều này khiến quang hợp không thể xảy ra và ảnh hưởng trực tiếp đến toàn bộ hệ sinh thái.</p>
+                <p>Nhiệt độ tại tầng này dao động khoảng 2–4°C và rất ổn định theo thời gian. Tuy không biến đổi nhiều nhưng đây vẫn là một môi trường lạnh và khắc nghiệt đối với sinh vật.</p>
+                <p>Địa hình ở tầng biển đen khá đa dạng với sườn lục địa có độ dốc lớn nối từ vùng nông xuống sâu và nhiều hẻm vực biển cắt sâu vào địa hình. Các dòng chảy trầm tích mạnh vận chuyển bùn cát từ trên xuống tạo thành các quạt trầm tích dưới biển, đồng thời hoạt động địa chất vẫn còn rõ với sự xuất hiện của núi ngầm và núi lửa dưới biển.</p>
+                <p>Tầng biển đen nằm ở độ sâu khoảng 1000–4000 m, nơi áp suất nước rất lớn và tăng trung bình khoảng 1 atm cho mỗi 10 m độ sâu. Áp suất cao tạo nên điều kiện sống khắc nghiệt và đòi hỏi sinh vật phải có sự thích nghi đặc biệt.</p>
+                <p>Do không có ánh sáng nên tầng này không tồn tại thực vật. Nguồn thức ăn chủ yếu là xác sinh vật và các mảnh hữu cơ từ tầng trên rơi xuống, còn gọi là “tuyết biển”, ngoài ra còn có các vi khuẩn hóa tổng hợp có khả năng tạo chất hữu cơ từ các hợp chất hóa học, đóng vai trò tương tự như “cây xanh” trong hệ sinh thái.</p>
         </section>
         <section class="zone-part fish-part" id="midnight-fish">
             <h2>Midnight Zone - Các loài cá</h2>
+            <div class="fish-grid">
+                <div class="fish-card" data-fish="stomiidae">
+                    <img src="asset/Images/Background/Ca_rong_bien_sau.png" alt="Anglerfish" class="fish-image">
+                    <h3>Cá rồng biển sâu </h3>
+                </div>
+                <div class="fish-card" data-fish="lophiiformes">
+                    <img src="asset/Images/Background/Ca_can_cau.png" alt="lophiiformes" class="fish-image">
+                    <h3>Cá cần câu</h3>
+                </div>
+                <div class="fish-card" data-fish="vampyroteuthis infernalis">
+                    <img src="asset/Images/Background/Muc_ma_ca_rong.png" alt="vampyroteuthis infernalis" class="fish-image">
+                    <h3>Mực ma cà rồng</h3>
+                </div>
+            </div>
         </section>
     </div>
 
@@ -117,11 +136,30 @@
             </div>
         </div>
     </div>
-    
+
+     <!-- Fish Detail Page -->
+    <div id="fish-detail-page" class="fish-detail-page hidden">
+        <button class="fish-detail-back">  Back </button>
+        <button class="fish-detail-model"> Model </button>
+        <button class="fish-detail-video"> Video </button>
+        <div class="fish-detail-container">
+            <div class="fish-detail-image-container">
+                <img id="detail-fish-image" src="" alt="Fish" class="detail-fish-image">
+            </div>
+            <div class="fish-detail-info">
+                <h1 id="detail-fish-name"></h1>
+                <div id="detail-fish-description"></div>
+            </div>
+        </div>
+        <div id="video-container" class="video-container hidden">
+            <video id="detail-video" controls playsinline preload="metadata"></video>
+        </div>
+    </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/midnight.js"></script>
 </body>
 </html>
