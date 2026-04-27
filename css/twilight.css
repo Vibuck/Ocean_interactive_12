@@ -128,9 +128,22 @@ video.media-box {
 .col-right { flex: 1.5; display: flex; flex-direction: column; align-items: center; text-align: center; }
 
 /* Khối đen */
-.box { background: #000; border: 1px solid #333; display: flex; align-items: center; justify-content: center; font-family: sans-serif; text-align: center; padding: 20px;}
+.box { background: rgba(0, 10, 30, 0.5); /* Đen xanh mờ (50%), hòa vào đại dương */
+    backdrop-filter: blur(5px);       /* Hiệu ứng kính mờ để làm nổi ảnh/model */
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Viền trắng siêu mờ */
+    
+    /* 3. GIỮ NGUYÊN CÁC DÒNG CŨ: */
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    font-family: sans-serif; 
+    text-align: center; 
+    padding: 5px; /* Giữ padding nhỏ như đã chỉnh sửa trước */
+ }
 .box-model { height: 350px; }
-.box-img { height: 165px; }
+.box-img { height: 205px; width: 205px }
+/* Thêm mới: Ép các ảnh bên trong hộp đen to ra tối đa */
+
 
 #target-image-container { width: 100%; min-height: 250px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; }
 #target-image-container .fish-img { max-width: 500px; filter: drop-shadow(0 20px 30px rgba(0, 191, 255, 0.4)); }
@@ -162,7 +175,7 @@ video.media-box {
 }
 
 /* Riêng cá nhà táng to hơn */
-.fish-card:nth-child(1) .fish-img { max-width: 450px; }
+.fish-card:nth-child(1) .fish-img { max-width: 550px; }
 
 /* Thêm transition cho tên cá */
 .fish-name { 
@@ -188,4 +201,21 @@ video.media-box {
 .fish-card:hover .fish-name {
     color: #ffffff;
     text-shadow: 0 0 15px rgba(0, 191, 255, 0.8);
+}
+/* KHUNG TỔNG BAO TRỌN NỘI DUNG CHI TIẾT */
+.total-detail-frame {
+    background: rgba(0, 15, 35, 0.6); /* Nền xanh đen trong suốt */
+    backdrop-filter: blur(15px);      /* Hiệu ứng kính mờ mạnh cho sang */
+    border: 2px solid rgba(0, 191, 255, 0.4); /* Viền màu xanh biển sáng */
+    border-radius: 30px;              /* Bo góc rộng nhìn cho hiện đại */
+    padding: 40px;                    /* Khoảng cách từ nội dung đến viền khung */
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.8), 
+                inset 0 0 20px rgba(0, 191, 255, 0.1); /* Đổ bóng cả trong lẫn ngoài */
+    max-width: 1300px;                /* Giới hạn độ rộng khung */
+    margin: 0 auto;                   /* Căn giữa màn hình */
+}
+
+/* Chỉnh lại một chút để các cột cân đối bên trong khung */
+.detail-layout {
+    width: 100%;
 }

@@ -1,6 +1,6 @@
 // twilight.js - FILE RIÊNG CỦA BẠN
 document.addEventListener("DOMContentLoaded", () => {
-    // Tự đăng ký Flip (không đụng vào main.js của nhóm trưởng)
+    // Tự đăng ký Flip
     if (typeof Flip !== 'undefined') {
         gsap.registerPlugin(Flip);
     } else {
@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let activeImage = null;
     let originalParent = null;
 
-    // Lắng nghe sự kiện click vào các con cá của bạn
+    // Lắng nghe sự kiện click vào các con cá
     twilightSection.querySelectorAll('.fish-card').forEach(card => {
         card.addEventListener('click', function() {
             const img = this.querySelector('.fish-img');
@@ -26,9 +26,25 @@ document.addEventListener("DOMContentLoaded", () => {
             originalParent = img.parentElement;
             activeImage = img;
 
-            // Đổ dữ liệu vào màn hình chi tiết
+            // Đổ dữ liệu chữ vào màn hình chi tiết
             twilightSection.querySelector('#detail-title').innerText = title;
             twilightSection.querySelector('#detail-desc').innerText = desc;
+
+            // ==========================================
+            // ĐÂY LÀ ĐOẠN ĐÃ ĐƯỢC CHÈN VÀO ĐÚNG CHỖ
+            // ==========================================
+            const modelSrc = this.getAttribute('data-model');
+            const img1Src = this.getAttribute('data-img1');
+            const img2Src = this.getAttribute('data-img2');
+            const img3Src = this.getAttribute('data-img3');
+            const img4Src = this.getAttribute('data-img4');
+
+           twilightSection.querySelector('#detail-model').setAttribute('src', modelSrc);
+            twilightSection.querySelector('#detail-img1').src = img1Src;
+            twilightSection.querySelector('#detail-img2').src = img2Src;
+            twilightSection.querySelector('#detail-img3').src = img3Src;
+            twilightSection.querySelector('#detail-img4').src = img4Src;
+            // ==========================================
 
             // BẮT ĐẦU TRƯỢT (GSAP FLIP)
             const state = Flip.getState(img);
@@ -68,20 +84,3 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 });
-// Đổ dữ liệu vào màn hình chi tiết (đã có sẵn)
-            twilightSection.querySelector('#detail-title').innerText = title;
-            twilightSection.querySelector('#detail-desc').innerText = desc;
-
-            // ---- CHÈN THÊM ĐOẠN NÀY ĐỂ THAY ẢNH PHỤ ----
-            const modelSrc = this.getAttribute('data-model');
-            const img1Src = this.getAttribute('data-img1');
-            const img2Src = this.getAttribute('data-img2');
-            const img3Src = this.getAttribute('data-img3');
-            const img4Src = this.getAttribute('data-img4');
-
-            twilightSection.querySelector('#detail-model').src = modelSrc;
-            twilightSection.querySelector('#detail-img1').src = img1Src;
-            twilightSection.querySelector('#detail-img2').src = img2Src;
-            twilightSection.querySelector('#detail-img3').src = img3Src;
-            twilightSection.querySelector('#detail-img4').src = img4Src;
-            // ----------------------------------------------
