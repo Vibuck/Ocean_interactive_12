@@ -157,16 +157,29 @@
         </div>
     </div>
 
-    <div id="game-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0, 5, 20, 0.9); z-index: 1000;">
-        <button id="close-game-btn" style="position: absolute; top: 20px; right: 20px; z-index: 1001; font-size: 20px; cursor: pointer;">❌ Thoát</button>
-    
-        <div style="position: absolute; top: 20px; left: 20px; color: white; font-family: sans-serif; z-index: 1001; font-size: 24px; font-weight: bold;">
-            ĐIỂM: <span id="game-score">0</span>
-        </div>
+    <div id="game-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0, 15, 30, 0.95); z-index: 99999; backdrop-filter: blur(8px);">
+        
+        <div id="game-window" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 85vw; height: 85vh; max-width: 1200px; max-height: 800px; background: radial-gradient(circle at bottom, #007bb5 0%, #001528 100%); border: 3px solid #00f2fe; border-radius: 15px; box-shadow: 0 0 40px rgba(0, 242, 254, 0.5), inset 0 0 20px rgba(0, 242, 254, 0.3); overflow: hidden;">
+            
+            <div style="position: absolute; top: 0; left: 0; width: 100%; padding: 15px 25px; display: flex; justify-content: space-between; align-items: center; box-sizing: border-box; z-index: 1002; background: linear-gradient(to bottom, rgba(0,21,40,0.9), transparent);">
+                
+                <div style="color: white; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 24px; font-weight: 900; text-shadow: 0 0 10px #00ffaa;">
+                    ĐIỂM: <span id="game-score">0</span>
+                </div>
 
-        <div id="game-canvas-container" style="width: 100%; height: 100%;"></div>
-    
-        <canvas id="slash-canvas" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1000;"></canvas>
+                <div style="color: #00f2fe; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 22px; font-weight: 900; letter-spacing: 3px; text-shadow: 0 0 15px #00f2fe;">
+                    OCEAN CLEANER
+                </div>
+                
+                <button id="close-game-btn" style="background: #ff3333; color: white; border: 2px solid #ffaaaa; padding: 8px 25px; border-radius: 8px; font-size: 16px; font-weight: bold; cursor: pointer; box-shadow: 0 0 15px rgba(255,50,50,0.6);">
+                    ❌ THOÁT
+                </button>
+            </div>
+
+            <div id="game-canvas-container" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></div>
+        
+            <canvas id="slash-canvas" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1000;"></canvas>
+        </div>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
@@ -176,6 +189,7 @@
     <script src="js/midnight.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
-    <script src="minigame.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/utils/SkeletonUtils.js"></script>
+    <script src="js/minigame.js"></script>
 </body>
 </html>
