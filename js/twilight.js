@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
         card.addEventListener('click', function() {
             const img = this.querySelector('.fish-img');
             const title = this.querySelector('.fish-name').innerText;
-            const desc = this.querySelector('p').innerText;
+            const desc = this.querySelector('p').textContent;
 
             originalParent = img.parentElement;
             activeImage = img;

@@ -19,6 +19,7 @@
     border-radius: 25px; /* Bo góc tròn trịa */
     padding: 40px 50px; /* Khoảng cách từ viền kính đến chữ */
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3); /* Đổ bóng để khối kính nổi lên */
+    
 }
 
 /* Tiêu đề bên trong kính */
@@ -109,6 +110,10 @@ video.media-box {
 
 .fish-name { font-size: 2rem; color: #00bfff; margin-bottom: 10px; }
 .fish-card p { font-size: 1rem; color: #e0e0e0; line-height: 1.5; }
+/* Ẩn hoàn toàn thẻ p ở giao diện lưới cá bên ngoài */
+.fish-card p { 
+    display: none; 
+}
 
 /* ================================
    2. GIAO DIỆN CHI TIẾT (BẢN VẼ KHỐI CHỮ NHẬT)
@@ -130,3 +135,57 @@ video.media-box {
 #target-image-container { width: 100%; min-height: 250px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; }
 #target-image-container .fish-img { max-width: 500px; filter: drop-shadow(0 20px 30px rgba(0, 191, 255, 0.4)); }
 #detail-title { font-size: 2.5rem; color: #00bfff; margin-bottom: 15px;}
+ /* ================================
+   CHỈNH SỬA CLASS CŨ: Đảm bảo thẻ cá hoàn toàn trong suốt 
+   ================================ */
+.fish-card { 
+    text-align: center; 
+    width: 100%; 
+    max-width: 450px; 
+    cursor: pointer; 
+    /* Thêm 3 dòng dưới để loại bỏ hoàn toàn khung/nền nếu có */
+    background: transparent; 
+    border: none; 
+    box-shadow: none; 
+}
+
+/* Thêm transition để hiệu ứng trượt mượt mà hơn */
+.fish-img { 
+    width: 100%; 
+    height: auto; 
+    max-width: 350px; 
+    object-fit: contain; 
+    margin-bottom: 20px; 
+    filter: drop-shadow(0 15px 20px rgba(0,0,0,0.6));
+    /* Thêm transition cho chuyển động */
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.4s ease; 
+}
+
+/* Riêng cá nhà táng to hơn */
+.fish-card:nth-child(1) .fish-img { max-width: 450px; }
+
+/* Thêm transition cho tên cá */
+.fish-name { 
+    font-size: 2rem; 
+    color: #00bfff; 
+    margin-bottom: 10px; 
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.fish-card p { font-size: 1rem; color: #e0e0e0; line-height: 1.5; }
+
+/* ================================
+   THÊM MỚI: HIỆU ỨNG KHI HOVER (DI CHUỘT VÀO)
+   ================================ */
+
+/* 1. Hình ảnh cá nổi bật lên, to ra một xíu và cái bóng (drop-shadow) đổi sang màu xanh sáng */
+.fish-card:hover .fish-img {
+    transform: translateY(-20px) scale(1.05); /* Dịch lên trên 20px và phóng to 5% */
+    filter: drop-shadow(0 25px 30px rgba(0, 191, 255, 0.5)); /* Bóng sáng màu xanh */
+}
+
+/* 2. Chữ tên cá sáng bừng lên */
+.fish-card:hover .fish-name {
+    color: #ffffff;
+    text-shadow: 0 0 15px rgba(0, 191, 255, 0.8);
+}
