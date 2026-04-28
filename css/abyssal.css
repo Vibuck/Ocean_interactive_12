@@ -99,25 +99,124 @@
 /* Vùng chạy hiệu ứng GSAP */
 #abyssal-fish-animation {
     width: 100%;
-    height: 200vh; /* Độ dài cuộn */
-    background: transparent !important; /* Buộc phải trong suốt */
+    height: 100vh;
+    background: #000;
+    position: relative;
+    overflow: hidden;
 }
 
 .fish-container {
-    position: sticky;
-    top: 0;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.fish-item {
+    position: absolute; /* Bắt buộc để 3 thẻ nằm đè lên nhau tại tâm */
+    width: 280px;
+    height: 380px;
+}
+
+
+/* ============================================================
+   ABYSSAL ZONE - GSAP ANIMATION SECTION
+   ============================================================ */
+
+/* 1. Khung bao quát toàn bộ hiệu ứng */
+#abyssal-fish-animation {
+    width: 100%;
+    height: 100vh; /* Chỉ để 100vh vì GSAP sẽ ghim (pin) tại đây */
+    background: transparent !important;
+    overflow: hidden;
+    position: relative;
+}
+
+/* 2. Container chứa các thẻ cá */
+.fish-container {
+    position: relative;
+    width: 100%;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    background: transparent !important;
+    background: transparent;
 }
 
-.fish-img {
+/* 3. Thẻ cá cá nhân - Ép chồng khít lên nhau ở TÂM */
+.fish-item {
     position: absolute;
-    width: 350px;
+    width: 280px;
+    height: 380px;
     z-index: 10;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
+    will-change: transform; /* Tối ưu hiệu năng cho GSAP */
+}
+
+/* 4. Lớp vỏ bên trong thẻ (chứa ảnh và tên) */
+.card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(15px); /* Hiệu ứng kính mờ chuyên nghiệp */
+    border: 1px solid rgba(0, 242, 254, 0.2);
+    border-radius: 20px;
+    overflow: hidden; /* Giấu tên cá khi chưa hover */
+    cursor: pointer;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+                box-shadow 0.3s ease;
+}
+
+/* 5. Ảnh con cá */
+.card-inner img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 25px;
+    transition: transform 0.5s ease;
+}
+
+/* 6. Tên con cá (Mặc định giấu xuống dưới đáy) */
+.fish-name {
+    position: absolute;
+    bottom: -60px; /* Nằm ngoài khung hình */
+    left: 0;
+    width: 100%;
+    height: 60px;
+    background: rgba(0, 242, 254, 0.15);
+    color: #00f2fe;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: bottom 0.3s ease;
+    border-top: 1px solid rgba(0, 242, 254, 0.3);
+}
+
+/* ============================================================
+   HIỆU ỨNG KHI DI CHUỘT (HOVER)
+   ============================================================ */
+
+/* Nhấc nhẹ thẻ lên và hiện hào quang xanh */
+.card-inner:hover {
+    transform: scale(1.05) translateY(-5px);
+    box-shadow: 0 0 30px rgba(0, 242, 254, 0.4);
+    border-color: rgba(0, 242, 254, 0.6);
+    z-index: 50; /* Đảm bảo thẻ đang xem nổi lên trên cùng */
+}
+
+/* Trượt tên cá lên */
+.card-inner:hover .fish-name {
+    bottom: 0;
+}
+
+/* Phóng to ảnh cá một chút */
+.card-inner:hover img {
+    transform: scale(1.1);
+
 }
