@@ -1,40 +1,41 @@
+/* ============================================================
+   TWILIGHT ZONE CSS - Đã quy hoạch (Prefix tw- & Nesting)
+   ============================================================ */
+
 /* Bố cục chính: Lưới 2 cột */
-.zone-layout {
+#twilight-wrapper .tw-zone-layout {
     display: grid;
-    grid-template-columns: 1.2fr 1fr; /* Cột chữ (1.2) sẽ rộng hơn cột ảnh (1) một chút */
-    gap: 40px; /* Khoảng cách giữa 2 cột */
-    padding: 120px 50px 50px 50px; /* Khớp lề 50px với Navbar, đẩy padding-top 120px để không bị Navbar đè lên */
+    grid-template-columns: 1.2fr 1fr;
+    gap: 40px;
+    padding: 120px 50px 50px 50px;
     width: 100%;
-    align-items: center; /* Căn giữa các khối theo chiều dọc */
+    align-items: center;
 }
 
 /* ================================
    CỘT TRÁI: BONG BÓNG KÍNH
    ================================ */
-.glass-bubble {
-    background: rgba(255, 255, 255, 0.08); /* Nền trắng siêu mờ */
-    backdrop-filter: blur(16px); /* Làm mờ cảnh phía sau (Hiệu ứng kính) */
-    -webkit-backdrop-filter: blur(16px); /* Dành cho Safari */
-    border: 1px solid rgba(255, 255, 255, 0.2); /* Viền sáng nhẹ */
-    border-radius: 25px; /* Bo góc tròn trịa */
-    padding: 40px 50px; /* Khoảng cách từ viền kính đến chữ */
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3); /* Đổ bóng để khối kính nổi lên */
-    
+#twilight-wrapper .tw-glass-bubble {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 25px;
+    padding: 40px 50px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 }
 
-/* Tiêu đề bên trong kính */
-.glass-bubble .zone-title {
+#twilight-wrapper .tw-glass-bubble .tw-zone-title {
     font-family: 'Montserrat', sans-serif;
     font-size: 2.5rem;
-    color: #00bfff; /* Chữ màu xanh cyan */
-    text-shadow: 0 0 15px rgba(0, 191, 255, 0.5); /* Hiệu ứng phát sáng lướt nhẹ */
+    color: #00bfff;
+    text-shadow: 0 0 15px rgba(0, 191, 255, 0.5);
     margin-top: 0;
     margin-bottom: 25px;
     text-align: left;
 }
 
-/* Đoạn văn bên trong kính */
-.glass-bubble p {
+#twilight-wrapper .tw-glass-bubble p {
     font-family: 'Montserrat', sans-serif;
     font-size: 1rem;
     line-height: 1.8;
@@ -43,179 +44,190 @@
     text-align: justify;
     margin: 0;
 }
-.glass-bubble p:not(:last-child) {
-    margin-bottom: 15px; /* Cách các đoạn văn với nhau */
+
+#twilight-wrapper .tw-glass-bubble p:not(:last-child) {
+    margin-bottom: 15px;
 }
 
 /* ================================
    CỘT PHẢI: ẢNH VÀ VIDEO
    ================================ */
-.media-stack {
+#twilight-wrapper .tw-media-stack {
     display: flex;
     flex-direction: column;
-    gap: 25px; /* Khoảng cách giữa ảnh và video */
-
+    gap: 25px;
 }
 
-.media-box {
+#twilight-wrapper .tw-media-box {
     width: 100%;
-    border-radius: 20px; /* Bo góc khung ảnh/video */
+    border-radius: 20px;
     border: 1px solid rgba(255, 255, 255, 0.1);
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
-    object-fit: cover; /* Tránh làm méo ảnh */
-    background: #000; /* Phòng khi video chưa load kịp sẽ hiện nền đen */
-    position: relative; /* MỚI THÊM: Bắt buộc phải có relative thì z-index mới hoạt động */
-    z-index: 10; /* MỚI THÊM: Ép khối ảnh/video này nổi lên lớp cao nhất, không ai đè được */
+    object-fit: cover;
+    background: #000;
     position: relative;
-    z-index: 999 !important; /* Tăng hẳn lên 999 và thêm !important cho chắc cốp */
-    pointer-events: auto !important; /* Lệnh ép buộc: Bắt buộc phải nhận click chuột */
-
+    z-index: 999 !important;
+    pointer-events: auto !important;
 }
 
-/* Tinh chỉnh chiều cao cho ảnh và video để layout cân đối */
-img.media-box {
-    height: 250px; 
-}
-
-video.media-box {
-    height: 250px; 
+#twilight-wrapper img.tw-media-box, 
+#twilight-wrapper video.tw-media-box {
+    height: 250px;
 }
 
 /* ================================
    1. BỐ CỤC ZÍC ZẮC 3 CON CÁ
    ================================ */
-#twilight-fish {
+#twilight-wrapper #tw-fish-section {
     padding: 50px 20px 100px 20px;
 }
-#twilight-fish h2 {
-    text-align: center; margin-bottom: 80px;
-    font-size: 2.5rem; color: #00bfff;
+
+#twilight-wrapper .tw-section-heading {
+    text-align: center;
+    margin-bottom: 80px;
+    font-size: 2.5rem;
+    color: #00bfff;
 }
-.fish-container {
+
+#twilight-wrapper .tw-fish-container {
     display: grid;
-    grid-template-columns: 1fr 1fr; 
-    row-gap: 120px; column-gap: 80px; 
-    max-width: 1000px; margin: 0 auto;
+    grid-template-columns: 1fr 1fr;
+    row-gap: 120px;
+    column-gap: 80px;
+    max-width: 1000px;
+    margin: 0 auto;
 }
 
 /* Vị trí chuẩn zíc zắc */
-.fish-card:nth-child(1) { grid-column: 1; grid-row: 1; justify-self: center; }
-.fish-card:nth-child(2) { grid-column: 2; grid-row: 1 / span 2; align-self: center; justify-self: center; }
-.fish-card:nth-child(3) { grid-column: 1; grid-row: 2; justify-self: center; }
+#twilight-wrapper .tw-fish-card:nth-child(1) { grid-column: 1; grid-row: 1; justify-self: center; }
+#twilight-wrapper .tw-fish-card:nth-child(2) { grid-column: 2; grid-row: 1 / span 2; align-self: center; justify-self: center; }
+#twilight-wrapper .tw-fish-card:nth-child(3) { grid-column: 1; grid-row: 2; justify-self: center; }
 
-.fish-card { text-align: center; width: 100%; max-width: 450px; cursor: pointer; }
-.fish-img { width: 100%; height: auto; max-width: 350px; object-fit: contain; margin-bottom: 20px; filter: drop-shadow(0 15px 20px rgba(0,0,0,0.6)); }
-/* Riêng cá nhà táng to hơn */
-.fish-card:nth-child(1) .fish-img { max-width: 450px; }
-
-.fish-name { font-size: 2rem; color: #00bfff; margin-bottom: 10px; }
-.fish-card p { font-size: 1rem; color: #e0e0e0; line-height: 1.5; }
-/* Ẩn hoàn toàn thẻ p ở giao diện lưới cá bên ngoài */
-.fish-card p { 
-    display: none; 
+#twilight-wrapper .tw-fish-card {
+    text-align: center;
+    width: 100%;
+    max-width: 450px;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    box-shadow: none;
 }
 
-/* ================================
-   2. GIAO DIỆN CHI TIẾT (BẢN VẼ KHỐI CHỮ NHẬT)
-   ================================ */
-#detail-view { width: 100%; max-width: 1200px; margin: 0 auto; color: white; }
-#back-btn { background: transparent; color: #00bfff; border: 1px solid #00bfff; padding: 10px 20px; border-radius: 5px; cursor: pointer; margin-bottom: 30px; font-family: 'Montserrat'; transition: 0.3s; }
-#back-btn:hover { background: #00bfff; color: #000; }
-
-.detail-layout { display: flex; align-items: center; gap: 30px; }
-.col-left { flex: 1; }
-.col-center { flex: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
-.col-right { flex: 1.5; display: flex; flex-direction: column; align-items: center; text-align: center; }
-
-/* Khối đen */
-.box { background: rgba(0, 10, 30, 0.5); /* Đen xanh mờ (50%), hòa vào đại dương */
-    backdrop-filter: blur(5px);       /* Hiệu ứng kính mờ để làm nổi ảnh/model */
-    border: 1px solid rgba(255, 255, 255, 0.1); /* Viền trắng siêu mờ */
-    
-    /* 3. GIỮ NGUYÊN CÁC DÒNG CŨ: */
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
-    font-family: sans-serif; 
-    text-align: center; 
-    padding: 5px; /* Giữ padding nhỏ như đã chỉnh sửa trước */
- }
-.box-model { height: 350px; }
-.box-img { height: 205px; width: 205px }
-/* Thêm mới: Ép các ảnh bên trong hộp đen to ra tối đa */
-
-
-#target-image-container { width: 100%; min-height: 250px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; }
-#target-image-container .fish-img { max-width: 500px; filter: drop-shadow(0 20px 30px rgba(0, 191, 255, 0.4)); }
-#detail-title { font-size: 2.5rem; color: #00bfff; margin-bottom: 15px;}
- /* ================================
-   CHỈNH SỬA CLASS CŨ: Đảm bảo thẻ cá hoàn toàn trong suốt 
-   ================================ */
-.fish-card { 
-    text-align: center; 
-    width: 100%; 
-    max-width: 450px; 
-    cursor: pointer; 
-    /* Thêm 3 dòng dưới để loại bỏ hoàn toàn khung/nền nếu có */
-    background: transparent; 
-    border: none; 
-    box-shadow: none; 
-}
-
-/* Thêm transition để hiệu ứng trượt mượt mà hơn */
-.fish-img { 
-    width: 100%; 
-    height: auto; 
-    max-width: 350px; 
-    object-fit: contain; 
-    margin-bottom: 20px; 
+#twilight-wrapper .tw-fish-img {
+    width: 100%;
+    height: auto;
+    max-width: 350px;
+    object-fit: contain;
+    margin-bottom: 20px;
     filter: drop-shadow(0 15px 20px rgba(0,0,0,0.6));
-    /* Thêm transition cho chuyển động */
-    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.4s ease; 
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.4s ease;
 }
 
 /* Riêng cá nhà táng to hơn */
-.fish-card:nth-child(1) .fish-img { max-width: 550px; }
+#twilight-wrapper .tw-fish-card:nth-child(1) .tw-fish-img {
+    max-width: 550px;
+}
 
-/* Thêm transition cho tên cá */
-.fish-name { 
-    font-size: 2rem; 
-    color: #00bfff; 
-    margin-bottom: 10px; 
+#twilight-wrapper .tw-fish-name {
+    font-size: 2rem;
+    color: #00bfff;
+    margin-bottom: 10px;
     transition: color 0.3s ease, text-shadow 0.3s ease;
 }
 
-.fish-card p { font-size: 1rem; color: #e0e0e0; line-height: 1.5; }
-
-/* ================================
-   THÊM MỚI: HIỆU ỨNG KHI HOVER (DI CHUỘT VÀO)
-   ================================ */
-
-/* 1. Hình ảnh cá nổi bật lên, to ra một xíu và cái bóng (drop-shadow) đổi sang màu xanh sáng */
-.fish-card:hover .fish-img {
-    transform: translateY(-20px) scale(1.05); /* Dịch lên trên 20px và phóng to 5% */
-    filter: drop-shadow(0 25px 30px rgba(0, 191, 255, 0.5)); /* Bóng sáng màu xanh */
+#twilight-wrapper .tw-fish-card p {
+    display: none; /* Ẩn ở ngoài lưới */
 }
 
-/* 2. Chữ tên cá sáng bừng lên */
-.fish-card:hover .fish-name {
+/* Hover Effect */
+#twilight-wrapper .tw-fish-card:hover .tw-fish-img {
+    transform: translateY(-20px) scale(1.05);
+    filter: drop-shadow(0 25px 30px rgba(0, 191, 255, 0.5));
+}
+
+#twilight-wrapper .tw-fish-card:hover .tw-fish-name {
     color: #ffffff;
     text-shadow: 0 0 15px rgba(0, 191, 255, 0.8);
 }
-/* KHUNG TỔNG BAO TRỌN NỘI DUNG CHI TIẾT */
-.total-detail-frame {
-    background: rgba(0, 15, 35, 0.6); /* Nền xanh đen trong suốt */
-    backdrop-filter: blur(15px);      /* Hiệu ứng kính mờ mạnh cho sang */
-    border: 2px solid rgba(0, 191, 255, 0.4); /* Viền màu xanh biển sáng */
-    border-radius: 30px;              /* Bo góc rộng nhìn cho hiện đại */
-    padding: 40px;                    /* Khoảng cách từ nội dung đến viền khung */
-    box-shadow: 0 0 50px rgba(0, 0, 0, 0.8), 
-                inset 0 0 20px rgba(0, 191, 255, 0.1); /* Đổ bóng cả trong lẫn ngoài */
-    max-width: 1300px;                /* Giới hạn độ rộng khung */
-    margin: 0 auto;                   /* Căn giữa màn hình */
+
+/* ================================
+   2. GIAO DIỆN CHI TIẾT
+   ================================ */
+#twilight-wrapper #tw-detail-view {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    color: white;
 }
 
-/* Chỉnh lại một chút để các cột cân đối bên trong khung */
-.detail-layout {
+#twilight-wrapper #tw-back-btn {
+    background: transparent;
+    color: #00bfff;
+    border: 1px solid #00bfff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 30px;
+    font-family: 'Montserrat';
+    transition: 0.3s;
+}
+
+#twilight-wrapper #tw-back-btn:hover {
+    background: #00bfff;
+    color: #000;
+}
+
+#twilight-wrapper .tw-total-detail-frame {
+    background: rgba(0, 15, 35, 0.6);
+    backdrop-filter: blur(15px);
+    border: 2px solid rgba(0, 191, 255, 0.4);
+    border-radius: 30px;
+    padding: 40px;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.8), inset 0 0 20px rgba(0, 191, 255, 0.1);
+    max-width: 1300px;
+    margin: 0 auto;
+}
+
+#twilight-wrapper .tw-detail-layout {
+    display: flex;
+    align-items: center;
+    gap: 30px;
     width: 100%;
+}
+
+#twilight-wrapper .tw-col-left { flex: 1; }
+#twilight-wrapper .tw-col-center { flex: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+#twilight-wrapper .tw-col-right { flex: 1.5; display: flex; flex-direction: column; align-items: center; text-align: center; }
+
+#twilight-wrapper .tw-box {
+    background: rgba(0, 10, 30, 0.5);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+}
+
+#twilight-wrapper .tw-box-model { height: 350px; }
+#twilight-wrapper .tw-box-img { height: 205px; width: 205px; }
+
+#twilight-wrapper #tw-target-image-container {
+    width: 100%;
+    min-height: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+#twilight-wrapper #tw-target-image-container .tw-fish-img {
+    max-width: 500px;
+    filter: drop-shadow(0 20px 30px rgba(0, 191, 255, 0.4));
+}
+
+#twilight-wrapper #tw-detail-title {
+    font-size: 2.5rem;
+    color: #00bfff;
+    margin-bottom: 15px;
 }
