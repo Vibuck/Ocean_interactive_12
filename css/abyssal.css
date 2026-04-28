@@ -1,0 +1,123 @@
+/* Nhắm mục tiêu chính xác bằng ID để có độ ưu tiên cao nhất */
+#abyssal-info.zone-part {
+    display: flex !important;
+    align-items: flex-end !important;   /* Đẩy toàn bộ nội dung sang phải */
+    justify-content: center !important; /* Giữ nội dung nằm giữa theo chiều dọc */
+    padding-right: 8% !important;      /* Khoảng cách an toàn với mép phải */
+}
+
+#abyssal-info h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 3.5rem !important;      /* Kích thước vừa phải, không quá lố */
+    font-weight: 900;
+    text-align: right !important;
+    text-transform: uppercase;
+    margin: 0;
+    line-height: 1.2;
+}
+.abyssal-description {
+    position: absolute;
+    bottom: 50px;
+    left: 50px;
+    /* Phóng to chiều rộng để chứa được chữ to */
+    width: 60%; 
+    
+    font-family: 'Montserrat', sans-serif; /* Đổi sang Montserrat cho đồng bộ với title */
+    font-size: 2.2rem !important;        /* To hẳn lên nhưng vẫn bé hơn 3.5rem của h2 */
+    font-weight: 800;
+    line-height: 1.3;
+    color: rgba(255, 255, 255, 0.9);
+    text-align: left;
+    text-transform: uppercase;            /* Viết hoa để tạo cảm giác chuyên nghiệp */
+    
+    /* BỎ THANH DỌC XANH */
+    border-left: none !important;
+    padding-left: 0 !important;
+    
+    /* Thêm hiệu ứng đổ bóng cho dễ đọc trên nền tối */
+    text-shadow: 0 5px 15px rgba(0,0,0,0.8);
+    pointer-events: none;
+    z-index: 5;
+}
+/* Container chính */
+#abyssal-info {
+    position: relative; /* Cần thiết để các con dùng absolute bám vào */
+    height: 100vh;
+    width: 100%;
+}
+
+/* Tiêu đề - Đẩy lên sát lề trên bên phải */
+#abyssal-info h2 {
+    position: absolute;
+    top: 120px;          /* Khoảng cách từ lề trên (dưới Navbar) */
+    right: 5%;           /* Khoảng cách từ lề phải */
+    
+    font-family: 'Montserrat', sans-serif;
+    font-size: 3rem !important; /* Đã cho bé lại một chút theo ý bạn */
+    font-weight: 900;
+    text-transform: uppercase;
+    text-align: right;
+    margin: 0;
+}
+
+/* Đoạn thông tin - Đẩy xuống sát lề dưới bên trái */
+.abyssal-description {
+    position: absolute;
+    bottom: 60px;        /* Sát lề dưới */
+    left: 5%;            /* Sát lề trái */
+    width: 55%;          /* Độ rộng vừa phải để không bị tràn */
+    
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.6rem !important; /* Bé hơn title rõ rệt nhưng vẫn dễ đọc */
+    font-weight: 800;
+    line-height: 1.4;
+    color: rgba(255, 255, 255, 0.85);
+    text-align: left;
+    text-transform: uppercase;
+    margin: 0;
+    pointer-events: none;
+}
+/* Container bao quát */
+#abyssal-fish-section {
+    position: relative;
+    width: 100%;
+}
+
+/* Lớp nền đại dương - Luôn hiện hữu */
+.ocean-bg {
+    position: fixed; /* Ghim nền đứng yên */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-image: url('duong-dan-anh-nen-cua-ban.jpg');
+    background-size: cover;
+    background-position: center;
+    z-index: -1; /* Đẩy xuống dưới cùng */
+}
+
+/* Vùng chạy hiệu ứng GSAP */
+#abyssal-fish-animation {
+    width: 100%;
+    height: 200vh; /* Độ dài cuộn */
+    background: transparent !important; /* Buộc phải trong suốt */
+}
+
+.fish-container {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: transparent !important;
+}
+
+.fish-img {
+    position: absolute;
+    width: 350px;
+    z-index: 10;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
