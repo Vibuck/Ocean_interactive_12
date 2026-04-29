@@ -64,8 +64,8 @@ document.addEventListener("DOMContentLoaded", () => {
             desc1: "Bạch tuộc Dumbo là loài bạch tuộc nhỏ (khoảng 30 cm), nổi bật với “tai” giống voi nên trông rất dễ thương. Chúng sống ở độ sâu cực lớn (tới ~7.000 m), thuộc nhóm bạch tuộc ô với các xúc tu có màng như chiếc ô.",
             desc2: "Khác với nhiều loài khác, Dumbo không có túi mực, nuốt con mồi nguyên con và ăn các sinh vật nhỏ dưới đáy biển. Chúng có khả năng sinh sản quanh năm và thích nghi rất tốt với môi trường đại dương sâu khắc nghiệt.",
             imgMain: "asset/Images/dumbo3.png",
-            img1: "asset/Images/dumbo2.png",
-            img2: "asset/Images/dumbo1.png",
+            img1: "asset/Images/dumbo2.webp",
+            img2: "asset/Images/dumbo1.jpg",
             video: "asset/Videos/dumbovideo.mp4"
         },
         "vampyroteuthis": {
