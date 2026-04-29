@@ -232,38 +232,141 @@
     color: #00bfff;
     margin-bottom: 15px;
 }
-/* --- CHỈ CHỈNH CLIP NHỎ VÀ NỀN GRADIENT --- */
-.tw-bottom-gallery {
+/* Container tổng của cả phần video */
+.tw-video-library-container {
     width: 100%;
-    padding: 80px 20px;
-    /* Trả về gradient tự nhiên của trang */
-    background: linear-gradient(to bottom, transparent, rgba(0, 15, 35, 0.8)); 
+    padding: 100px 20px; /* Khoảng cách rộng rãi với phần cá phía trên */
     text-align: center;
+    clear: both;
 }
 
-.tw-video-row {
+.tw-gallery-title {
+    color: #00bfff;
+    font-size: 2rem;
+    margin-bottom: 40px;
+    text-shadow: 0 0 15px rgba(0, 191, 255, 0.6);
+}
+
+/* "Cái khung" chứa 3 video */
+.tw-video-main-frame {
     display: flex;
     justify-content: center;
-    gap: 25px;
-    max-width: 850px; /* Ép cả cụm nhỏ lại */
+    gap: 30px;
+    max-width: 1100px;
     margin: 0 auto;
+    background: rgba(255, 255, 255, 0.05); /* Nền hơi sáng nhẹ tạo cảm giác khung kính */
+    padding: 40px;
+    border-radius: 20px;
+    border: 1px solid rgba(0, 191, 255, 0.2);
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
 }
 
 .tw-video-item {
-    flex: 0 1 250px; /* Clip nhỏ xinh */
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
 }
 
 .tw-video-item video {
     width: 100%;
     aspect-ratio: 16 / 9;
     object-fit: cover;
-    border-radius: 10px;
-    border: 1px solid rgba(0, 191, 255, 0.3);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: transform 0.3s ease, border-color 0.3s ease;
 }
 
-.tw-bottom-title {
-    color: #00bfff;
-    text-shadow: 0 0 15px rgba(0, 191, 255, 0.6);
-    margin-bottom: 40px;
+.tw-video-item span {
+    color: #fff;
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+/* Hover nhẹ cho sinh động */
+.tw-video-item:hover video {
+    transform: scale(1.05);
+    border-color: #00bfff;
+}
+
+/* Responsive cho điện thoại */
+@media (max-width: 768px) {
+    .tw-video-main-frame {
+        flex-direction: column;
+        padding: 20px;
+    }
+}
+.video-wrapper {
+    position: relative;
+    width: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.video-controls {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.3);
+    opacity: 0; /* Ẩn nút đi */
+    transition: opacity 0.3s ease;
+    pointer-events: none; /* Tránh cản trở việc click vào video nếu cần */
+}
+
+.video-wrapper:hover .video-controls {
+    opacity: 1; /* Hiện nút khi hover */
+    pointer-events: auto;
+}
+
+.play-pause-btn {
+    background: rgba(0, 191, 255, 0.6);
+    border: none;
+    color: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    cursor: pointer;
+    backdrop-filter: blur(5px);
+    transition: transform 0.2s;
+}
+
+.play-pause-btn:hover {
+    transform: scale(1.1);
+    background: rgba(0, 191, 255, 0.9);
+}
+/* Lớp dùng để phóng to cá đột biến */
+.tw-fish-burst {
+    position: fixed !important;
+    z-index: 9999 !important;
+    pointer-events: none; /* Để không cản trở việc click các nút khác */
+    filter: drop-shadow(0 0 30px rgba(0, 191, 255, 0.8));
+}
+
+/* Đảm bảo các thành phần thông tin ẩn lúc đầu để hiện dần lên */
+.tw-detail-fade {
+    opacity: 0;
+}
+/* Lớp dùng để định vị con cá bản sao khi đang bay */
+.tw-fish-burst {
+    position: fixed !important;
+    z-index: 9999 !important; /* Phải nằm trên cùng */
+    pointer-events: none; /* Không cản trở click */
+    filter: drop-shadow(0 0 30px rgba(0, 191, 255, 0.8)); /* Hiệu ứng bóng sáng */
+    margin: 0 !important; /* Xóa margin thừa */
+}
+
+/* Các thành phần nội dung chi tiết ẩn ban đầu để GSAP làm chúng hiện dần */
+.tw-detail-fade {
+    opacity: 0;
+}
+.tw-fish-burst {
+    transition: none !important;
+    filter: drop-shadow(0 0 20px rgba(0, 191, 255, 0.7));
 }

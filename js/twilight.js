@@ -1,69 +1,61 @@
-// twilight.js - PHIÊN BẢN ĐÃ QUY HOẠCH (PREFIX tw-)
 document.addEventListener("DOMContentLoaded", () => {
-    // 1. Tự đăng ký Flip (Giữ nguyên logic kiểm tra)
-    if (typeof Flip !== 'undefined') {
-        gsap.registerPlugin(Flip);
-    } else {
-        console.error("Vui lòng thêm link thư viện Flip vào index.html thì cá mới trượt được!");
-    }
+    const twilight = document.querySelector('#twilight-wrapper');
+    const grid = twilight.querySelector('.tw-fish-container');
+    const detail = twilight.querySelector('#tw-detail-view');
+    const backBtn = twilight.querySelector('#tw-back-btn');
 
-    // 2. Lấy các phần tử chính (Đã đổi sang ID/Class mới)
-    const twilightWrapper = document.querySelector('#twilight-wrapper');
-    const fishSection = twilightWrapper.querySelector('#tw-fish-section');
-    const gridContainer = twilightWrapper.querySelector('.tw-fish-container');
-    const detailView = twilightWrapper.querySelector('#tw-detail-view');
-    const targetContainer = twilightWrapper.querySelector('#tw-target-image-container');
-    const backBtn = twilightWrapper.querySelector('#tw-back-btn');
-
-    let activeImage = null;
-    let originalParent = null;
-
-    // 3. Lắng nghe sự kiện click vào các thẻ cá (.tw-fish-card)
-    twilightWrapper.querySelectorAll('.tw-fish-card').forEach(card => {
+    twilight.querySelectorAll('.tw-fish-card').forEach(card => {
         card.addEventListener('click', function() {
-            const img = this.querySelector('.tw-fish-img');
-            const title = this.querySelector('.tw-fish-name').innerText;
-            // Lấy đoạn mô tả (thẻ p bên trong card)
-            const desc = this.querySelector('p').textContent;
+            const originalImg = this.querySelector('.tw-fish-img');
+            const rect = originalImg.getBoundingClientRect();
 
-            originalParent = img.parentElement;
-            activeImage = img;
+            // 1. ĐỔ DỮ LIỆU VÀO KHUNG CHI TIẾT
+            // Đổ ảnh to vào cái thẻ img mình vừa thêm ở HTML
+            const mainDetailImg = detail.querySelector('#tw-target-image-container img');
+            if (mainDetailImg) {
+                mainDetailImg.src = originalImg.src;
+                mainDetailImg.style.display = 'block'; // Hiện ảnh lên
+            }
 
-            // Đổ dữ liệu vào màn hình chi tiết (Dùng ID tw-)
-            twilightWrapper.querySelector('#tw-detail-title').innerText = title;
-            twilightWrapper.querySelector('#tw-detail-desc').innerText = desc;
+            // Đổ 4 ảnh nhỏ và Model 3D
+            detail.querySelector('#tw-detail-model').src = this.getAttribute('data-model');
+            detail.querySelector('#tw-detail-title').innerText = this.querySelector('.tw-fish-name').innerText;
+            detail.querySelector('#tw-detail-desc').innerText = this.querySelector('p').innerText;
+            for(let i=1; i<=4; i++) {
+                const thumb = detail.querySelector(`#tw-detail-img${i}`);
+                if(thumb) thumb.src = this.getAttribute(`data-img${i}`);
+            }
 
-            // Lấy dữ liệu từ data-attributes
-            const modelSrc = this.getAttribute('data-model');
-            const img1Src = this.getAttribute('data-img1');
-            const img2Src = this.getAttribute('data-img2');
-            const img3Src = this.getAttribute('data-img3');
-            const img4Src = this.getAttribute('data-img4');
+            // 2. TẠO BẢN SAO ĐỂ PHÓNG TO (HIỆU ỨNG)
+            const burst = originalImg.cloneNode(true);
+            Object.assign(burst.style, {
+                position: 'fixed',
+                top: rect.top + 'px',
+                left: rect.left + 'px',
+                width: rect.width + 'px',
+                zIndex: '10000',
+                pointerEvents: 'none'
+            });
+            document.body.appendChild(burst);
 
-            // Cập nhật Model và các ảnh nhỏ
-            twilightWrapper.querySelector('#tw-detail-model').setAttribute('src', modelSrc);
-            twilightWrapper.querySelector('#tw-detail-img1').src = img1Src;
-            twilightWrapper.querySelector('#tw-detail-img2').src = img2Src;
-            twilightWrapper.querySelector('#tw-detail-img3').src = img3Src;
-            twilightWrapper.querySelector('#tw-detail-img4').src = img4Src;
-
-            // BẮT ĐẦU HIỆU ỨNG TRƯỢT (GSAP FLIP)
-            const state = Flip.getState(img);
-
-            // Chuyển ảnh cá sang container đích trong màn hình chi tiết
-            targetContainer.appendChild(img);
-
-            // Hiện màn hình chi tiết, ẩn lưới cá
-            gridContainer.style.display = 'none';
-            detailView.style.display = 'block';
-
-            Flip.from(state, {
-                duration: 1,
+            // 3. CHẠY HIỆU ỨNG PHÓNG TO RỒI BIẾN MẤT
+            gsap.to(burst, {
+                top: "50%",
+                left: "50%",
+                xPercent: -50,
+                yPercent: -50,
+                scale: 15,
+                opacity: 0,
+                duration: 0.8,
                 ease: "power2.inOut",
                 onComplete: () => {
-                    // Hiện các khối nội dung với hiệu ứng mờ dần (tw-detail-fade)
-                    gsap.fromTo(twilightWrapper.querySelectorAll('.tw-detail-fade'), 
-                        { opacity: 0, y: 20 }, 
+                    burst.remove();
+                    grid.style.display = 'none';
+                    detail.style.display = 'block';
+
+                    // Chữ và ảnh hiện ra mượt mà
+                    gsap.fromTo(".tw-detail-fade", 
+                        { opacity: 0, y: 30 }, 
                         { opacity: 1, y: 0, duration: 0.5, stagger: 0.1 }
                     );
                 }
@@ -71,21 +63,22 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // 4. Nút quay lại (Sử dụng ID tw-back-btn)
+    // NÚT QUAY LẠI
     backBtn.addEventListener('click', () => {
-        if (!activeImage || !originalParent) return;
+        detail.style.display = 'none';
+        grid.style.display = 'grid';
+    });
 
-        const state = Flip.getState(activeImage);
-        
-        // Trả ảnh cá về vị trí cũ trong lưới
-        originalParent.insertBefore(activeImage, originalParent.firstChild);
-
-        detailView.style.display = 'none';
-        gridContainer.style.display = 'grid';
-
-        Flip.from(state, {
-            duration: 1,
-            ease: "power2.inOut"
-        });
+    // VIDEO (Giữ nguyên)
+    document.querySelectorAll('.tw-video-item').forEach(item => {
+        const video = item.querySelector('video');
+        const btn = item.querySelector('.play-pause-btn');
+        if (btn && video) {
+            btn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                if (video.paused) { video.play(); btn.innerText = '⏸'; }
+                else { video.pause(); btn.innerText = '▶'; }
+            });
+        }
     });
 });
