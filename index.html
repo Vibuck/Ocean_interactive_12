@@ -97,23 +97,68 @@
 
     <!-- PHẦN 2: HIỆU ỨNG CÁ BUNG (GIỮ NGUYÊN CODE CỦA BẠN) -->
     <section id="abyssal-fish-animation">
-        <div class="fish-container">
-            <div class="fish-item fish-left">
-                <div class="card-inner">
-                    <img src="asset/Images/Background/Ca_rong_bien_sau.png" alt="Fish">
-                    <div class="fish-name">Cá rồng biển sâu</div>
+    <div class="fish-container">
+        <!-- Thêm data-fish="tên_định_danh" vào từng thẻ -->
+        <div class="fish-item fish-left" data-fish="stomiidae">
+            <div class="card-inner">
+                <img src="asset/Images/Background/Ca_rong_bien_sau.png" alt="Fish">
+                <div class="fish-name">Cá rồng biển sâu</div>
+            </div>
+        </div>
+        <div class="fish-item fish-center" data-fish="lophiiformes">
+            <div class="card-inner">
+                <img src="asset/Images/Background/Ca_can_cau.png" alt="Fish">
+                <div class="fish-name">Cá cần câu</div>
+            </div>
+        </div>
+        <div class="fish-item fish-right" data-fish="vampyroteuthis">
+            <div class="card-inner">
+                <img src="asset/Images/Background/Muc_ma_ca_rong.png" alt="Fish">
+                <div class="fish-name">Mực ma cà rồng</div>
+            </div>
+        </div>
+    </div>
+</section>
+            <!-- Modal Chi tiết cá -->
+<div id="fish-modal" class="fish-modal">
+    <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        
+        <div class="modal-layout">
+            <!-- Cột trái: Ảnh và Thông tin -->
+            <div class="modal-left">
+                <div class="info-box">
+                    <h2 id="modal-title">Tên Cá</h2>
+                    <p id="modal-desc-1">Thông tin đoạn 1...</p>
+                    <p id="modal-desc-2">Thông tin đoạn 2...</p>
+                </div>
+                <div class="image-box">
+                    <img id="modal-img-1" src="" alt="Ảnh 1">
                 </div>
             </div>
-            <div class="fish-item fish-center">
-                <div class="card-inner">
-                    <img src="asset/Images/Background/Ca_can_cau.png" alt="Fish">
-                    <div class="fish-name">Cá cần câu</div>
+
+            <!-- Cột giữa: Video và Ảnh chính -->
+            <div class="modal-center">
+                <div class="video-box">
+                    <video id="modal-video" controls>
+                        <source src="" type="video/mp4">
+                    </video>
+                </div>
+                <div class="main-image-box">
+                    <img id="modal-img-main" src="" alt="Ảnh chính">
                 </div>
             </div>
-            <div class="fish-item fish-right">
-                <div class="card-inner">
-                    <img src="asset/Images/Background/Muc_ma_ca_rong.png" alt="Fish">
-                    <div class="fish-name">Mực ma cà rồng</div>
+
+            <!-- Cột phải: Ảnh và Model 3D -->
+            <div class="modal-right">
+                <div class="image-box">
+                    <img id="modal-img-2" src="" alt="Ảnh 2">
+                </div>
+                <div class="model-3d-box">
+                    <div id="modal-3d-container">
+                        <!-- Nơi hiển thị Model 3D (Three.js) -->
+                        <p>Model 3D</p>
+                    </div>
                 </div>
             </div>
         </div>
