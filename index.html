@@ -35,9 +35,71 @@
     <div class="ocean-zone" id="sunlight-wrapper">
         <section class="zone-part info-part" id="sunlight-info">
             <h2>Sunlight Zone - Thông tin</h2>
+                <p>Sunlight zone (Epipelagic Zone) là tầng trên cùng của đại dương.</p>
+                <p>Nó kéo dài từ mặt nước đến khoảng 200 mét độ sâu.</p>
+                <p>Đây là khu vực nhận được ánh sáng mặt trời mạnh nhất.</p>
+                <p>Ánh sáng tại đây cho phép diễn ra Photosynthesis (quang hợp).</p>
+                <p>Nhiệt độ trong vùng này ấm, dao động từ khoảng 10°C đến 30°C.</p>
+                <p>Áp suất thấp nên sinh vật dễ thích nghi hơn so với tầng sâu.</p>
+                <p>Nước giàu oxy nhờ quang hợp và trao đổi với không khí.</p>
+                <p>Phytoplankton (tảo phù du) là sinh vật quan trọng nhất trong vùng này.</p>
+                <p>Phytoplankton tạo nền tảng cho chuỗi thức ăn biển.</p>
+                <p>Nhiều loài cá như cá ngừ và cá thu sống tại đây.</p>
+                <p>Các động vật lớn như cá heo và cá voi thường xuất hiện ở vùng này.</p>
+                <p>Rùa biển và san hô cũng phổ biến trong sunlight zone.</p>
+                <p>Đây là khu vực có đa dạng sinh học cao nhất đại dương.</p>
+                <p>Sunlight zone đóng vai trò sản xuất khoảng 50% oxy cho Trái Đất.</p>
+                <p>Đây là nơi sinh sống của nhiều loài cá nổi tiếng như cá heo, cá ngựa, cá mập, cá ngừ và rùa biển xanh.</p>
         </section>
         <section class="zone-part fish-part" id="sunlight-fish">
             <h2>Sunlight Zone - Các loài cá</h2>
+            <div class="sunlight-ellipse" id="sunlight-ellipse">
+                <div class="sunlight-fish-card" data-fish="dolphin">
+                    <img src="asset/Images/Background/dolphin.jpg" alt="Cá heo">
+                    <h3>Cá heo</h3>
+                </div>
+                <div class="sunlight-fish-card" data-fish="sea_horse">
+                    <img src="asset/Images/Background/sea_horse.png" alt="Cá ngựa">
+                    <h3>Cá ngựa</h3>
+                </div>
+                <div class="sunlight-fish-card" data-fish="shark">
+                    <img src="asset/Images/Background/shark.jpeg" alt="Cá mập">
+                    <h3>Cá mập</h3>
+                </div>
+                <div class="sunlight-fish-card" data-fish="tuna">
+                    <img src="asset/Images/Background/Yellowfin-Tuna.jpg" alt="Cá ngừ vàng vây">
+                    <h3>Cá ngừ</h3>
+                </div>
+            </div>
+            <!-- Sunlight Zone Fish Detail Modal -->
+            <div id="sunlight-detail-page">
+                <div class="sunlight-detail-container">
+                    <div class="sunlight-detail-image-container">
+                        <img id="sunlight-detail-image" src="" alt="Fish">
+                    </div>
+                    <div class="sunlight-detail-info">
+                        <h1 id="sunlight-detail-name"></h1>
+                        <div id="sunlight-detail-description"></div>
+                        <div class="sunlight-detail-actions">
+                            <button id="sunlight-detail-back">Back</button>
+                            <button id="sunlight-detail-model">Model 3D</button>
+                            <button id="sunlight-detail-video">Video</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Sunlight Zone 3D Model Modal -->
+            <div id="sunlight-3d-modal">
+                <div id="sunlight-3d-viewer">
+                    <div id="sunlight-3d-loading" class="sunlight-3d-loading">Đang tải model...</div>
+                </div>
+                <button id="sunlight-3d-close" class="sunlight-3d-close">Đóng</button>
+            </div>
+            <!-- Sunlight Zone Video Modal -->
+            <div id="sunlight-video-modal">
+                <img id="sunlight-gif" src="" alt="Fish gif">
+                <button id="sunlight-video-close" style="margin-top:24px;">Đóng</button>
+            </div>
         </section>
     </div>
 
@@ -188,8 +250,10 @@
     <script src="js/main.js"></script>
     <script src="js/midnight.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/utils/SkeletonUtils.js"></script>
+    <script src="js/sunlight.js"></script>
     <script src="js/minigame.js"></script>
 </body>
 </html>
