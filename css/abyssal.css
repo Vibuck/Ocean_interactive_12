@@ -220,3 +220,52 @@
     transform: scale(1.1);
 
 }
+/* --- PHẦN 1: CUỘN NGANG --- */
+#abyssal-info-scroll {
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+}
+
+.info-horizontal-wrapper {
+    display: flex;
+    width: 300%; /* Vì có 3 ảnh, mỗi ảnh 100% chiều rộng */
+    height: 100%;
+}
+
+.info-slide {
+    width: 100vw;
+    height: 100vh;
+}
+
+.info-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Để ảnh lấp đầy toàn màn hình như clip */
+}
+
+/* --- PHẦN 2: CÁ BUNG (GIỮ NGUYÊN STYLE CỦA BẠN) --- */
+#abyssal-fish-animation {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+
+.fish-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.fish-item {
+    position: absolute;
+    width: 280px;
+    height: 380px;
+    z-index: 10;
+}
+/* ... Giữ các card-inner, fish-name cũ của bạn ... */
