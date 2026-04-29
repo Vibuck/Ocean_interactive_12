@@ -1,0 +1,189 @@
+/* Sunlight Zone CSS - ellipse layout and smooth animation */
+.sunlight-ellipse {
+  position: relative;
+  width: 100%;
+  height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.sunlight-fish-card {
+  position: absolute;
+  width: 260px;
+  height: 260px;
+  background: linear-gradient(135deg, rgba(0,242,254,0.06), rgba(0,80,140,0.07));
+  border: 2px solid rgba(0,242,254,0.18);
+  border-radius: 20px;
+  box-shadow: 0 8px 30px rgba(0,242,254,0.08), inset 0 -6px 24px rgba(0,0,0,0.12);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  cursor: pointer;
+  transition: transform 0.7s cubic-bezier(.77,0,.18,1), box-shadow 0.5s;
+  z-index: 1;
+}
+.sunlight-fish-card.selected {
+  z-index: 10;
+  transform: translate(-50%, -50%) scale(1.15) !important;
+  left: 50% !important;
+  top: 50% !important;
+  box-shadow: 0 0 40px #00f2fecc, 0 0 0 8px #fff2;
+}
+.sunlight-fish-card img {
+  width: 180px;
+  height: 140px;
+  object-fit: contain;
+  margin-bottom: 10px;
+}
+.sunlight-fish-card h3 {
+  color: #00f2fe;
+  font-size: 1.3em;
+  font-weight: bold;
+  margin-bottom: 18px;
+  text-align: center;
+}
+#sunlight-detail-page {
+  position: fixed;
+  top: 0; left: 0; width: 100vw; height: 100vh;
+  background: rgba(0, 15, 30, 0.97);
+  z-index: 10000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  animation: fadeIn 0.5s;
+}
+#sunlight-detail-page.active { display: flex; }
+.sunlight-detail-container {
+  display: flex;
+  gap: 40px;
+  align-items: center;
+  background: rgba(0,123,190,0.12);
+  border-radius: 24px;
+  padding: 40px 60px;
+  box-shadow: 0 0 40px #00f2fe55;
+}
+.sunlight-detail-image-container img {
+  width: 320px;
+  height: 240px;
+  object-fit: contain;
+  border-radius: 18px;
+  background: #003366;
+  box-shadow: 0 0 20px #00f2fe55;
+}
+.sunlight-detail-info h1 {
+  color: #00f2fe;
+  font-size: 2.2em;
+  margin-bottom: 18px;
+}
+.sunlight-detail-info p {
+  color: #fff;
+  font-size: 1.15em;
+  margin-bottom: 10px;
+}
+.sunlight-detail-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-top: 20px;
+}
+.sunlight-detail-actions button {
+  background: #00f2fe;
+  color: #003366;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.1em;
+  font-weight: bold;
+  padding: 10px 32px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.sunlight-detail-actions button:hover {
+  background: #00b2be;
+  color: #fff;
+}
+#sunlight-3d-modal, #sunlight-video-modal {
+  position: fixed;
+  top: 0; left: 0; width: 100vw; height: 100vh;
+  background: rgba(0, 15, 30, 0.97);
+  z-index: 11000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+#sunlight-3d-modal.active, #sunlight-video-modal.active { display: flex; }
+#sunlight-3d-viewer {
+  width: min(80vw, 1000px);
+  height: min(60vh, 700px);
+  background: linear-gradient(180deg, #00112a 0%, #001133 100%);
+  border-radius: 18px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.6), 0 0 40px rgba(0,242,254,0.12);
+  overflow: hidden;
+}
+/* ensure canvas and overlay are positioned relative to viewer */
+#sunlight-3d-viewer { position: relative; }
+#sunlight-3d-viewer canvas { position: absolute; top: 0; left: 0; width: 100% !important; height: 100% !important; display: block; z-index: 11001; }
+/* loading indicator inside 3d modal */
+.sunlight-3d-loading {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #00f2fe;
+  background: rgba(0,0,0,0.45);
+  padding: 12px 18px;
+  border-radius: 10px;
+  font-weight: 700;
+  display: none;
+  z-index: 11002;
+  box-shadow: 0 8px 30px rgba(0,242,254,0.12);
+}
+.sunlight-3d-loading::after {
+  content: '';
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  margin-left: 10px;
+  border-radius: 50%;
+  border: 2px solid rgba(0,242,254,0.2);
+  border-top-color: #00f2fe;
+  animation: spin 1s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* close button overlay for 3D modal */
+.sunlight-3d-close {
+  position: absolute;
+  top: 10vh;
+  right: 10vw;
+  z-index: 11003;
+  background: linear-gradient(90deg,#00f2fe,#00b2be);
+  color: #00122a;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 10px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 8px 30px rgba(0,178,190,0.18);
+}
+
+@media (max-width: 700px) {
+  .sunlight-fish-card { width: 200px; height: 200px; }
+  .sunlight-fish-card img { width: 140px; height: 110px; }
+  #sunlight-3d-viewer { width: 92vw; height: 56vh; }
+  .sunlight-3d-close { right: 6vw; top: 6vh; }
+}
+#sunlight-video-modal img, #sunlight-video-modal video {
+  width: 420px;
+  height: 320px;
+  object-fit: contain;
+  border-radius: 18px;
+  background: #003366;
+  box-shadow: 0 0 20px #00f2fe55;
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
