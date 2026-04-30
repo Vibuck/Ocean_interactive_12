@@ -15,40 +15,116 @@
 /* ================================
    CỘT TRÁI: BONG BÓNG KÍNH
    ================================ */
-#twilight-wrapper .tw-glass-bubble {
-    background: rgba(255, 255, 255, 0.08);
-    backdrop-filter: blur(16px);
+/* ================================
+   KHUNG KÍNH BAO QUANH (BÊN TRÁI)
+   ================================ */
+.tw-info-glass-frame {
+    background: rgba(255, 255, 255, 0.08); /* Nền trắng mờ */
+    backdrop-filter: blur(16px);           /* Hiệu ứng mờ đục phía sau */
     -webkit-backdrop-filter: blur(16px);
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 25px;
-    padding: 40px 50px;
+    padding: 40px;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    min-height: 600px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
 }
 
-#twilight-wrapper .tw-glass-bubble .tw-zone-title {
+/* Giữ tiêu đề cố định và đẹp */
+.tw-info-glass-frame .tw-zone-title {
     font-family: 'Montserrat', sans-serif;
     font-size: 2.5rem;
     color: #00bfff;
     text-shadow: 0 0 15px rgba(0, 191, 255, 0.5);
-    margin-top: 0;
-    margin-bottom: 25px;
-    text-align: left;
+    margin: 0 0 30px 0;
+    z-index: 5; /* Nằm trên bong bóng */
 }
 
-#twilight-wrapper .tw-glass-bubble p {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 1rem;
-    line-height: 1.8;
-    color: #ffffff;
-    opacity: 0.9;
-    text-align: justify;
-    margin: 0;
+/* Khu vực cho bong bóng di chuyển bên trong khung */
+.tw-info-bubbles-area {
+    position: relative;
+    flex-grow: 1; /* Chiếm hết phần còn lại của khung kính */
+    width: 100%;
 }
 
-#twilight-wrapper .tw-glass-bubble p:not(:last-child) {
-    margin-bottom: 15px;
+/* ================================
+   STYLE BONG BÓNG (GIỮ NGUYÊN & TINH CHỈNH)
+   ================================ */
+.tw-bubble-item {
+    background: rgba(0, 191, 255, 0.15);
+    border: 1px solid rgba(0, 191, 255, 0.4);
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    cursor: pointer;
+    position: absolute;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 10;
+    box-shadow: 0 0 20px rgba(0, 191, 255, 0.2);
 }
 
+.tw-bubble-head {
+    font-weight: bold;
+    color: #fff;
+    padding: 10px;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+}
+
+.tw-bubble-content {
+    position: absolute;
+    width: 280px;
+    background: rgba(0, 10, 30, 0.95);
+    padding: 20px;
+    border-radius: 15px;
+    border: 1px solid #00bfff;
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(0.8);
+    transition: all 0.4s ease;
+    z-index: 100;
+    color: white;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* Hover: Bung bong bóng */
+.tw-bubble-item:hover {
+    border-radius: 20px;
+    width: 300px;
+    height: auto;
+    min-height: 150px;
+    background: rgba(0, 15, 35, 0.9);
+    z-index: 99;
+}
+
+.tw-bubble-item:hover .tw-bubble-head { display: none; }
+.tw-bubble-item:hover .tw-bubble-content {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1);
+    position: relative;
+}
+
+/* Animation trôi nổi bên trong khung */
+@keyframes floatInFrame {
+    0% { transform: translate(0, 0); }
+    33% { transform: translate(10px, -15px); }
+    66% { transform: translate(-10px, 10px); }
+    100% { transform: translate(0, 0); }
+}
+
+/* Vị trí các bong bóng (Điều chỉnh để nằm gọn trong khung) */
+.bubble-1 { top: 10%; left: 10%; animation: floatInFrame 8s infinite ease-in-out; }
+.bubble-2 { top: 55%; left: 5%; animation: floatInFrame 10s infinite ease-in-out 1s; }
+.bubble-3 { top: 20%; left: 50%; animation: floatInFrame 9s infinite ease-in-out 0.5s; }
+.bubble-4 { top: 60%; left: 55%; animation: floatInFrame 11s infinite ease-in-out 1.5s; }
 /* ================================
    CỘT PHẢI: ẢNH VÀ VIDEO
    ================================ */
@@ -369,4 +445,37 @@
 .tw-fish-burst {
     transition: none !important;
     filter: drop-shadow(0 0 20px rgba(0, 191, 255, 0.7));
+}/* Container bao phủ toàn bộ vùng Twilight */
+#tw-marine-snow-global {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%; /* Đảm bảo chiều cao bao phủ hết wrapper */
+    overflow: hidden;
+    pointer-events: none; 
+    z-index: 1; 
+}
+
+/* Style hạt bong bóng */
+.tw-snow-particle {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 50%;
+    filter: blur(1px);
+    /* Dùng animation trôi lơ lửng nhẹ nhàng */
+    animation: tw-floating-dust infinite ease-in-out;
+}
+
+/* Hiệu ứng lơ lửng giúp hạt rải đều, không bị tụ lại một chỗ */
+@keyframes tw-floating-dust {
+    0%, 100% {
+        transform: translate(0, 0);
+        opacity: 0.3;
+    }
+    50% {
+        /* Hạt di chuyển nhẹ sang ngang và lên trên một chút */
+        transform: translate(15px, -25px);
+        opacity: 0.7;
+    }
 }

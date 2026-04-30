@@ -82,3 +82,59 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 });
+// Thêm vào trong document.addEventListener("DOMContentLoaded", ...)
+const bubbles = document.querySelectorAll('.tw-bubble-item');
+
+bubbles.forEach(bubble => {
+    bubble.addEventListener('mousemove', (e) => {
+        // Hiệu ứng nghiêng nhẹ theo hướng chuột
+        const rect = bubble.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        
+        const rotateX = (y - centerY) / 10;
+        const rotateY = (centerX - x) / 10;
+        
+        bubble.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`;
+    });
+
+    bubble.addEventListener('mouseleave', () => {
+        bubble.style.transform = ``;
+    });
+});
+function initGlobalMarineSnow() {
+    const container = document.getElementById('tw-marine-snow-global');
+    if (!container) return;
+
+    // Tăng số lượng hạt để phủ kín không gian lớn
+    const particleCount = 420; 
+
+    for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'tw-snow-particle';
+        
+        // Kích thước bong bóng ngẫu nhiên
+        const size = Math.random() * 4 + 1 + 'px';
+        particle.style.width = size;
+        particle.style.height = size;
+        
+        // RẢI ĐỀU THEO PHẦN TRĂM: Quan trọng nhất để không bị tụ lại một hàng
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.top = Math.random() * 100 + '%';
+        
+        // Tốc độ lơ lửng ngẫu nhiên (từ 5s đến 12s)
+        const duration = Math.random() * 7 + 5 + 's';
+        particle.style.animationDuration = duration;
+        
+        // Độ trễ ngẫu nhiên để các hạt không chuyển động cùng lúc
+        particle.style.animationDelay = Math.random() * 5 + 's';
+
+        container.appendChild(particle);
+    }
+}
+
+// Chạy hàm khi trang web đã sẵn sàng
+document.addEventListener("DOMContentLoaded", initGlobalMarineSnow);
