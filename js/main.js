@@ -110,3 +110,4 @@ window.addEventListener('scroll', () => {
     island_.style.transform = `translateX(${value * -1.5}px) scale(${1 + value * 0.002})`; 
     island_right.style.transform = `translateX(${value * 1.5}px) scale(${1 + value * 0.002})`; 
 });
+

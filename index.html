@@ -20,6 +20,7 @@
             <span id="nav-home">HOME</span>
             <span id="nav-contact">CONTACT</span>
             <span id="nav-about">ABOUT US</span>
+            <span id="start-minigame-btn" style="color: #00f2fe; font-weight: 900; cursor: pointer; text-shadow: 0 0 10px rgba(0,242,254,0.8);">🎮 MINIGAME</span>
         </div>
     </nav>
     
@@ -31,13 +32,76 @@
         <img src="asset/Images/Background/bird_left.png" id="bird_left">
         <img src="asset/Images/Background/bird_right.png" id="bird_right">
     </section>
+    
 
     <div class="ocean-zone" id="sunlight-wrapper">
         <section class="zone-part info-part" id="sunlight-info">
             <h2>Sunlight Zone - Thông tin</h2>
+                <p>Sunlight zone (Epipelagic Zone) là tầng trên cùng của đại dương.</p>
+                <p>Nó kéo dài từ mặt nước đến khoảng 200 mét độ sâu.</p>
+                <p>Đây là khu vực nhận được ánh sáng mặt trời mạnh nhất.</p>
+                <p>Ánh sáng tại đây cho phép diễn ra Photosynthesis (quang hợp).</p>
+                <p>Nhiệt độ trong vùng này ấm, dao động từ khoảng 10°C đến 30°C.</p>
+                <p>Áp suất thấp nên sinh vật dễ thích nghi hơn so với tầng sâu.</p>
+                <p>Nước giàu oxy nhờ quang hợp và trao đổi với không khí.</p>
+                <p>Phytoplankton (tảo phù du) là sinh vật quan trọng nhất trong vùng này.</p>
+                <p>Phytoplankton tạo nền tảng cho chuỗi thức ăn biển.</p>
+                <p>Nhiều loài cá như cá ngừ và cá thu sống tại đây.</p>
+                <p>Các động vật lớn như cá heo và cá voi thường xuất hiện ở vùng này.</p>
+                <p>Rùa biển và san hô cũng phổ biến trong sunlight zone.</p>
+                <p>Đây là khu vực có đa dạng sinh học cao nhất đại dương.</p>
+                <p>Sunlight zone đóng vai trò sản xuất khoảng 50% oxy cho Trái Đất.</p>
+                <p>Đây là nơi sinh sống của nhiều loài cá nổi tiếng như cá heo, cá ngựa, cá mập, cá ngừ và rùa biển xanh.</p>
         </section>
         <section class="zone-part fish-part" id="sunlight-fish">
             <h2>Sunlight Zone - Các loài cá</h2>
+            <div class="sunlight-ellipse" id="sunlight-ellipse">
+                <div class="sunlight-fish-card" data-fish="dolphin">
+                    <img src="asset/Images/Background/dolphin.jpg" alt="Cá heo">
+                    <h3>Cá heo</h3>
+                </div>
+                <div class="sunlight-fish-card" data-fish="sea_horse">
+                    <img src="asset/Images/Background/sea_horse.png" alt="Cá ngựa">
+                    <h3>Cá ngựa</h3>
+                </div>
+                <div class="sunlight-fish-card" data-fish="shark">
+                    <img src="asset/Images/Background/shark.jpeg" alt="Cá mập">
+                    <h3>Cá mập</h3>
+                </div>
+                <div class="sunlight-fish-card" data-fish="tuna">
+                    <img src="asset/Images/Background/Yellowfin-Tuna.jpg" alt="Cá ngừ vàng vây">
+                    <h3>Cá ngừ</h3>
+                </div>
+            </div>
+            <!-- Sunlight Zone Fish Detail Modal -->
+            <div id="sunlight-detail-page">
+                <div class="sunlight-detail-container">
+                    <div class="sunlight-detail-image-container">
+                        <img id="sunlight-detail-image" src="" alt="Fish">
+                    </div>
+                    <div class="sunlight-detail-info">
+                        <h1 id="sunlight-detail-name"></h1>
+                        <div id="sunlight-detail-description"></div>
+                        <div class="sunlight-detail-actions">
+                            <button id="sunlight-detail-back">Back</button>
+                            <button id="sunlight-detail-model">Model 3D</button>
+                            <button id="sunlight-detail-video">Video</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Sunlight Zone 3D Model Modal -->
+            <div id="sunlight-3d-modal">
+                <div id="sunlight-3d-viewer">
+                    <div id="sunlight-3d-loading" class="sunlight-3d-loading">Đang tải model...</div>
+                </div>
+                <button id="sunlight-3d-close" class="sunlight-3d-close">Đóng</button>
+            </div>
+            <!-- Sunlight Zone Video Modal -->
+            <div id="sunlight-video-modal">
+                <img id="sunlight-gif" src="" alt="Fish gif">
+                <button id="sunlight-video-close" style="margin-top:24px;">Đóng</button>
+            </div>
         </section>
     </div>
 
@@ -193,19 +257,118 @@
     <div class="ocean-zone" id="midnight-wrapper">
         <section class="zone-part info-part" id="midnight-info">
             <h2>Midnight Zone - Thông tin</h2>
+                <p>Ở tầng biển đen, ánh sáng Mặt Trời không thể xuyên tới độ sâu từ khoảng 1000 m trở xuống nên môi trường gần như tối hoàn toàn. Điều này khiến quang hợp không thể xảy ra và ảnh hưởng trực tiếp đến toàn bộ hệ sinh thái.</p>
+                <p>Nhiệt độ tại tầng này dao động khoảng 2–4°C và rất ổn định theo thời gian. Tuy không biến đổi nhiều nhưng đây vẫn là một môi trường lạnh và khắc nghiệt đối với sinh vật.</p>
+                <p>Địa hình ở tầng biển đen khá đa dạng với sườn lục địa có độ dốc lớn nối từ vùng nông xuống sâu và nhiều hẻm vực biển cắt sâu vào địa hình. Các dòng chảy trầm tích mạnh vận chuyển bùn cát từ trên xuống tạo thành các quạt trầm tích dưới biển, đồng thời hoạt động địa chất vẫn còn rõ với sự xuất hiện của núi ngầm và núi lửa dưới biển.</p>
+                <p>Tầng biển đen nằm ở độ sâu khoảng 1000–4000 m, nơi áp suất nước rất lớn và tăng trung bình khoảng 1 atm cho mỗi 10 m độ sâu. Áp suất cao tạo nên điều kiện sống khắc nghiệt và đòi hỏi sinh vật phải có sự thích nghi đặc biệt.</p>
+                <p>Do không có ánh sáng nên tầng này không tồn tại thực vật. Nguồn thức ăn chủ yếu là xác sinh vật và các mảnh hữu cơ từ tầng trên rơi xuống, còn gọi là “tuyết biển”, ngoài ra còn có các vi khuẩn hóa tổng hợp có khả năng tạo chất hữu cơ từ các hợp chất hóa học, đóng vai trò tương tự như “cây xanh” trong hệ sinh thái.</p>
         </section>
         <section class="zone-part fish-part" id="midnight-fish">
             <h2>Midnight Zone - Các loài cá</h2>
+            <div class="fish-grid">
+                <div class="fish-card" data-fish="stomiidae">
+                    <img src="asset/Images/Background/Ca_rong_bien_sau.png" alt="Anglerfish" class="fish-image">
+                    <h3>Cá rồng biển sâu </h3>
+                </div>
+                <div class="fish-card" data-fish="lophiiformes">
+                    <img src="asset/Images/Background/Ca_can_cau.png" alt="lophiiformes" class="fish-image">
+                    <h3>Cá cần câu</h3>
+                </div>
+                <div class="fish-card" data-fish="vampyroteuthis infernalis">
+                    <img src="asset/Images/Background/Muc_ma_ca_rong.png" alt="vampyroteuthis infernalis" class="fish-image">
+                    <h3>Mực ma cà rồng</h3>
+                </div>
+            </div>
         </section>
     </div>
 
     <div class="ocean-zone" id="abyssal-wrapper">
         <section class="zone-part info-part" id="abyssal-info">
-            <h2>Abyssal Zone - Thông tin</h2>
+            <h2>Abyssal Zone</h2>
+            <p class="abyssal-description">
+        Abyssal zone là tầng nước sâu của đại dương, nằm ở độ sâu khoảng 4000 m đến 6000 m dưới mực nước biển. 
+        Đây là một trong những vùng rộng lớn nhất của đại dương, bao phủ phần lớn diện tích đáy biển trên Trái Đất.
         </section>
-        <section class="zone-part fish-part" id="abyssal-fish">
-            <h2>Abyssal Zone - Các loài cá</h2>
-        </section>
+<div class="ocean-zone" id="abyssal-wrapper">
+    <!-- PHẦN 1: CUỘN NGANG THÔNG TIN (3 ẢNH) -->
+    <section id="abyssal-info-scroll">
+        <div class="info-horizontal-wrapper">
+            <div class="info-slide"><img src="asset/Images/anh1.png" alt="Info 1"></div>
+            <div class="info-slide"><img src="asset/Images/anh2.png" alt="Info 2"></div>
+            <div class="info-slide"><img src="asset/Images/anh3.png" alt="Info 3"></div>
+        </div>
+    </section>
+
+    <!-- PHẦN 2: HIỆU ỨNG CÁ BUNG (GIỮ NGUYÊN CODE CỦA BẠN) -->
+    <section id="abyssal-fish-animation">
+    <div class="fish-container">
+        <!-- Thêm data-fish="tên_định_danh" vào từng thẻ -->
+        <div class="fish-item fish-left" data-fish="stomiidae">
+            <div class="card-inner">
+                <img src="asset/Images/amphipod.jpg" alt="Fish">
+                <div class="fish-name">Amphipod</div>
+            </div>
+        </div>
+        <div class="fish-item fish-center" data-fish="lophiiformes">
+            <div class="card-inner">
+                <img src="asset/Images/dumbo.jpg" alt="Fish">
+                <div class="fish-name">Dumbo</div>
+            </div>
+        </div>
+        <div class="fish-item fish-right" data-fish="vampyroteuthis">
+            <div class="card-inner">
+                <img src="asset/Images/snailfish.jpg" alt="Fish">
+                <div class="fish-name">Snailfish</div>
+            </div>
+        </div>
+    </div>
+</section>
+            <!-- Modal Chi tiết cá -->
+<div id="fish-modal" class="fish-modal">
+    <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        
+        <div class="modal-layout">
+            <!-- Cột trái: Ảnh và Thông tin -->
+            <div class="modal-left">
+                <div class="info-box">
+                    <h2 id="modal-title">Tên Cá</h2>
+                    <p id="modal-desc-1">Thông tin đoạn 1...</p>
+                    <p id="modal-desc-2">Thông tin đoạn 2...</p>
+                </div>
+                <div class="image-box">
+                    <img id="modal-img-1" src="" alt="Ảnh 1">
+                </div>
+            </div>
+
+            <!-- Cột giữa: Video và Ảnh chính -->
+            <div class="modal-center">
+                <div class="video-box">
+                    <video id="modal-video" controls>
+                        <source src="" type="video/mp4">
+                    </video>
+                </div>
+                <div class="main-image-box">
+                    <img id="modal-img-main" src="" alt="Ảnh chính">
+                </div>
+            </div>
+
+            <!-- Cột phải: Ảnh và Model 3D -->
+            <div class="modal-right">
+                <div class="image-box">
+                    <img id="modal-img-2" src="" alt="Ảnh 2">
+                </div>
+                <div class="model-3d-box">
+                    <div id="modal-3d-container">
+                        <!-- Nơi hiển thị Model 3D (Three.js) -->
+                        <p>Model 3D</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+</section>
     </div>
     <div id="about-overlay" class="ui-panel right-panel">
         <div class="panel-content">
@@ -258,7 +421,50 @@
             </div>
         </div>
     </div>
-    
+
+     <!-- Fish Detail Page -->
+    <div id="fish-detail-page" class="fish-detail-page hidden">
+        <button class="fish-detail-back">  Back </button>
+        <button class="fish-detail-model"> Model </button>
+        <button class="fish-detail-video"> Video </button>
+        <div class="fish-detail-container">
+            <div class="fish-detail-image-container">
+                <img id="detail-fish-image" src="" alt="Fish" class="detail-fish-image">
+            </div>
+            <div class="fish-detail-info">
+                <h1 id="detail-fish-name"></h1>
+                <div id="detail-fish-description"></div>
+            </div>
+        </div>
+        <div id="video-container" class="video-container hidden">
+            <video id="detail-video" controls playsinline preload="metadata"></video>
+        </div>
+    </div>
+
+    <div id="game-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0, 15, 30, 0.95); z-index: 99999; backdrop-filter: blur(8px);">
+        
+        <div id="game-window" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 85vw; height: 85vh; max-width: 1200px; max-height: 800px; background: radial-gradient(circle at bottom, #007bb5 0%, #001528 100%); border: 3px solid #00f2fe; border-radius: 15px; box-shadow: 0 0 40px rgba(0, 242, 254, 0.5), inset 0 0 20px rgba(0, 242, 254, 0.3); overflow: hidden;">
+            
+            <div style="position: absolute; top: 0; left: 0; width: 100%; padding: 15px 25px; display: flex; justify-content: space-between; align-items: center; box-sizing: border-box; z-index: 1002; background: linear-gradient(to bottom, rgba(0,21,40,0.9), transparent);">
+                
+                <div style="color: white; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 24px; font-weight: 900; text-shadow: 0 0 10px #00ffaa;">
+                    ĐIỂM: <span id="game-score">0</span>
+                </div>
+
+                <div style="color: #00f2fe; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 22px; font-weight: 900; letter-spacing: 3px; text-shadow: 0 0 15px #00f2fe;">
+                    OCEAN CLEANER
+                </div>
+                
+                <button id="close-game-btn" style="background: #ff3333; color: white; border: 2px solid #ffaaaa; padding: 8px 25px; border-radius: 8px; font-size: 16px; font-weight: bold; cursor: pointer; box-shadow: 0 0 15px rgba(255,50,50,0.6);">
+                    ❌ THOÁT
+                </button>
+            </div>
+
+            <div id="game-canvas-container" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></div>
+        
+            <canvas id="slash-canvas" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1000;"></canvas>
+        </div>
+    </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
@@ -266,5 +472,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script src="js/main.js"></script>
     <script src="js/twilight.js"></script>
+    <script src="js/midnight.js"></script>
+    <script src="js/abyssal.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/utils/SkeletonUtils.js"></script>
+    <script src="js/sunlight.js"></script>
+    <script src="js/minigame.js"></script>
 </body>
 </html>

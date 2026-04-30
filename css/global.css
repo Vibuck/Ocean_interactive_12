@@ -68,6 +68,7 @@ body, html { font-family: 'Inter', sans-serif; background: #000; color: white; o
     );
     background-size: 200% auto;
     -webkit-background-clip: text;
+     background-clip: text;
     -webkit-text-fill-color: transparent;
     filter: drop-shadow(0 0 15px rgba(0, 210, 255, 0.4));
     animation: shine 5s linear infinite;
