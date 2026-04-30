@@ -1,0 +1,336 @@
+/* Nhắm mục tiêu chính xác bằng ID để có độ ưu tiên cao nhất */
+#abyssal-info.zone-part {
+    display: flex !important;
+    align-items: flex-end !important;   /* Đẩy toàn bộ nội dung sang phải */
+    justify-content: center !important; /* Giữ nội dung nằm giữa theo chiều dọc */
+    padding-right: 8% !important;      /* Khoảng cách an toàn với mép phải */
+}
+
+#abyssal-info h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 3.5rem !important;      /* Kích thước vừa phải, không quá lố */
+    font-weight: 900;
+    text-align: right !important;
+    text-transform: uppercase;
+    margin: 0;
+    line-height: 1.2;
+}
+.abyssal-description {
+    position: absolute;
+    bottom: 50px;
+    left: 50px;
+    /* Phóng to chiều rộng để chứa được chữ to */
+    width: 60%; 
+    
+    font-family: 'Montserrat', sans-serif; /* Đổi sang Montserrat cho đồng bộ với title */
+    font-size: 2.2rem !important;        /* To hẳn lên nhưng vẫn bé hơn 3.5rem của h2 */
+    font-weight: 800;
+    line-height: 1.3;
+    color: rgba(255, 255, 255, 0.9);
+    text-align: left;
+    text-transform: uppercase;            /* Viết hoa để tạo cảm giác chuyên nghiệp */
+    
+    /* BỎ THANH DỌC XANH */
+    border-left: none !important;
+    padding-left: 0 !important;
+    
+    /* Thêm hiệu ứng đổ bóng cho dễ đọc trên nền tối */
+    text-shadow: 0 5px 15px rgba(0,0,0,0.8);
+    pointer-events: none;
+    z-index: 5;
+}
+/* Container chính */
+#abyssal-info {
+    position: relative; /* Cần thiết để các con dùng absolute bám vào */
+    height: 100vh;
+    width: 100%;
+}
+
+/* Tiêu đề - Đẩy lên sát lề trên bên phải */
+#abyssal-info h2 {
+    position: absolute;
+    top: 120px;          /* Khoảng cách từ lề trên (dưới Navbar) */
+    right: 5%;           /* Khoảng cách từ lề phải */
+    
+    font-family: 'Montserrat', sans-serif;
+    font-size: 3rem !important; /* Đã cho bé lại một chút theo ý bạn */
+    font-weight: 900;
+    text-transform: uppercase;
+    text-align: right;
+    margin: 0;
+}
+
+/* Đoạn thông tin - Đẩy xuống sát lề dưới bên trái */
+.abyssal-description {
+    position: absolute;
+    bottom: 60px;        /* Sát lề dưới */
+    left: 5%;            /* Sát lề trái */
+    width: 55%;          /* Độ rộng vừa phải để không bị tràn */
+    
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.6rem !important; /* Bé hơn title rõ rệt nhưng vẫn dễ đọc */
+    font-weight: 800;
+    line-height: 1.4;
+    color: rgba(255, 255, 255, 0.85);
+    text-align: left;
+    text-transform: uppercase;
+    margin: 0;
+    pointer-events: none;
+}
+/* Container bao quát */
+#abyssal-fish-section {
+    position: relative;
+    width: 100%;
+}
+
+/* Lớp nền đại dương - Luôn hiện hữu */
+.ocean-bg {
+    position: fixed; /* Ghim nền đứng yên */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-image: url('duong-dan-anh-nen-cua-ban.jpg');
+    background-size: cover;
+    background-position: center;
+    z-index: -1; /* Đẩy xuống dưới cùng */
+}
+
+/* Vùng chạy hiệu ứng GSAP */
+#abyssal-fish-animation {
+    width: 100%;
+    height: 100vh;
+    background: #000;
+    position: relative;
+    overflow: hidden;
+}
+
+.fish-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.fish-item {
+    position: absolute; /* Bắt buộc để 3 thẻ nằm đè lên nhau tại tâm */
+    width: 280px;
+    height: 380px;
+}
+
+
+/* ============================================================
+   ABYSSAL ZONE - GSAP ANIMATION SECTION
+   ============================================================ */
+
+/* 1. Khung bao quát toàn bộ hiệu ứng */
+#abyssal-fish-animation {
+    width: 100%;
+    height: 100vh; /* Chỉ để 100vh vì GSAP sẽ ghim (pin) tại đây */
+    background: transparent !important;
+    overflow: hidden;
+    position: relative;
+}
+
+/* 2. Container chứa các thẻ cá */
+.fish-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: transparent;
+}
+
+/* 3. Thẻ cá cá nhân - Ép chồng khít lên nhau ở TÂM */
+.fish-item {
+    position: absolute;
+    width: 280px;
+    height: 380px;
+    z-index: 10;
+    will-change: transform; /* Tối ưu hiệu năng cho GSAP */
+}
+
+/* 4. Lớp vỏ bên trong thẻ (chứa ảnh và tên) */
+.card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(15px); /* Hiệu ứng kính mờ chuyên nghiệp */
+    border: 1px solid rgba(0, 242, 254, 0.2);
+    border-radius: 20px;
+    overflow: hidden; /* Giấu tên cá khi chưa hover */
+    cursor: pointer;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+                box-shadow 0.3s ease;
+}
+
+/* 5. Ảnh con cá */
+.card-inner img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 25px;
+    transition: transform 0.5s ease;
+}
+
+/* 6. Tên con cá (Mặc định giấu xuống dưới đáy) */
+.fish-name {
+    position: absolute;
+    bottom: -60px; /* Nằm ngoài khung hình */
+    left: 0;
+    width: 100%;
+    height: 60px;
+    background: rgba(0, 242, 254, 0.15);
+    color: #00f2fe;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: bottom 0.3s ease;
+    border-top: 1px solid rgba(0, 242, 254, 0.3);
+}
+
+/* ============================================================
+   HIỆU ỨNG KHI DI CHUỘT (HOVER)
+   ============================================================ */
+
+/* Nhấc nhẹ thẻ lên và hiện hào quang xanh */
+.card-inner:hover {
+    transform: scale(1.05) translateY(-5px);
+    box-shadow: 0 0 30px rgba(0, 242, 254, 0.4);
+    border-color: rgba(0, 242, 254, 0.6);
+    z-index: 50; /* Đảm bảo thẻ đang xem nổi lên trên cùng */
+}
+
+/* Trượt tên cá lên */
+.card-inner:hover .fish-name {
+    bottom: 0;
+}
+
+/* Phóng to ảnh cá một chút */
+.card-inner:hover img {
+    transform: scale(1.1);
+
+}
+/* --- PHẦN 1: CUỘN NGANG --- */
+#abyssal-info-scroll {
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+}
+
+.info-horizontal-wrapper {
+    display: flex;
+    width: 300%; /* Vì có 3 ảnh, mỗi ảnh 100% chiều rộng */
+    height: 100%;
+}
+
+.info-slide {
+    width: 100vw;
+    height: 100vh;
+}
+
+.info-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Để ảnh lấp đầy toàn màn hình như clip */
+}
+
+/* --- PHẦN 2: CÁ BUNG (GIỮ NGUYÊN STYLE CỦA BẠN) --- */
+#abyssal-fish-animation {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+
+.fish-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.fish-item {
+    position: absolute;
+    width: 280px;
+    height: 380px;
+    z-index: 10;
+}
+#fish-modal {
+    display: none; /* Mặc định ẩn */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 99999; /* Số cực lớn để nổi lên trên cùng của GSAP */
+}
+
+/* Thêm cái này để đảm bảo khi hiện lên nó chiếm toàn màn hình */
+#fish-modal.active {
+    display: block !important;
+}
+
+.modal-content {
+    position: relative;
+    margin: 2% auto;
+    padding: 30px;
+    width: 90%;
+    height: 90vh;
+    border: 2px solid #00f2fe;
+    border-radius: 20px;
+    color: white;
+    overflow-y: auto;
+}
+
+.modal-layout {
+    display: flex;
+    gap: 20px;
+    height: 100%;
+}
+
+.modal-left, .modal-center, .modal-right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Kiểu dáng cho các ô nội dung */
+.info-box, .image-box, .video-box, .model-3d-box, .main-image-box {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(0, 242, 254, 0.3);
+    border-radius: 15px;
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.info-box { flex: 2; flex-direction: column; align-items: flex-start; }
+.image-box { flex: 1; }
+.video-box { flex: 1; }
+.main-image-box { flex: 1.5; }
+.model-3d-box { flex: 2; background: #000; }
+
+img, video { width: 100%; height: 100%; object-fit: contain; }
+
+.close-modal {
+    position: absolute;
+    right: 20px; top: 10px;
+    font-size: 40px; color: #00f2fe; cursor: pointer;
+}

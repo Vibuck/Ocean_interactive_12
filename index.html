@@ -143,11 +143,91 @@
 
     <div class="ocean-zone" id="abyssal-wrapper">
         <section class="zone-part info-part" id="abyssal-info">
-            <h2>Abyssal Zone - Thông tin</h2>
+            <h2>Abyssal Zone</h2>
+            <p class="abyssal-description">
+        Abyssal zone là tầng nước sâu của đại dương, nằm ở độ sâu khoảng 4000 m đến 6000 m dưới mực nước biển. 
+        Đây là một trong những vùng rộng lớn nhất của đại dương, bao phủ phần lớn diện tích đáy biển trên Trái Đất.
         </section>
-        <section class="zone-part fish-part" id="abyssal-fish">
-            <h2>Abyssal Zone - Các loài cá</h2>
-        </section>
+<div class="ocean-zone" id="abyssal-wrapper">
+    <!-- PHẦN 1: CUỘN NGANG THÔNG TIN (3 ẢNH) -->
+    <section id="abyssal-info-scroll">
+        <div class="info-horizontal-wrapper">
+            <div class="info-slide"><img src="asset/Images/anh1.png" alt="Info 1"></div>
+            <div class="info-slide"><img src="asset/Images/anh2.png" alt="Info 2"></div>
+            <div class="info-slide"><img src="asset/Images/anh3.png" alt="Info 3"></div>
+        </div>
+    </section>
+
+    <!-- PHẦN 2: HIỆU ỨNG CÁ BUNG (GIỮ NGUYÊN CODE CỦA BẠN) -->
+    <section id="abyssal-fish-animation">
+    <div class="fish-container">
+        <!-- Thêm data-fish="tên_định_danh" vào từng thẻ -->
+        <div class="fish-item fish-left" data-fish="stomiidae">
+            <div class="card-inner">
+                <img src="asset/Images/amphipod.jpg" alt="Fish">
+                <div class="fish-name">Amphipod</div>
+            </div>
+        </div>
+        <div class="fish-item fish-center" data-fish="lophiiformes">
+            <div class="card-inner">
+                <img src="asset/Images/dumbo.jpg" alt="Fish">
+                <div class="fish-name">Dumbo</div>
+            </div>
+        </div>
+        <div class="fish-item fish-right" data-fish="vampyroteuthis">
+            <div class="card-inner">
+                <img src="asset/Images/snailfish.jpg" alt="Fish">
+                <div class="fish-name">Snailfish</div>
+            </div>
+        </div>
+    </div>
+</section>
+            <!-- Modal Chi tiết cá -->
+<div id="fish-modal" class="fish-modal">
+    <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        
+        <div class="modal-layout">
+            <!-- Cột trái: Ảnh và Thông tin -->
+            <div class="modal-left">
+                <div class="info-box">
+                    <h2 id="modal-title">Tên Cá</h2>
+                    <p id="modal-desc-1">Thông tin đoạn 1...</p>
+                    <p id="modal-desc-2">Thông tin đoạn 2...</p>
+                </div>
+                <div class="image-box">
+                    <img id="modal-img-1" src="" alt="Ảnh 1">
+                </div>
+            </div>
+
+            <!-- Cột giữa: Video và Ảnh chính -->
+            <div class="modal-center">
+                <div class="video-box">
+                    <video id="modal-video" controls>
+                        <source src="" type="video/mp4">
+                    </video>
+                </div>
+                <div class="main-image-box">
+                    <img id="modal-img-main" src="" alt="Ảnh chính">
+                </div>
+            </div>
+
+            <!-- Cột phải: Ảnh và Model 3D -->
+            <div class="modal-right">
+                <div class="image-box">
+                    <img id="modal-img-2" src="" alt="Ảnh 2">
+                </div>
+                <div class="model-3d-box">
+                    <div id="modal-3d-container">
+                        <!-- Nơi hiển thị Model 3D (Three.js) -->
+                        <p>Model 3D</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+</section>
     </div>
     <div id="about-overlay" class="ui-panel right-panel">
         <div class="panel-content">
@@ -250,6 +330,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script src="js/main.js"></script>
     <script src="js/midnight.js"></script>
+    <script src="js/abyssal.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
