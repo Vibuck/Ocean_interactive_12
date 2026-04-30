@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="css/twilight.css">
     <link rel="stylesheet" href="css/midnight.css">
     <link rel="stylesheet" href="css/abyssal.css">
+    <link rel="stylesheet" href="css/wave-transition.css">
 </head>
 <body>
 
@@ -30,6 +31,113 @@
         <img src="asset/Images/Background/island_right.png" id="island_right">
         <img src="asset/Images/Background/bird_left.png" id="bird_left">
         <img src="asset/Images/Background/bird_right.png" id="bird_right">
+    </section>
+    <section id="wave-transition">
+
+        <!-- Ảnh nền 2: chụp thực tế biển -->
+        <img class="wt-bg wt-bg-2"
+             src="asset/Images/Background/background2.jpg" alt="">
+
+        <!-- Ảnh nền 3: hoạ tiết sóng PNG — mix-blend-mode:screen xoá nền trắng/đen -->
+        <img class="wt-bg wt-bg-3"
+             src="asset/Images/Background/background3.png" alt="">
+
+        <!-- Gradient overlay -->
+        <div class="wt-overlay"></div>
+
+        <!-- Caustic light -->
+        <div class="wt-caustic"></div>
+
+        <!-- Shimmer mặt nước -->
+        <div class="wt-shimmer"></div>
+
+        <!-- ── 7 lớp sóng SVG — mỗi lớp path hình dạng khác nhau ── -->
+
+        <!-- Lớp 7: sóng trên cùng (gần hero), tối nhất -->
+        <div class="wt-wave-layer">
+            <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+                <path class="wt-w7"
+                    d="M0,28 C80,42 160,10 240,32 C320,54 400,8 480,28 C560,48 640,12 720,30
+                       C800,48 880,14 960,30 C1040,46 1120,10 1200,28 C1280,46 1360,16 1440,28
+                       L1440,60 L0,60 Z"/>
+            </svg>
+        </div>
+
+        <!-- Lớp 6: nhịp sóng khác, hơi thấp hơn -->
+        <div class="wt-wave-layer">
+            <svg viewBox="0 0 1440 70" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+                <path class="wt-w6"
+                    d="M0,38 C120,18 200,55 360,35 C520,15 600,52 720,38
+                       C840,24 960,58 1080,40 C1200,22 1340,50 1440,38
+                       L1440,70 L0,70 Z"/>
+            </svg>
+        </div>
+
+        <!-- Lớp 5: sóng to dài hơn, đổ nhịp -->
+        <div class="wt-wave-layer">
+            <svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+                <path class="wt-w5"
+                    d="M0,50 C180,22 300,68 480,45 C660,22 780,64 960,42
+                       C1140,20 1300,60 1440,50 L1440,80 L0,80 Z"/>
+            </svg>
+        </div>
+
+        <!-- Lớp 4: nhịp sóng ziczac -->
+        <div class="wt-wave-layer">
+            <svg viewBox="0 0 1440 90" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+                <path class="wt-w4"
+                    d="M0,55 C60,75 120,30 200,58 C280,86 360,22 460,55
+                       C560,88 640,20 740,52 C840,84 940,18 1040,50
+                       C1140,82 1260,24 1360,56 C1400,68 1430,48 1440,55
+                       L1440,90 L0,90 Z"/>
+            </svg>
+        </div>
+
+        <!-- Lớp 3: sóng mềm, biên độ vừa -->
+        <div class="wt-wave-layer">
+            <svg viewBox="0 0 1440 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+                <path class="wt-w3"
+                    d="M0,60 C240,30 480,90 720,62 C960,34 1200,85 1440,60
+                       L1440,100 L0,100 Z"/>
+            </svg>
+        </div>
+
+        <!-- Lớp 2: sóng thấp, biên độ lớn theo chiều ngang -->
+        <div class="wt-wave-layer">
+            <svg viewBox="0 0 1440 110" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+                <path class="wt-w2"
+                    d="M0,75 C100,50 200,95 360,72 C520,49 620,90 780,68
+                       C940,46 1060,88 1200,70 C1320,54 1400,80 1440,75
+                       L1440,110 L0,110 Z"/>
+            </svg>
+        </div>
+
+        <!-- Lớp 1: sóng cuối đáy, sáng nhất, nhịp nhanh -->
+        <div class="wt-wave-layer">
+            <svg viewBox="0 0 1440 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+                <path class="wt-w1"
+                    d="M0,88 C80,68 160,104 280,86 C400,68 480,102 600,84
+                       C720,66 840,102 960,82 C1080,62 1200,100 1320,84
+                       C1380,76 1420,90 1440,88 L1440,120 L0,120 Z"/>
+            </svg>
+        </div>
+
+        <!-- Bong bóng -->
+        <div class="wt-foam">
+            <div class="wt-b"></div><div class="wt-b"></div><div class="wt-b"></div>
+            <div class="wt-b"></div><div class="wt-b"></div><div class="wt-b"></div>
+            <div class="wt-b"></div><div class="wt-b"></div><div class="wt-b"></div>
+            <div class="wt-b"></div><div class="wt-b"></div><div class="wt-b"></div>
+        </div>
+
+        <!-- Cap trên: sóng che mép hero -->
+        <div class="wt-top-cap">
+            <svg viewBox="0 0 1440 50" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+                <path class="wt-top-path"
+                    d="M0,0 C200,40 400,0 600,28 C800,56 1000,8 1200,32 C1320,46 1400,18 1440,28 L1440,0 Z"/>
+            </svg>
+        </div>
+
     </section>
 
     <div class="ocean-zone" id="sunlight-wrapper">
