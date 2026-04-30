@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="css/twilight.css">
     <link rel="stylesheet" href="css/midnight.css">
     <link rel="stylesheet" href="css/abyssal.css">
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
 </head>
 <body>
 
@@ -104,15 +105,155 @@
         </section>
     </div>
 
-    <div class="ocean-zone" id="twilight-wrapper">
-        <section class="zone-part info-part" id="twilight-info">
-            <h2>Twilight Zone - Thông tin</h2>
-        </section>
-        <section class="zone-part fish-part" id="twilight-fish">
-            <h2>Twilight Zone - Các loài cá</h2>
-        </section>
+<div id="twilight-wrapper" class="tw-ocean-zone" style="position: relative; overflow: hidden;">
+    
+    <div id="tw-marine-snow-global"></div>
+
+    <div id="tw-info" class="tw-zone-layout" style="position: relative; z-index: 2;">
+    
+    <div class="tw-info-glass-frame">
+        <h2 class="tw-zone-title">Twilight Zone - Thông tin</h2>
+        
+        <div class="tw-info-bubbles-area">
+            <div class="tw-bubble-item bubble-1">
+                <div class="tw-bubble-head">Vị trí & Ánh sáng</div>
+                <div class="tw-bubble-content">
+                    <p>Tầng chạng vạng nằm ở độ sâu khoảng 200 đến 1000 mét. Ánh sáng mặt trời cực yếu, không đủ để quang hợp.</p>
+                </div>
+            </div>
+
+            <div class="tw-bubble-item bubble-2">
+                <div class="tw-bubble-head">Môi trường</div>
+                <div class="tw-bubble-content">
+                    <p>Môi trường ở đây rất lạnh, áp suất cực cao và vô cùng khắc nghiệt đối với hầu hết sinh vật.</p>
+                </div>
+            </div>
+
+            <div class="tw-bubble-item bubble-3">
+                <div class="tw-bubble-head">Chuỗi thức ăn</div>
+                <div class="tw-bubble-content">
+                    <p>Là nguồn thức ăn quan trọng cho các loài cá lớn như cá ngừ, cá voi và các loài săn mồi đỉnh cao.</p>
+                </div>
+            </div>
+
+            <div class="tw-bubble-item bubble-4">
+                <div class="tw-bubble-head">Lá phổi Carbon</div>
+                <div class="tw-bubble-content">
+                    <p>Góp phần hấp thụ và lưu trữ carbon, đóng vai trò then chốt trong việc giảm lượng CO2 toàn cầu.</p>
+                </div>
+            </div>
+        </div>
     </div>
 
+    <div class="tw-media-stack">
+        <img src="asset/Images/Twilight/1.jpg" alt="Sinh vật biển sâu" class="tw-media-box">
+        <video src="asset/Images/Twilight/twi.mp4" controls class="tw-media-box"></video> 
+    </div>
+</div>
+
+
+    <section class="tw-zone-part tw-fish-part" id="tw-fish-section">
+        <h2 class="tw-section-heading">Twilight Zone - Các loài cá</h2>
+
+        <div class="tw-fish-container">
+            <div class="tw-fish-card" 
+                 data-model="asset/Model_3D/sperm_whale.glb" 
+                 data-img1="asset/Images/Twilight/nhatang1.jpg" 
+                 data-img2="asset/Images/Twilight/nhatang2.jpg" 
+                 data-img3="asset/Images/Twilight/nhatang3.jpg" 
+                 data-img4="asset/Images/Twilight/nhatang4.jpg">
+                 <div class="tw-fun-fact-bubble ff-blue ff-pos-1">
+                    <div class="tw-ff-icon">?</div>
+                    <div class="tw-ff-content"><strong>Cá Nhà Táng:</strong> Nhịn thở hơn 90 phút để săn mực!</div>
+                </div>
+                <img src="asset/Images/Twilight/canhatang.png" alt="Cá nhà táng" class="tw-fish-img">
+                <h3 class="tw-fish-name">Cá nhà táng</h3>
+                <p>Sperm whale (cá voi nhà táng) là loài cá voi có răng lớn nhất thế giới, dài khoảng 10–20m và nặng tới 50 tấn, với phần đầu chiếm gần 1/3 cơ thể. Chúng sống ở hầu khắp các đại dương và đặc biệt nổi bật bởi khả năng lặn sâu đáng kinh ngạc, thường xuống tới 500–1000m (khu vực tầng chạng vạng) để săn mồi.</p>
+            </div>
+
+            <div class="tw-fish-card" 
+                 data-model="asset/Model_3D/lanternfish.glb" 
+                 data-img1="asset/Images/Twilight/longden1.jpg" 
+                 data-img2="asset/Images/Twilight/longden2.jpg" 
+                 data-img3="asset/Images/Twilight/longden3.jpg" 
+                 data-img4="asset/Images/Twilight/longden4.jpg">
+                 <div class="tw-fun-fact-bubble ff-blue ff-pos-2">
+                    <div class="tw-ff-icon">?</div>
+                    <div class="tw-ff-content"><strong>Cá Lồng Đèn:</strong> Phát sáng dọc cơ thể để ngụy trang!</div>
+                </div>
+                <img src="asset/Images/Twilight/calongden.png" alt="Cá lồng đèn" class="tw-fish-img">
+                <h3 class="tw-fish-name">Cá lồng đèn</h3>
+                <p>Lanternfish (cá lồng đèn) là loài cá nhỏ (2–15cm) sống ở tầng chạng vạng ,thuộc họ Myctophidae. Chúng có các cơ quan phát sáng (photophores) dọc cơ thể giúp ngụy trang trong bóng tối. Đây là loài cá phổ biến nhất đại dương, ban ngày ở sâu, ban đêm di chuyển lên gần mặt nước để kiếm ăn.</p>
+            </div>
+
+            <div class="tw-fish-card" 
+                 data-model="asset/Model_3D/firefly_squid.glb" 
+                 data-img1="asset/Images/Twilight/muc1.jpg" 
+                 data-img2="asset/Images/Twilight/muc2.jpg" 
+                 data-img3="asset/Images/Twilight/muc3.jpg" 
+                 data-img4="asset/Images/Twilight/muc4.jpg">
+                 <div class="tw-fun-fact-bubble ff-blue ff-pos-3">
+                    <div class="tw-ff-icon">?</div>
+                    <div class="tw-ff-content"><strong>Mực Đom Đóm:</strong> Tạo ra ánh sáng xanh rực rỡ trong đêm.</div>
+                </div>
+                <img src="asset/Images/Twilight/mucdomdom.png" alt="Mực đom đóm" class="tw-fish-img">
+                <h3 class="tw-fish-name">Mực đom đóm</h3>
+                <p>Mực đom đóm là loài mực nhỏ sống ở vùng nước sâu khoảng 200–400m. Chúng nổi tiếng với khả năng phát sáng sinh học nhờ hàng nghìn cơ quan phát sáng (photophores) trên cơ thể. Ban ngày, chúng ở sâu trong bóng tối; ban đêm, chúng di chuyển lên gần mặt nước, tạo nên những cảnh tượng ánh sáng xanh cực kỳ ấn tượng.</p>
+            </div>
+        </div>
+
+       <div id="tw-detail-view" style="display: none; padding: 50px 0;">
+        <button id="tw-back-btn" style="background:none; color:#00bfff; border:1px solid #00bfff; padding:10px; cursor:pointer; margin-bottom:20px;">⬅ Quay lại</button>
+        <div class="tw-total-detail-frame">
+            <div class="tw-detail-layout" style="display: flex; gap: 30px; align-items: center;">
+                <div class="tw-col-left tw-detail-fade" style="flex: 1;">
+                    <div class="tw-box tw-box-model" style="height: 400px;"><model-viewer id="tw-detail-model" src="" camera-controls auto-rotate shadow-intensity="1" style="width: 100%; height: 100%;"></model-viewer></div>
+                </div>
+                <div class="tw-col-center tw-detail-fade" style="flex: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                    <div class="tw-box tw-box-img" style="height: 150px;"><img id="tw-detail-img1" src="" style="width:100%; height:100%; object-fit:cover; border-radius:8px;"></div>
+                    <div class="tw-box tw-box-img" style="height: 150px;"><img id="tw-detail-img2" src="" style="width:100%; height:100%; object-fit:cover; border-radius:8px;"></div>
+                    <div class="tw-box tw-box-img" style="height: 150px;"><img id="tw-detail-img3" src="" style="width:100%; height:100%; object-fit:cover; border-radius:8px;"></div>
+                    <div class="tw-box tw-box-img" style="height: 150px;"><img id="tw-detail-img4" src="" style="width:100%; height:100%; object-fit:cover; border-radius:8px;"></div>
+                </div>
+                <div class="tw-col-right" style="flex: 1.5; text-align: center;">
+                    <div id="tw-target-image-container" style="margin-bottom: 20px;">
+                        <img src="" class="tw-main-detail-img" style="width: 100%; max-width: 400px; height: auto; display: none;">
+                </div>
+                    <h1 id="tw-detail-title" class="tw-detail-fade" style="color:#00bfff; font-size: 2.5rem; margin-bottom: 15px;"></h1>
+                    <p id="tw-detail-desc" class="tw-detail-fade" style="line-height: 1.6; color: #eee;"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="tw-video-library" class="tw-video-library-container" style="margin-top: 50px;">
+        <h2 class="tw-gallery-title">THƯ VIỆN SINH VẬT</h2>
+        <div class="tw-video-main-frame">
+            <div class="tw-video-item">
+                <div class="video-wrapper">
+                    <video src="asset/Images/Twilight/CaNhaTang.mp4" muted loop autoplay playsinline></video>
+                    <div class="video-controls"><button class="play-pause-btn">⏸</button></div>
+                </div>
+                <span>Cá Nhà Táng</span>
+            </div>
+            <div class="tw-video-item">
+                <div class="video-wrapper">
+                    <video src="asset/Images/Twilight/CaLongDen.mp4" muted loop autoplay playsinline></video>
+                    <div class="video-controls"><button class="play-pause-btn">⏸</button></div>
+                </div>
+                <span>Cá Lồng Đèn</span>
+            </div>
+            <div class="tw-video-item">
+                <div class="video-wrapper">
+                    <video src="asset/Images/Twilight/MucDomDom.mp4" muted loop autoplay playsinline></video>
+                    <div class="video-controls"><button class="play-pause-btn">⏸</button></div>
+                </div>
+                <span>Mực Đom Đóm</span>
+            </div>
+        </div>
+    </div>
+</section>
+</div>
     <div class="ocean-zone" id="midnight-wrapper">
         <section class="zone-part info-part" id="midnight-info">
             <h2>Midnight Zone - Thông tin</h2>
@@ -327,8 +468,10 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/Flip.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/twilight.js"></script>
     <script src="js/midnight.js"></script>
     <script src="js/abyssal.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
