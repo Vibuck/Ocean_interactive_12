@@ -1,38 +1,119 @@
-#midnight-info h2 {
-    font-size: 25 px  ;
-    margin-bottom: 35px;
+#midnight-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    background: #07284e; /* Màu nền dự phòng */
+}
+.midnight-title {
+    position: absolute;
+    top: 10%;            /* Cách đỉnh màn hình 15% */
+    left: 15%;
+    transform: translateX(-20%);
+    z-index: 2;          /* Cao hơn video (1) nhưng thấp hơn bong bóng nếu cần */
+    
+    font-size: 80px;     /* Độ lớn của chữ */
+    font-weight: 900;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.601); 
+    
+    pointer-events: none; /* Quan trọng: Để không cản trở việc click vào bong bóng */
+    letter-spacing: 15px; /* Khoảng cách giữa các chữ cái rộng ra */
+    user-select: none;    /* Không cho người dùng bôi đen tiêu đề này */
+}
+/* Điều chỉnh nội dung bên trong ô thông tin */
+#mn-card-body p {
+    line-height: 1.8;      /* Tăng khoảng cách giữa các dòng văn bản */
+    margin-top: 15px;      /* Khoảng cách giữa tiêu đề và đoạn văn */
+    font-size: 16px;       /* Cỡ chữ vừa phải để nhìn thoáng hơn */
+    text-align: justify;   /* Căn đều hai bên cho chuyên nghiệp */
+}
+/* Video nền riêng cho Midnight */
+.midnight-bg-video {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    z-index: 1;
+    filter: brightness(0.5);
 }
 
-#midnight-info p {
-    font-size: 16px;
-    line-height: 1.8;
-    margin-bottom: 20px;
-    max-width: 800px;
-    transition: all 0.3s ease;
+/* Bong bóng */
+#midnight-bubbles-container {
+    position: absolute;
+    width: 100%; height: 100%;
+    z-index: 2;
 }
 
-#midnight-info p.underwater {
-    background: linear-gradient(45deg, #00d2ff, #3a7bd5, #00d2ff);
-    background-size: 200% 200%;
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    color: transparent;
-    animation: underwater-wave 3s ease-in-out infinite;
+.mn-bubble {
+    position: absolute;
+    width: 170px; height: 170px;
+    background: rgba(0, 213, 255, 0.136);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgb(237, 249, 255);
+    font-weight: bold;
+    cursor: pointer;
+    backdrop-filter: blur(5px);
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+    transition: transform 0.3s ease;
+    text-align: center;
+    font-size: 20px;
 }
 
-#midnight-info p.dimmed {
-    opacity: 0.5;
-    transform: scale(0.95);
+.mn-bubble:hover {
+    transform: scale(1.2);
+    background: rgba(0, 212, 255, 0.4);
 }
 
-@keyframes underwater-wave {
-    0%, 100% { background-position: 0% 50%; }
-    25% { background-position: 100% 50%; }
-    50% { background-position: 50% 100%; }
-    75% { background-position: 0% 50%; }
+/* Bảng thông tin Pop-up */
+#mn-info-card {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -55%); /* Hơi lệch lên trên một chút để lúc hiện sẽ trượt xuống */
+    width: 450px;
+    padding: 30px;
+    background: rgba(0, 31, 63, 0.885);
+    border: 0.5px solid #36a8ff;
+    border-radius: 40px;
+    color: white;
+    z-index: 1000;
+    
+    /* PHẦN QUAN TRỌNG ĐỂ CÓ HIỆU ỨNG */
+    opacity: 0;                /* Mặc định là trong suốt */
+    visibility: hidden;       /* Mặc định là ẩn hoàn toàn */
+    transition: all 0.4s ease; /* Tạo hiệu ứng mượt cho tất cả thay đổi */
+    pointer-events: none;      /* Không cho click xuyên qua khi đang ẩn */
 }
 
+#mn-info-card.mn-show {
+    opacity: 1;                /* Hiện rõ */
+    visibility: visible;      /* Có thể tương tác */
+    transform: translate(-50%, -50%); /* Trượt về vị trí chính giữa */
+    pointer-events: auto;      /* Cho phép click vào nội dung */
+}
+#mn-info-card.mn-show { display: block; animation: mnFadeIn 0.3s ease; }
+
+#mn-close-btn {
+    position: absolute; top: 10px; right: 15px;
+    background: none; border: none; color: #00d4ff;
+    font-size: 28px; cursor: pointer;
+}
+
+@keyframes mnFadeIn {
+    from { opacity: 0; transform: translate(-50%, -55%); }
+    to { opacity: 1; transform: translate(-50%, -50%); }
+}
+/* Chỉ tập trung vào phần danh sách cá */
+#midnight-fish {
+    background-color: #021c45; /* Màu xanh biển cực đậm */
+    position: relative;
+    z-index: 10; /* Đảm bảo nó nằm trên video nền */
+    padding: 50px 0; /* Tạo khoảng cách trên dưới cho đẹp */
+}
 /* Fish Grid Section */
 .fish-grid {
     display: grid;
