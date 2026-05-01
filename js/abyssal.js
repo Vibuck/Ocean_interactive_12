@@ -57,7 +57,8 @@ document.addEventListener("DOMContentLoaded", () => {
             imgMain: "asset/Images/amphipod3.png",
             img1: "asset/Images/amphipod2.jpg",
             img2: "asset/Images/amphipod1.jpg",
-            video: "asset/Videos/amphipodvideo.mp4"
+            video: "asset/Videos/amphipodvideo.mp4",
+            
         },
         "lophiiformes": {
             title: "Dumpo",
@@ -66,7 +67,8 @@ document.addEventListener("DOMContentLoaded", () => {
             imgMain: "asset/Images/dumbo3.png",
             img1: "asset/Images/dumbo2.webp",
             img2: "asset/Images/dumbo1.jpg",
-            video: "asset/Videos/dumbovideo.mp4"
+            video: "asset/Videos/dumbovideo.mp4",
+            model3d: "asset/Model_3D/Fish_model/dumbo_octopus2.glb",
         },
         "vampyroteuthis": {
             title: "Snailfish",
@@ -75,7 +77,8 @@ document.addEventListener("DOMContentLoaded", () => {
             imgMain: "asset/Images/snailfish3.png",
             img1: "asset/Images/snailfish2.jpg",
             img2: "asset/Images/snailfish1.jpg",
-            video: "asset/Videos/snailfishvideo.mp4"
+            video: "asset/Videos/snailfishvideo.mp4",
+            
         }
     };
 
@@ -99,6 +102,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 document.getElementById('modal-img-1').src = data.img1;
                 document.getElementById('modal-img-2').src = data.img2;
                 document.getElementById('modal-video').src = data.video;
+                const modelViewer = document.getElementById('modal-model-viewer');
+                if (modelViewer) {
+                    // Nếu có link 3D thì gán vào, không thì để trống
+                    modelViewer.src = data.model3d ? data.model3d : ""; 
+                }
 
                 modal.style.display = 'block'; // Hiện modal
                 document.body.style.overflow = 'hidden'; // Khóa cuộn trang

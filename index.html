@@ -360,8 +360,17 @@
                 </div>
                 <div class="model-3d-box">
                     <div id="modal-3d-container">
-                        <!-- Nơi hiển thị Model 3D (Three.js) -->
-                        <p>Model 3D</p>
+                            <model-viewer 
+                                id="modal-model-viewer" 
+                                src="" 
+                                alt="Mô hình 3D" 
+                                auto-rotate 
+                                camera-controls 
+                                environment-image="neutral" 
+                                exposure="1"
+                                style="width: 100%; height: 400px; background-color: white;">
+                            </model-viewer>
+                        </div>
                     </div>
                 </div>
             </div>
