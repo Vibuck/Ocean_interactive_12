@@ -1,103 +1,143 @@
-// Sunlight Zone JS - ellipse layout, animation, modal, 3D, gif
-const sunlightFishData = {
-  dolphin: {
-    name: 'Cá heo',
-    img: 'asset/Images/Background/dolphin.jpg',
-    description: '<p><b>Tên khoa học:</b> Delphinidae</p><p><b>Kích thước:</b> 2–4m, nặng 150–650kg.</p><p><b>Đặc tính:</b> Thông minh, giao tiếp bằng âm thanh, sống theo bầy đàn lớn.</p><p><b>Chế độ ăn:</b> Cá nhỏ, mực, tôm.</p>',
-    model: 'asset/Model_3D/Fish_model/model_61a_-_bottlenose_dolphin.glb',
-    gif: 'asset/Images/Background/dolphin.gif',
-  },
-  sea_horse: {
-    name: 'Cá ngựa',
-    img: 'asset/Images/Background/sea_horse.png',
-    description: '<p><b>Tên khoa học:</b> Hippocampus</p><p><b>Kích thước:</b> 2–35cm.</p><p><b>Đặc tính:</b> Đầu giống ngựa, đực mang thai, bơi chậm.</p><p><b>Chế độ ăn:</b> Động vật phù du, giáp xác nhỏ.</p>',
-    model: 'asset/Model_3D/Fish_model/sea_horse.glb',
-    gif: 'asset/Images/Background/seahorse.gif',
-  },
-  shark: {
-    name: 'Cá mập',
-    img: 'asset/Images/Background/shark.jpeg',
-    description: '<p><b>Tên khoa học:</b> Selachimorpha</p><p><b>Kích thước:</b> 1–7m (tùy loài).</p><p><b>Đặc tính:</b> Săn mồi đỉnh chuỗi thức ăn, khứu giác nhạy bén.</p><p><b>Chế độ ăn:</b> Cá, động vật biển lớn nhỏ.</p>',
-    model: 'asset/Model_3D/Fish_model/crysis_shark.glb',
-    gif: 'asset/Images/Background/shark.gif',
-  },
-  tuna: {
-    name: 'Cá ngừ',
-    img: 'asset/Images/Background/Yellowfin-Tuna.jpg',
-    description: '<p><b>Tên khoa học:</b> Thunnini</p><p><b>Kích thước:</b> 0.5–2m, nặng 20–200kg.</p><p><b>Đặc tính:</b> Bơi rất nhanh, di cư xa, thịt giàu dinh dưỡng.</p><p><b>Chế độ ăn:</b> Cá nhỏ, mực, giáp xác.</p>',
-    model: 'asset/Model_3D/Fish_model/tuna_fish.glb',
-    gif: 'asset/Images/Background/tuna.gif',
-  },
-};
+document.addEventListener("DOMContentLoaded", () => {
+    const sunlight = document.querySelector('#sunlight-wrapper');
+    const grid = sunlight.querySelector('.sl-fish-container');
+    const detail = sunlight.querySelector('#sl-detail-view');
+    const backBtn = sunlight.querySelector('#sl-back-btn');
 
-// Per-model display overrides (tweak when a model's internal scale/center is odd)
-const modelOverrides = {
-  // Turtle: increase desiredSize so the auto-fit camera frames it much larger
-  turtle: { desiredSize: 16.0, yOffset: 0.12, cameraOffsetMultiplier: 1.2 },
-  sea_horse: { desiredSize: 1.6, yOffset: -0.05, cameraOffsetMultiplier: 2.2 },
-  tuna: { desiredSize: 2.4, cameraOffsetMultiplier: 2.6 },
-  dolphin: { desiredSize: 2.0, cameraOffsetMultiplier: 2.2 },
-  shark: { desiredSize: 2.8, cameraOffsetMultiplier: 2.6 }
-};
+    sunlight.querySelectorAll('.sl-fish-card').forEach(card => {
+        card.addEventListener('click', function() {
+            const originalImg = this.querySelector('.sl-fish-img');
+            const rect = originalImg.getBoundingClientRect();
 
-// Arrange cards in ellipse (visually pleasing, responsive)
-function arrangeEllipse() {
-  const cards = document.querySelectorAll('.sunlight-fish-card');
-  const ellipse = document.getElementById('sunlight-ellipse');
-  if (!ellipse || cards.length === 0) return;
-  const cx = ellipse.offsetWidth / 2;
-  const cy = ellipse.offsetHeight / 2 + 10;
-  const rx = ellipse.offsetWidth / 2.5;
-  const ry = ellipse.offsetHeight / 2.7;
-  const n = cards.length;
-  cards.forEach((card, i) => {
-    const theta = (2 * Math.PI * i) / n - Math.PI / 2;
-    const x = cx + rx * Math.cos(theta) - card.offsetWidth / 2;
-    const y = cy + ry * Math.sin(theta) - card.offsetHeight / 2;
-    card.style.left = x + 'px';
-    card.style.top = y + 'px';
-    card.style.transform = 'scale(1)';
-    card.classList.remove('selected');
-    card.style.zIndex = 1;
-  });
+            // 1. ĐỔ DỮ LIỆU VÀO KHUNG CHI TIẾT
+            // Đổ ảnh to vào cái thẻ img mình vừa thêm ở HTML
+            const mainDetailImg = detail.querySelector('#sl-target-image-container img');
+            if (mainDetailImg) {
+                mainDetailImg.src = originalImg.src;
+                mainDetailImg.style.display = 'block'; // Hiện ảnh lên
+            }
+
+            // Đổ 4 ảnh nhỏ và Model 3D
+            detail.querySelector('#sl-detail-model').src = this.getAttribute('data-model');
+            detail.querySelector('#sl-detail-title').innerText = this.querySelector('.sl-fish-name').innerText;
+            const descElem = this.querySelector('p');
+            detail.querySelector('#sl-detail-desc').innerText = (descElem && descElem.innerText) ? descElem.innerText : 'Thông tin đang cập nhật.';
+            const placeholder = 'asset/Images/Background/background1.jpg';
+            for(let i=1; i<=4; i++) {
+                const thumb = detail.querySelector(`#sl-detail-img${i}`);
+                if (thumb) {
+                    const src = this.getAttribute(`data-img${i}`) || placeholder;
+                    thumb.src = src;
+                }
+            }
+
+            // 2. TẠO BẢN SAO ĐỂ PHÓNG TO (HIỆU ỨNG)
+            const burst = originalImg.cloneNode(true);
+            Object.assign(burst.style, {
+                position: 'fixed',
+                top: rect.top + 'px',
+                left: rect.left + 'px',
+                width: rect.width + 'px',
+                zIndex: '10000',
+                pointerEvents: 'none'
+            });
+            document.body.appendChild(burst);
+
+            // 3. CHẠY HIỆU ỨNG PHÓNG TO RỒI BIẾN MẤT
+            gsap.to(burst, {
+                top: "50%",
+                left: "50%",
+                xPercent: -50,
+                yPercent: -50,
+                scale: 15,
+                opacity: 0,
+                duration: 0.8,
+                ease: "power2.inOut",
+                onComplete: () => {
+                    burst.remove();
+                    grid.style.display = 'none';
+                    detail.style.display = 'block';
+
+                    // Chữ và ảnh hiện ra mượt mà
+                    gsap.fromTo(".sl-detail-fade", 
+                        { opacity: 0, y: 30 }, 
+                        { opacity: 1, y: 0, duration: 0.5, stagger: 0.1 }
+                    );
+                }
+            });
+        });
+    });
+
+    // NÚT QUAY LẠI
+    backBtn.addEventListener('click', () => {
+        detail.style.display = 'none';
+        grid.style.display = 'grid';
+    });
+
+    // VIDEO (Giữ nguyên)
+    document.querySelectorAll('.sl-video-item').forEach(item => {
+        const video = item.querySelector('video');
+        const btn = item.querySelector('.play-pause-btn');
+        if (btn && video) {
+            btn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                if (video.paused) { video.play(); btn.innerText = '⏸'; }
+                else { video.pause(); btn.innerText = '▶'; }
+            });
+        }
+    });
+
+    // X\u1eed l\u00fd bong b\u00f3ng th\u00f4ng tin
+    const slBubbles = sunlight.querySelectorAll('.sl-bubble-item');
+    slBubbles.forEach(bubble => {
+        bubble.addEventListener('mousemove', (e) => {
+            const rect = bubble.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            const rotateX = (y - centerY) / 10;
+            const rotateY = (centerX - x) / 10;
+            bubble.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`;
+        });
+        bubble.addEventListener('mouseleave', () => {
+            bubble.style.transform = ``;
+        });
+    });
+});
+function initGlobalMarineSnow() {
+    const container = document.getElementById('sl-marine-snow-global');
+    if (!container) return;
+
+    // Tăng số lượng hạt để phủ kín không gian lớn
+    const particleCount = 420; 
+
+    for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'sl-snow-particle';
+        
+        // Kích thước bong bóng ngẫu nhiên
+        const size = Math.random() * 4 + 1 + 'px';
+        particle.style.width = size;
+        particle.style.height = size;
+        
+        // RẢI ĐỀU THEO PHẦN TRĂM: Quan trọng nhất để không bị tụ lại một hàng
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.top = Math.random() * 100 + '%';
+        
+        // Tốc độ lơ lửng ngẫu nhiên (từ 5s đến 12s)
+        const duration = Math.random() * 7 + 5 + 's';
+        particle.style.animationDuration = duration;
+        
+        // Độ trễ ngẫu nhiên để các hạt không chuyển động cùng lúc
+        particle.style.animationDelay = Math.random() * 5 + 's';
+
+        container.appendChild(particle);
+    }
 }
 
-window.addEventListener('resize', arrangeEllipse);
-document.addEventListener('DOMContentLoaded', function() {
-  arrangeEllipse();
-  // Card click
-  document.querySelectorAll('.sunlight-fish-card').forEach(function(card) {
-    card.addEventListener('click', function() {
-      showSunlightDetail(card.dataset.fish, card);
-    });
-  });
-  // Back
-  document.getElementById('sunlight-detail-back').onclick = hideSunlightDetail;
-  // Model
-  document.getElementById('sunlight-detail-model').onclick = showSunlight3D;
-  // Video
-  document.getElementById('sunlight-detail-video').onclick = showSunlightVideo;
-  // Close 3D
-  document.getElementById('sunlight-3d-close').onclick = function() {
-    document.getElementById('sunlight-3d-modal').classList.remove('active');
-    try {
-      if (window.sunlight3dAnimationId) { cancelAnimationFrame(window.sunlight3dAnimationId); window.sunlight3dAnimationId = null; }
-      if (window.sunlight3dResizeHandler) { window.removeEventListener('resize', window.sunlight3dResizeHandler); window.sunlight3dResizeHandler = null; }
-      if (window.sunlight3dRenderer) {
-        try { window.sunlight3dRenderer.forceContextLoss && window.sunlight3dRenderer.forceContextLoss(); } catch(e){}
-        try { window.sunlight3dRenderer.domElement && window.sunlight3dRenderer.domElement.remove(); } catch(e){}
-        try { window.sunlight3dRenderer.dispose && window.sunlight3dRenderer.dispose(); } catch(e){}
-        window.sunlight3dRenderer = null;
-      }
-      window.sunlight3dMixer = null;
-    } catch(e) { console.warn('error cleaning 3d on close', e); }
-    document.getElementById('sunlight-3d-viewer').innerHTML = '';
-  };
-  // Close Video
-  document.getElementById('sunlight-video-close').onclick = function() {
-    document.getElementById('sunlight-video-modal').classList.remove('active');
-  };
-});
+// Chạy hàm khi trang web đã sẵn sàng
+document.addEventListener("DOMContentLoaded", initGlobalMarineSnow);
 
 var currentSunlightFish = null;
 function showSunlightDetail(fishKey, card) {
