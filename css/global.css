@@ -20,15 +20,7 @@ body, html { font-family: 'Inter', sans-serif; background: #000; color: white; o
     overflow: hidden; 
 }
 
-#background1 {
-    width: 100%;
-    height: 100vh;
-    object-fit: cover; 
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 1; 
-}
+
 
 #island_ { 
     position: absolute;
@@ -141,10 +133,10 @@ body, html { font-family: 'Inter', sans-serif; background: #000; color: white; o
     position: relative;
     /* Đổ màu gradient cho từng lớp vỏ, để 2 phần bên trong tự động thừa hưởng màu */
 }
-#sunlight-wrapper { background: linear-gradient(to bottom, #0077be, #005c97); }
+/*#sunlight-wrapper { background: linear-gradient(to bottom, #0077be, #005c97); }
 #twilight-wrapper { background: linear-gradient(to bottom, #005c97, #003366); }
 #midnight-wrapper { background: linear-gradient(to bottom, #003366, #001133); }
-#abyssal-wrapper { background: linear-gradient(to bottom, #001133, #000000); }
+#abyssal-wrapper { background: linear-gradient(to bottom, #001133, #000000); }*/
 
 /* Các phần nhỏ bên trong (Thông tin / Cá) */
 .zone-part {
@@ -272,4 +264,59 @@ body, html { font-family: 'Inter', sans-serif; background: #000; color: white; o
     background: #00bfff;
     color: white;
     box-shadow: 0 0 15px #00bfff;
+}
+/* =========================================================
+   NỀN ĐẠI DƯƠNG XUYÊN SUỐT 5 TẦNG
+   ========================================================= */
+#global-bg-container {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw;
+    height: 100vh; /* Khung cửa sổ luôn là 1 màn hình */
+    z-index: -999;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+#all-bg {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100vw;
+    height: 500vh; /* Khóa chặt: Ảnh luôn dài gấp 5 lần màn hình */
+    background-image: url('../asset/Images/Background/All_background.png');
+    /* Lệnh quan trọng nhất: Căng ảnh full chiều ngang và full chiều dọc của 500vh */
+    background-size: 100% 100%; 
+    background-position: top center;
+    background-repeat: no-repeat;
+    will-change: transform;
+}
+
+#mist-overlay {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 25, 50, 0.3); /* Phủ màu xanh sẫm */
+    backdrop-filter: blur(5px); /* Hiệu ứng làm mờ ảo ảnh */
+    -webkit-backdrop-filter: blur(5px);
+    opacity: 0; /* Trang chủ thì trong suốt 100% */
+    will-change: opacity, background;
+}
+
+/* THẦN CHÚ QUAN TRỌNG: 
+   Bạn phải đảm bảo các section nội dung của bạn có nền trong suốt
+   để có thể nhìn xuyên qua thấy All_background ở dưới */
+body, html {
+    background: transparent !important;
+}
+/* Xóa màu nền cũ của các tầng (Cập nhật đúng ID) */
+.Ocean_explore, 
+#sunlight-wrapper, 
+#twilight-wrapper, 
+#midnight-wrapper, 
+#abyssal-wrapper,
+.ocean-zone,
+.tw-ocean-zone {
+    background: transparent !important;
+    background-color: transparent !important;
+    background-image: none !important;
 }
