@@ -34,76 +34,173 @@
     <div id="mist-overlay"></div>
 </div>
 
-    <div class="ocean-zone" id="sunlight-wrapper">
-        <section class="zone-part info-part" id="sunlight-info">
-            <h2>Sunlight Zone - Thông tin</h2>
-                <p>Sunlight zone (Epipelagic Zone) là tầng trên cùng của đại dương.</p>
-                <p>Nó kéo dài từ mặt nước đến khoảng 200 mét độ sâu.</p>
-                <p>Đây là khu vực nhận được ánh sáng mặt trời mạnh nhất.</p>
-                <p>Ánh sáng tại đây cho phép diễn ra Photosynthesis (quang hợp).</p>
-                <p>Nhiệt độ trong vùng này ấm, dao động từ khoảng 10°C đến 30°C.</p>
-                <p>Áp suất thấp nên sinh vật dễ thích nghi hơn so với tầng sâu.</p>
-                <p>Nước giàu oxy nhờ quang hợp và trao đổi với không khí.</p>
-                <p>Phytoplankton (tảo phù du) là sinh vật quan trọng nhất trong vùng này.</p>
-                <p>Phytoplankton tạo nền tảng cho chuỗi thức ăn biển.</p>
-                <p>Nhiều loài cá như cá ngừ và cá thu sống tại đây.</p>
-                <p>Các động vật lớn như cá heo và cá voi thường xuất hiện ở vùng này.</p>
-                <p>Rùa biển và san hô cũng phổ biến trong sunlight zone.</p>
-                <p>Đây là khu vực có đa dạng sinh học cao nhất đại dương.</p>
-                <p>Sunlight zone đóng vai trò sản xuất khoảng 50% oxy cho Trái Đất.</p>
-                <p>Đây là nơi sinh sống của nhiều loài cá nổi tiếng như cá heo, cá ngựa, cá mập, cá ngừ và rùa biển xanh.</p>
-        </section>
-        <section class="zone-part fish-part" id="sunlight-fish">
-            <h2>Sunlight Zone - Các loài cá</h2>
-            <div class="sunlight-ellipse" id="sunlight-ellipse">
-                <div class="sunlight-fish-card" data-fish="dolphin">
-                    <img src="asset/Images/Background/dolphin.jpg" alt="Cá heo">
-                    <h3>Cá heo</h3>
-                </div>
-                <div class="sunlight-fish-card" data-fish="sea_horse">
-                    <img src="asset/Images/Background/sea_horse.png" alt="Cá ngựa">
-                    <h3>Cá ngựa</h3>
-                </div>
-                <div class="sunlight-fish-card" data-fish="shark">
-                    <img src="asset/Images/Background/shark.jpeg" alt="Cá mập">
-                    <h3>Cá mập</h3>
-                </div>
-                <div class="sunlight-fish-card" data-fish="tuna">
-                    <img src="asset/Images/Background/Yellowfin-Tuna.jpg" alt="Cá ngừ vàng vây">
-                    <h3>Cá ngừ</h3>
+    <div class="ocean-zone" id="sunlight-wrapper" style="position: relative; overflow: hidden;">
+    
+    <div id="sl-marine-snow-global"></div>
+
+    <div id="sunlight-info" class="sl-zone-layout" style="position: relative; z-index: 2;">
+    
+    <div class="sl-info-glass-frame">
+        <h2 class="sl-zone-title">Sunlight Zone - Thông tin</h2>
+        
+        <div class="sl-info-bubbles-area">
+            <div class="sl-bubble-item bubble-1">
+                <div class="sl-bubble-head">Vị trí & Ánh sáng</div>
+                <div class="sl-bubble-content">
+                    <p>Sunlight zone nằm ở độ sâu từ 0 đến 200 mét. Ánh sáng mặt trời mạnh nhất, cho phép quang hợp diễn ra.</p>
                 </div>
             </div>
-            <!-- Sunlight Zone Fish Detail Modal -->
-            <div id="sunlight-detail-page">
-                <div class="sunlight-detail-container">
-                    <div class="sunlight-detail-image-container">
-                        <img id="sunlight-detail-image" src="" alt="Fish">
-                    </div>
-                    <div class="sunlight-detail-info">
-                        <h1 id="sunlight-detail-name"></h1>
-                        <div id="sunlight-detail-description"></div>
-                        <div class="sunlight-detail-actions">
-                            <button id="sunlight-detail-back">Back</button>
-                            <button id="sunlight-detail-model">Model 3D</button>
-                            <button id="sunlight-detail-video">Video</button>
-                        </div>
-                    </div>
+
+            <div class="sl-bubble-item bubble-2">
+                <div class="sl-bubble-head">Môi trường</div>
+                <div class="sl-bubble-content">
+                    <p>Môi trường ấm áp, giàu oxy, áp suất thấp, dễ thích nghi cho đa dạng sinh vật.</p>
                 </div>
             </div>
-            <!-- Sunlight Zone 3D Model Modal -->
-            <div id="sunlight-3d-modal">
-                <div id="sunlight-3d-viewer">
-                    <div id="sunlight-3d-loading" class="sunlight-3d-loading">Đang tải model...</div>
+
+            <div class="sl-bubble-item bubble-3">
+                <div class="sl-bubble-head">Chuỗi thức ăn</div>
+                <div class="sl-bubble-content">
+                    <p>Phytoplankton là nền tảng, cung cấp thức ăn cho cá nhỏ, cá lớn và động vật biển.</p>
                 </div>
-                <button id="sunlight-3d-close" class="sunlight-3d-close">Đóng</button>
             </div>
-            <!-- Sunlight Zone Video Modal -->
-            <div id="sunlight-video-modal">
-                <img id="sunlight-gif" src="" alt="Fish gif">
-                <button id="sunlight-video-close" style="margin-top:24px;">Đóng</button>
+
+            <div class="sl-bubble-item bubble-4">
+                <div class="sl-bubble-head">Đa dạng sinh học</div>
+                <div class="sl-bubble-content">
+                    <p>Khu vực đa dạng sinh học cao nhất đại dương, sản xuất 50% oxy cho Trái Đất.</p>
+                </div>
             </div>
-        </section>
+        </div>
     </div>
+
+    <div class="sl-media-stack">
+        <img src="asset/Images/Background/sunlight.jpg" alt="Sinh vật biển nông" class="sl-media-box">
+        <img src="asset/Videos/sunlight.gif" alt="Sunlight animation" class="sl-media-box">
+    </div>
+</div>
+
+
+    <section class="sl-zone-part sl-fish-part" id="sl-fish-section">
+        <h2 class="sl-section-heading">Sunlight Zone - Các loài cá</h2>
+
+        <div class="sl-fish-container">
+            <div class="sl-fish-card" 
+                 data-model="asset/Model_3D/Fish_model/model_61a_-_bottlenose_dolphin.glb" 
+                 data-img1="asset/Images/Background/dolphin1.jpg" 
+                 data-img2="asset/Images/Background/dolphin2.jpg" 
+                 data-img3="asset/Images/Background/dolphin3.jpeg" 
+                 data-img4="asset/Images/Background/dolphin4.jpg">
+                 <div class="sl-fun-fact-bubble ff-blue ff-pos-1">
+                    <div class="sl-ff-icon">?</div>
+                    <div class="sl-ff-content"><strong>Cá Heo:</strong> Thông minh, giao tiếp bằng âm thanh!</div>
+                </div>
+                <img src="asset/Images/Background/dolphin.jpg" alt="Cá heo" class="sl-fish-img">
+                <h3 class="sl-fish-name">Cá heo</h3>
+                <p>Cá heo (Delphinidae) là loài động vật biển thông minh, sống theo bầy đàn lớn ở vùng nước nông. Chúng giao tiếp bằng âm thanh phức tạp, có khả năng học hỏi và thích nghi cao. Cá heo ăn cá nhỏ, mực và tôm, đóng vai trò quan trọng trong hệ sinh thái biển.</p>
+            </div>
+
+            <div class="sl-fish-card" 
+                 data-model="asset/Model_3D/Fish_model/sea_horse.glb" 
+                 data-img1="asset/Images/Background/seahorse1.jpg" 
+                 data-img2="asset/Images/Background/seahorse2.jpg" 
+                 data-img3="asset/Images/Background/seahorse3.jpg" 
+                 data-img4="asset/Images/Background/seahorse4.jpg">
+                 <div class="sl-fun-fact-bubble ff-blue ff-pos-2">
+                    <div class="sl-ff-icon">?</div>
+                    <div class="sl-ff-content"><strong>Cá Ngựa:</strong> Đực mang thai và chăm sóc trứng!</div>
+                </div>
+                <img src="asset/Images/Background/sea_horse.png" alt="Cá ngựa" class="sl-fish-img">
+                <h3 class="sl-fish-name">Cá ngựa</h3>
+                <p>Cá ngựa (Hippocampus) có đầu giống ngựa, đuôi quắp vào rong biển. Đặc biệt, cá đực mang thai và sinh con. Chúng sống ở vùng nước ấm, ăn động vật phù du nhỏ và rất dễ bị đe dọa bởi ô nhiễm.</p>
+            </div>
+
+            <div class="sl-fish-card" 
+                 data-model="asset/Model_3D/Fish_model/crysis_shark.glb" 
+                 data-img1="asset/Images/Background/shark1.jpg" 
+                 data-img2="asset/Images/Background/shark2.jpg" 
+                 data-img3="asset/Images/Background/shark3.jpg" 
+                 data-img4="asset/Images/Background/shark4.jpg">
+                 <div class="sl-fun-fact-bubble ff-blue ff-pos-3">
+                    <div class="sl-ff-icon">?</div>
+                    <div class="sl-ff-content"><strong>Cá Mập:</strong> Săn mồi đỉnh chuỗi thức ăn biển!</div>
+                </div>
+                <img src="asset/Images/Background/shark.jpeg" alt="Cá mập" class="sl-fish-img">
+                <h3 class="sl-fish-name">Cá mập</h3>
+                <p>Cá mập (Selachimorpha) là loài cá ăn thịt đỉnh cao, có khứu giác nhạy bén và tốc độ bơi nhanh. Chúng sống ở vùng nước nông và sâu, đóng vai trò cân bằng hệ sinh thái biển.</p>
+            </div>
+
+            <div class="sl-fish-card" 
+                 data-model="asset/Model_3D/Fish_model/tuna_fish.glb" 
+                 data-img1="asset/Images/Background/Yellowfin-Tuna.jpg" 
+                 data-img2="asset/Images/Background/tuna1.png" 
+                 data-img3="asset/Images/Background/tuna2.png" 
+                 data-img4="asset/Images/Background/tuna3.png">
+                 <div class="sl-fun-fact-bubble ff-blue ff-pos-4">
+                    <div class="sl-ff-icon">?</div>
+                    <div class="sl-ff-content"><strong>Cá Ngừ:</strong> Bơi nhanh và di cư xa hàng nghìn km!</div>
+                </div>
+                <img src="asset/Images/Background/Yellowfin-Tuna.jpg" alt="Cá ngừ" class="sl-fish-img">
+                <h3 class="sl-fish-name">Cá ngừ</h3>
+                <p>Cá ngừ (Thunnini) là loài cá săn mồi nhanh, sống ở vùng nước nông và giữa. Thịt giàu dinh dưỡng, chúng di cư xa để tìm kiếm nguồn thức ăn và có vai trò quan trọng trong chuỗi thức ăn đại dương.</p>
+            </div>
+        </div>
+
+       <div id="sl-detail-view" style="display: none; padding: 50px 0;">
+        <button id="sl-back-btn" style="background:none; color:#00bfff; border:1px solid #00bfff; padding:10px; cursor:pointer; margin-bottom:20px;">⬅ Quay lại</button>
+        <div class="sl-total-detail-frame">
+            <div class="sl-detail-layout" style="display: flex; gap: 30px; align-items: center;">
+                <div class="sl-col-left sl-detail-fade" style="flex: 1;">
+                    <div class="sl-box sl-box-model" style="height: 400px;"><model-viewer id="sl-detail-model" src="" camera-controls auto-rotate shadow-intensity="1" style="width: 100%; height: 100%;"></model-viewer></div>
+                </div>
+                <div class="sl-col-center sl-detail-fade" style="flex: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                    <div class="sl-box sl-box-img" style="height: 150px;"><img id="sl-detail-img1" src="" style="width:100%; height:100%; object-fit:cover; border-radius:8px;"></div>
+                    <div class="sl-box sl-box-img" style="height: 150px;"><img id="sl-detail-img2" src="" style="width:100%; height:100%; object-fit:cover; border-radius:8px;"></div>
+                    <div class="sl-box sl-box-img" style="height: 150px;"><img id="sl-detail-img3" src="" style="width:100%; height:100%; object-fit:cover; border-radius:8px;"></div>
+                    <div class="sl-box sl-box-img" style="height: 150px;"><img id="sl-detail-img4" src="" style="width:100%; height:100%; object-fit:cover; border-radius:8px;"></div>
+                </div>
+                <div class="sl-col-right" style="flex: 1.5; text-align: center;">
+                    <div id="sl-target-image-container" style="margin-bottom: 20px;">
+                        <img src="" class="sl-main-detail-img" style="width: 100%; max-width: 400px; height: auto; display: none;">
+                </div>
+                    <h1 id="sl-detail-title" class="sl-detail-fade" style="color:#00bfff; font-size: 2.5rem; margin-bottom: 15px;"></h1>
+                    <p id="sl-detail-desc" class="sl-detail-fade" style="line-height: 1.6; color: #eee;"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="sl-video-library" class="sl-video-library-container" style="margin-top: 50px;">
+        <h2 class="sl-gallery-title">THƯ VIỆN SINH VẬT</h2>
+        <div class="sl-video-main-frame">
+            <div class="sl-video-item">
+                <div class="video-wrapper">
+                    <img src="asset/Videos/dolphin.gif" alt="Cá Heo" style="width: 100%; border-radius: 12px;">
+                </div>
+                <span>Cá Heo</span>
+            </div>
+            <div class="sl-video-item">
+                <div class="video-wrapper">
+                    <img src="asset/Videos/seahorse.gif" alt="Cá Ngựa" style="width: 100%; border-radius: 12px;">
+                </div>
+                <span>Cá Ngựa</span>
+            </div>
+            <div class="sl-video-item">
+                <div class="video-wrapper">
+                    <img src="asset/Videos/shark.gif" alt="Cá Mập" style="width: 100%; border-radius: 12px;">
+                </div>
+                <span>Cá Mập</span>
+            </div>
+            <div class="sl-video-item">
+                <div class="video-wrapper">
+                    <img src="asset/Videos/tuna.gif" alt="Cá Ngừ" style="width: 100%; border-radius: 12px;">
+                </div>
+                <span>Cá Ngừ</span>
+            </div>
+        </div>
+    </div>
+</section>
+</div>
 
 <div id="twilight-wrapper" class="tw-ocean-zone" style="position: relative; overflow: hidden;">
     
