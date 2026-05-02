@@ -93,23 +93,7 @@ diagramZones.forEach(zone => {
         });
     };
 });
-let text = document.getElementById('text')
-let island_ = document.getElementById('island_')
-let island_right = document.getElementById('island_right')
-let bird_left = document.getElementById('bird_left')
-let bird_right = document.getElementById('bird_right')
 
-window.addEventListener('scroll', () => {
-    let value = window.scrollY;
-
-    text.style.transform = `translate(-50%, calc(-50% + ${value * 1.5}px))`;
-    text.style.opacity = 1 - value * 0.002; 
-    bird_left.style.transform = `translate(${value * -1.5}px, ${value * -0.8}px) rotate(${value * -0.05}deg)`; 
-    bird_right.style.transform = `translate(${value * 1.5}px, ${value * -0.8}px) rotate(${value * 0.05}deg)`; 
-
-    island_.style.transform = `translateX(${value * -1.5}px) scale(${1 + value * 0.002})`; 
-    island_right.style.transform = `translateX(${value * 1.5}px) scale(${1 + value * 0.002})`; 
-});
 // =========================================================
 // GSAP SCROLLTRIGGER: NỀN XUYÊN SUỐT "NHƯ HÌNH VỚI BÓNG"
 // =========================================================
@@ -163,16 +147,18 @@ if (zones[0]) {
         }
     });
 }
-// Fade out Trang chủ khi cuộn xuống
-gsap.to(".Ocean_explore > *", {
-    y: -50, // Trượt nhẹ lên
-    opacity: 0,
+// =========================================================
+// HIỆU ỨNG TEXT OCEAN REALM TRƯỢT SIÊU MƯỢT
+// =========================================================
+gsap.to("#text", {
+    y: -300,        // Trượt nhẹ chữ lên trên khi cuộn
+    opacity: 0,     // Chữ mờ dần đi
     ease: "none",
     scrollTrigger: {
         trigger: ".Ocean_explore",
         start: "top top",
-        end: "bottom top", // Kết thúc hiệu ứng khi trang chủ ra khỏi màn hình
-        scrub: true
+        end: "bottom top", // Kết thúc hiệu ứng khi trang chủ khuất khỏi màn hình
+        scrub: true        // "Scrub: true" chính là bảo bối giúp animation dính 1:1 với tốc độ lăn chuột
     }
 });
 
