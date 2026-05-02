@@ -1,53 +1,552 @@
-/* Sunlight Zone CSS - ellipse layout and smooth animation */
-.sunlight-ellipse {
-  position: relative;
-  width: 100%;
-  height: 500px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+/* ============================================================
+   SUNLIGHT ZONE CSS - Đã quy hoạch (Prefix sl- & Nesting)
+   ============================================================ */
+
+/* Bố cục chính: Lưới 2 cột */
+#sunlight-wrapper .sl-zone-layout {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 40px;
+    padding: 120px 50px 50px 50px;
+    width: 100%;
+    align-items: center;
 }
-.sunlight-fish-card {
-  position: absolute;
-  width: 260px;
-  height: 260px;
-  background: linear-gradient(135deg, rgba(0,242,254,0.06), rgba(0,80,140,0.07));
-  border: 2px solid rgba(0,242,254,0.18);
-  border-radius: 20px;
-  box-shadow: 0 8px 30px rgba(0,242,254,0.08), inset 0 -6px 24px rgba(0,0,0,0.12);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-end;
-  cursor: pointer;
-  transition: transform 0.7s cubic-bezier(.77,0,.18,1), box-shadow 0.5s;
-  z-index: 1;
+
+/* ================================
+   CỘT TRÁI: BONG BÓNG KÍNH
+   ================================ */
+/* ================================
+   KHUNG KÍNH BAO QUANH (BÊN TRÁI)
+   ================================ */
+.sl-info-glass-frame {
+    background: rgba(255, 255, 255, 0.08); /* Nền trắng mờ */
+    backdrop-filter: blur(16px);           /* Hiệu ứng mờ đục phía sau */
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 25px;
+    padding: 40px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    min-height: 600px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
 }
-.sunlight-fish-card.selected {
-  z-index: 10;
-  transform: translate(-50%, -50%) scale(1.15) !important;
-  left: 50% !important;
-  top: 50% !important;
-  box-shadow: 0 0 40px #00f2fecc, 0 0 0 8px #fff2;
+
+/* Giữ tiêu đề cố định và đẹp */
+.sl-info-glass-frame .sl-zone-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.5rem;
+    color: #00bfff;
+    text-shadow: 0 0 15px rgba(0, 191, 255, 0.5);
+    margin: 0 0 30px 0;
+    z-index: 5; /* Nằm trên bong bóng */
 }
-.sunlight-fish-card img {
-  width: 180px;
-  height: 140px;
-  object-fit: contain;
-  margin-bottom: 10px;
+
+/* Khu vực cho bong bóng di chuyển bên trong khung */
+.sl-info-bubbles-area {
+    position: relative;
+    flex-grow: 1; /* Chiếm hết phần còn lại của khung kính */
+    width: 100%;
 }
-.sunlight-fish-card h3 {
-  color: #00f2fe;
-  font-size: 1.3em;
-  font-weight: bold;
-  margin-bottom: 18px;
-  text-align: center;
+
+/* ================================
+   STYLE BONG BÓNG (GIỮ NGUYÊN & TINH CHỈNH)
+   ================================ */
+.sl-bubble-item {
+    background: rgba(0, 191, 255, 0.15);
+    border: 1px solid rgba(0, 191, 255, 0.4);
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    cursor: pointer;
+    position: absolute;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 10;
+    box-shadow: 0 0 20px rgba(0, 191, 255, 0.2);
+}
+
+.sl-bubble-head {
+    font-weight: bold;
+    color: #fff;
+    padding: 10px;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+}
+
+.sl-bubble-content {
+    position: absolute;
+    width: 280px;
+    background: rgba(0, 10, 30, 0.95);
+    padding: 20px;
+    border-radius: 15px;
+    border: 1px solid #00bfff;
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(0.8);
+    transition: all 0.4s ease;
+    z-index: 100;
+    color: white;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* Hover: Bung bong bóng */
+.sl-bubble-item:hover {
+    border-radius: 20px;
+    width: 300px;
+    height: auto;
+    min-height: 150px;
+    background: rgba(0, 15, 35, 0.9);
+    z-index: 99;
+}
+
+.sl-bubble-item:hover .sl-bubble-head { display: none; }
+.sl-bubble-item:hover .sl-bubble-content {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1);
+    position: relative;
+}
+
+/* Animation trôi nổi bên trong khung */
+@keyframes floatInFrame {
+    0% { transform: translate(0, 0); }
+    33% { transform: translate(10px, -15px); }
+    66% { transform: translate(-10px, 10px); }
+    100% { transform: translate(0, 0); }
+}
+
+/* Vị trí các bong bóng (Điều chỉnh để nằm gọn trong khung) */
+.bubble-1 { top: 10%; left: 10%; animation: floatInFrame 8s infinite ease-in-out; }
+.bubble-2 { top: 55%; left: 5%; animation: floatInFrame 10s infinite ease-in-out 1s; }
+.bubble-3 { top: 20%; left: 50%; animation: floatInFrame 9s infinite ease-in-out 0.5s; }
+.bubble-4 { top: 60%; left: 55%; animation: floatInFrame 11s infinite ease-in-out 1.5s; }
+/* ================================
+   CỘT PHẢI: ẢNH VÀ VIDEO
+   ================================ */
+#sunlight-wrapper .sl-media-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+#sunlight-wrapper .sl-media-box {
+    width: 100%;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+    object-fit: cover;
+    background: #000;
+    position: relative;
+    z-index: 999 !important;
+    pointer-events: auto !important;
+}
+
+#sunlight-wrapper img.sl-media-box, 
+#sunlight-wrapper video.sl-media-box {
+    height: 250px;
+}
+
+/* ================================
+   1. BỐ CỤC ZÍC ZẮC 3 CON CÁ
+   ================================ */
+#sunlight-wrapper #sl-fish-section {
+    padding: 50px 20px 100px 20px;
+}
+
+#sunlight-wrapper .sl-section-heading {
+    text-align: center;
+    margin-bottom: 80px;
+    font-size: 2.5rem;
+    color: #00bfff;
+    text-shadow: 0 0 15px rgba(0, 191, 255, 0.5);
+}
+
+#sunlight-wrapper .sl-fish-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    row-gap: 120px;
+    column-gap: 80px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* Vị trí chuẩn zíc zắc */
+#sunlight-wrapper .sl-fish-card:nth-child(1) { grid-column: 1; grid-row: 1; justify-self: center; }
+#sunlight-wrapper .sl-fish-card:nth-child(2) { grid-column: 2; grid-row: 1 / span 2; align-self: center; justify-self: center; }
+#sunlight-wrapper .sl-fish-card:nth-child(3) { grid-column: 1; grid-row: 2; justify-self: center; }
+
+#sunlight-wrapper .sl-fish-card {
+    text-align: center;
+    width: 100%;
+    max-width: 450px;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+}
+
+#sunlight-wrapper .sl-fish-img {
+    width: 100%;
+    height: auto;
+    max-width: 350px;
+    object-fit: contain;
+    margin-bottom: 20px;
+    filter: drop-shadow(0 15px 20px rgba(0,0,0,0.6));
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.4s ease;
+}
+
+/* Riêng cá nhà táng to hơn */
+#sunlight-wrapper .sl-fish-card:nth-child(1) .sl-fish-img {
+    max-width: 550px;
+}
+
+#sunlight-wrapper .sl-fish-name {
+    font-size: 1.4rem; /* Đã thu nhỏ lại */
+    color: #00bfff;
+    margin-bottom: 10px;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+#sunlight-wrapper .sl-fish-card p {
+    display: none; /* Ẩn ở ngoài lưới */
+}
+
+/* Hover Effect */
+#sunlight-wrapper .sl-fish-card:hover .sl-fish-img {
+    transform: translateY(-20px) scale(1.05);
+    filter: drop-shadow(0 25px 30px rgba(0, 191, 255, 0.5));
+}
+
+#sunlight-wrapper .sl-fish-card:hover .sl-fish-name {
+    color: #ffffff;
+    text-shadow: 0 0 15px rgba(0, 191, 255, 0.8);
+}
+
+/* ================================
+   2. GIAO DIỆN CHI TIẾT
+   ================================ */
+#sunlight-wrapper #sl-detail-view {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    color: white;
+}
+
+#sunlight-wrapper #sl-back-btn {
+    background: transparent;
+    color: #00bfff;
+    border: 1px solid #00bfff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 30px;
+    font-family: 'Montserrat';
+    transition: 0.3s;
+}
+
+#sunlight-wrapper #sl-back-btn:hover {
+    background: #00bfff;
+    color: #000;
+}
+
+#sunlight-wrapper .sl-total-detail-frame {
+    background: rgba(0, 15, 35, 0.6);
+    backdrop-filter: blur(15px);
+    border: 2px solid rgba(0, 191, 255, 0.4);
+    border-radius: 30px;
+    padding: 40px;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.8), inset 0 0 20px rgba(0, 191, 255, 0.1);
+    max-width: 1300px;
+    margin: 0 auto;
+}
+
+#sunlight-wrapper .sl-detail-layout {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    width: 100%;
+}
+
+#sunlight-wrapper .sl-col-left { flex: 1; }
+#sunlight-wrapper .sl-col-center { flex: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+#sunlight-wrapper .sl-col-right { flex: 1.5; display: flex; flex-direction: column; align-items: center; text-align: center; }
+
+#sunlight-wrapper .sl-box {
+    background: rgba(0, 10, 30, 0.5);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+}
+
+#sunlight-wrapper .sl-box-model { height: 350px; }
+#sunlight-wrapper .sl-box-img { height: 205px; width: 205px; }
+
+#sunlight-wrapper #sl-target-image-container {
+    width: 100%;
+    min-height: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+#sunlight-wrapper #sl-target-image-container .sl-fish-img {
+    max-width: 500px;
+    filter: drop-shadow(0 20px 30px rgba(0, 191, 255, 0.4));
+}
+
+#sunlight-wrapper #sl-detail-title {
+    font-size: 2.5rem;
+    color: #00bfff;
+    margin-bottom: 15px;
+}
+/* Container tổng của cả phần video */
+.sl-video-library-container {
+    width: 100%;
+    padding: 100px 20px; /* Khoảng cách rộng rãi với phần cá phía trên */
+    text-align: center;
+    clear: both;
+}
+
+.sl-gallery-title {
+    color: #00bfff;
+    font-size: 2rem;
+    margin-bottom: 40px;
+    text-shadow: 0 0 15px rgba(0, 191, 255, 0.6);
+}
+
+/* "Cái khung" chứa 3 video */
+.sl-video-main-frame {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    max-width: 1100px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.05); /* Nền hơi sáng nhẹ tạo cảm giác khung kính */
+    padding: 40px;
+    border-radius: 20px;
+    border: 1px solid rgba(0, 191, 255, 0.2);
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+.sl-video-item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.sl-video-item video {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.sl-video-item span {
+    color: #fff;
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+/* Hover nhẹ cho sinh động */
+.sl-video-item:hover video {
+    transform: scale(1.05);
+    border-color: #00bfff;
+}
+
+/* Responsive cho điện thoại */
+@media (max-width: 768px) {
+    .sl-video-main-frame {
+        flex-direction: column;
+        padding: 20px;
+    }
+}
+.video-wrapper {
+    position: relative;
+    width: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.video-controls {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.3);
+    opacity: 0; /* Ẩn nút đi */
+    transition: opacity 0.3s ease;
+    pointer-events: none; /* Tránh cản trở việc click vào video nếu cần */
+}
+
+.video-wrapper:hover .video-controls {
+    opacity: 1; /* Hiện nút khi hover */
+    pointer-events: auto;
+}
+
+.play-pause-btn {
+    background: rgba(0, 191, 255, 0.6);
+    border: none;
+    color: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    cursor: pointer;
+    backdrop-filter: blur(5px);
+    transition: transform 0.2s;
+}
+
+.play-pause-btn:hover {
+    transform: scale(1.1);
+    background: rgba(0, 191, 255, 0.9);
+}
+/* Lớp dùng để phóng to cá đột biến */
+.sl-fish-burst {
+    position: fixed !important;
+    z-index: 9999 !important;
+    pointer-events: none; /* Để không cản trở việc click các nút khác */
+    filter: drop-shadow(0 0 30px rgba(0, 191, 255, 0.8));
+}
+
+/* Đảm bảo các thành phần thông tin ẩn lúc đầu để hiện dần lên */
+.sl-detail-fade {
+    opacity: 0;
+}
+/* Lớp dùng để định vị con cá bản sao khi đang bay */
+.sl-fish-burst {
+    position: fixed !important;
+    z-index: 9999 !important; /* Phải nằm trên cùng */
+    pointer-events: none; /* Không cản trợ click */
+    filter: drop-shadow(0 0 30px rgba(0, 191, 255, 0.8)); /* Hiệu ứng bóng sáng */
+    margin: 0 !important; /* Xóa margin thừa */
+}
+
+/* Các thành phần nội dung chi tiết ẩn ban đầu để GSAP làm chúng hiện dần */
+.sl-detail-fade {
+    opacity: 0;
+}
+.sl-fish-burst {
+    transition: none !important;
+    filter: drop-shadow(0 0 20px rgba(0, 191, 255, 0.7));
+}/* Container bao phủ toàn bộ vùng Sunlight */
+#sl-marine-snow-global {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%; /* Đảm bảo chiều cao bao phủ hết wrapper */
+    overflow: hidden;
+    pointer-events: none; 
+    z-index: 1; 
+}
+
+/* Style hạt bong bóng */
+.sl-snow-particle {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 50%;
+    filter: blur(1px);
+    /* Dùng animation trôi lơ lửng nhẹ nhàng */
+    animation: sl-floating-dust infinite ease-in-out;
+}
+
+/* Hiệu ứng lơ lửng giúp hạt rải đều, không bị tụ lại một chỗ */
+@keyframes sl-floating-dust {
+    0%, 100% {
+        transform: translate(0, 0);
+        opacity: 0.3;
+    }
+    50% {
+        /* Hạt di chuyển nhẹ sang ngang và lên trên một chút */
+        transform: translate(15px, -25px);
+        opacity: 0.7;
+    }
+}
+/* Đảm bảo thẻ cá là gốc tọa độ */
+.sl-fish-card {
+    position: relative;
+    overflow: visible !important;
+}
+
+/* Giao diện bong bóng xanh */
+.sl-fun-fact-bubble.ff-blue {
+    position: absolute;
+    width: 45px;
+    height: 45px;
+    background: rgba(0, 191, 255, 0.2); 
+    border: 2px dashed #00bfff;         
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: help;
+    z-index: 50; 
+    animation: blueFloat 4s infinite ease-in-out; /* Bay dập dềnh */
+}
+
+/* Định vị riêng cho từng bong bóng để nó nằm rải rác quanh con cá */
+/* CÁ NHÀ TÁNG: Nằm ở góc trên bên trái */
+.ff-pos-1 { top: -20px; left: -10px; } 
+
+/* CÁ LỒNG ĐÈN: Nằm ở góc trên bên phải */
+.ff-pos-2 { top: 10px; right: -30px; animation-delay: 1s !important; }
+
+/* MỰC ĐOM ĐÓM: Nằm ở góc trên bên trái */
+.ff-pos-3 { top: -10px; left: -20px; animation-delay: 0.5s !important; }
+
+
+.ff-blue .sl-ff-icon {
+    color: #00bfff;
+    font-weight: bold;
+}
+
+/* Khung chữ thông tin */
+.ff-blue .sl-ff-content {
+    position: absolute;
+    bottom: 55px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 180px;
+    background: rgba(0, 10, 30, 0.95);
+    color: #fff;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #00bfff;
+    font-size: 0.85rem;
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.3s ease;
+    pointer-events: none;
+}
+
+.sl-fun-fact-bubble.ff-blue:hover .sl-ff-content {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Hiệu ứng dập dềnh (bay lơ lửng tại chỗ) */
+@keyframes blueFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
 }
 #sunlight-detail-page {
-  position: fixed;
-  top: 0; left: 0; width: 100vw; height: 100vh;
-  background: rgba(0, 15, 30, 0.97);
-  z-index: 10000;
   display: none;
   align-items: center;
   justify-content: center;
