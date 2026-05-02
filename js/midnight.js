@@ -1,5 +1,65 @@
 // JavaScript cho hiệu ứng hover trên các đoạn thông tin trong Midnight Zone
+document.addEventListener("DOMContentLoaded", () => {
+    const bubbles = document.querySelectorAll('.mn-bubble');
+    const modal = document.getElementById('mn-info-card');
+    const modalBody = document.getElementById('mn-card-body');
+    const closeBtn = document.getElementById('mn-close-btn');
 
+    bubbles.forEach(bubble => {
+        // 1. Khởi tạo vị trí và vận tốc ngẫu nhiên
+        let x = Math.random() * (window.innerWidth - 120);
+        let y = Math.random() * (window.innerHeight - 120);
+        let dx = (Math.random() - 0.5) * 1.2; 
+        let dy = (Math.random() - 0.5) * 1.2;
+
+        function moveBubble() {
+            x += dx;
+            y += dy;
+
+            // Va chạm biên (giới hạn trong vùng Midnight)
+            if (x <= 0 || x >= window.innerWidth - 120) dx *= -1;
+            if (y <= 0 || y >= window.innerHeight - 120) dy *= -1;
+
+            bubble.style.left = x + 'px';
+            bubble.style.top = y + 'px';
+
+            requestAnimationFrame(moveBubble);
+        }
+        moveBubble();
+
+        // 2. Click mở thông tin
+        bubble.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const id = bubble.getAttribute('data-id');
+            const content = document.getElementById(`mn-data-${id}`).innerHTML;
+            modalBody.innerHTML = content;
+            modal.classList.add('mn-show');
+        });
+    });
+
+    // 3. Đóng bảng
+    closeBtn.addEventListener('click', () => {
+        modal.classList.remove('mn-show');
+    });
+
+    // Click ra ngoài bảng để đóng
+    window.addEventListener('click', (e) => {
+        if (e.target === modal) modal.classList.remove('mn-show');
+    });
+});
+// 1. Tự đóng khi người dùng cuộn chuột (Scroll)
+window.addEventListener('scroll', () => {
+    const modal = document.getElementById('mn-info-card');
+    if (modal.classList.contains('mn-show')) {
+        modal.classList.remove('mn-show');
+    }
+});
+// 2. Tự đóng khi chuột rời khỏi khu vực Midnight (Tùy chọn)
+const midnightSection = document.getElementById('midnight-wrapper');
+midnightSection.addEventListener('mouseleave', () => {
+    const modal = document.getElementById('mn-info-card');
+    modal.classList.remove('mn-show');
+});
 // Fish data
 const fishData = {
     stomiidae: {
