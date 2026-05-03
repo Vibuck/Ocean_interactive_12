@@ -107,13 +107,7 @@
     from { opacity: 0; transform: translate(-50%, -55%); }
     to { opacity: 1; transform: translate(-50%, -50%); }
 }
-/* Chỉ tập trung vào phần danh sách cá */
-#midnight-fish {
-    background-color: #021c45; /* Màu xanh biển cực đậm */
-    position: relative;
-    z-index: 10; /* Đảm bảo nó nằm trên video nền */
-    padding: 50px 0; /* Tạo khoảng cách trên dưới cho đẹp */
-}
+
 /* Fish Grid Section */
 .fish-grid {
     display: grid;
@@ -195,7 +189,7 @@
     z-index: 5001;
 }
 
-.fish-detail-model {
+.fish-detail-video {
     position: absolute;
     top: calc(50% + 70px);
     right: 0;
@@ -212,31 +206,12 @@
     z-index: 5001;
 }
 
-.fish-detail-video {
-    position: absolute;
-    top: calc(50% + 140px);
-    right: 0;
-    transform: translateY(-50%);
-    background: none;
-    border: 2px solid #00d2ff;
-    color: #00d2ff;
-    font-size: 16px;
-    font-family: 'Montserrat', sans-serif;
-    padding: 10px 20px;
-    cursor: pointer;
-    border-radius: 20px 0 0 20px;
-    transition: all 0.3s ease;
-    z-index: 5001;
-}
-
 .fish-detail-back.hidden,
-.fish-detail-model.hidden,
 .fish-detail-video.hidden {
     display: none;
 }
 
 .fish-detail-back:hover,
-.fish-detail-model:hover,
 .fish-detail-video:hover {
     background: #00d2ff;
     color: #001a33;
