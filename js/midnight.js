@@ -65,7 +65,6 @@ const fishData = {
     stomiidae: {
         name: 'Cá rồng biển sâu',
         image: 'asset/Images/Background/Ca_rong_bien_sau.png',
-        model: 'https://example.com/model1.html', // Replace with actual 3D model URL
         video: 'asset/Videos/Ca_rong_bien_sau.mp4', // Update to your local video path
         description: `
             <p><strong>Tên khoa học:</strong>  Stomiidae.</p>
@@ -77,7 +76,6 @@ const fishData = {
     lophiiformes: {
         name: 'Cá cần câu',
         image: 'asset/Images/Background/Ca_can_cau.png',
-        model: 'https://example.com/model2.html', // Replace with actual 3D model URL
         video: 'asset/Videos/Ca_can_cau.mp4', // Update to your local video path
         description: `
             <p><strong>Tên khoa học:</strong> Lophiiformes.</p>
@@ -89,7 +87,6 @@ const fishData = {
     'vampyroteuthis infernalis': {
         name: 'Mực ma cà rồng',
         image: 'asset/Images/Background/Muc_ma_ca_rong.png',
-        model: 'https://example.com/model3.html', // Replace with actual 3D model URL
         video: 'asset/Videos/Muc_ma_ca_rong.mp4', // Update to your local video path
         description: `
             <p><strong>Tên khoa học:</strong> Vampyroteuthis infernalis.</p>
@@ -105,7 +102,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const fishCards = document.querySelectorAll('.fish-card');
     const detailPage = document.getElementById('fish-detail-page');
     const detailBackBtn = document.querySelector('.fish-detail-back');
-    const detailModelBtn = document.querySelector('.fish-detail-model');
     const detailVideoBtn = document.querySelector('.fish-detail-video');
     const detailFishImage = document.getElementById('detail-fish-image');
     const detailFishName = document.getElementById('detail-fish-name');
@@ -186,7 +182,6 @@ document.addEventListener('DOMContentLoaded', function() {
             // Close video mode
             videoContainer.classList.add('hidden');
             fishDetailContainer.classList.remove('hidden');
-            detailModelBtn.classList.remove('hidden');
             detailVideoBtn.classList.remove('hidden');
             detailVideo.pause();
             detailVideo.currentTime = 0;
@@ -202,20 +197,12 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Model button
-    detailModelBtn.addEventListener('click', function() {
-        if (currentFish && currentFish.model) {
-            window.open(currentFish.model, '_blank');
-        }
-    });
-
     // Video button
     detailVideoBtn.addEventListener('click', function() {
         if (currentFish && currentFish.video) {
             isVideoMode = true;
             fishDetailContainer.classList.add('hidden');
             videoContainer.classList.remove('hidden');
-            detailModelBtn.classList.add('hidden');
             detailVideoBtn.classList.add('hidden');
             detailVideo.src = currentFish.video;
             detailVideo.load(); // Ensure video is loaded
