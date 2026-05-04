@@ -247,7 +247,7 @@ body, html { font-family: 'Inter', sans-serif; background: #000; color: white; o
     top: 0; left: 0;
     width: 100vw;
     height: 500vh; /* Khóa chặt: Ảnh luôn dài gấp 5 lần màn hình */
-    background-image: url('../asset/Images/Background/All_background.png');
+    background-image: url('../asset/Images/Background/All_background.jpg');
     /* Lệnh quan trọng nhất: Căng ảnh full chiều ngang và full chiều dọc của 500vh */
     background-size: 100% 100%; 
     background-position: top center;
