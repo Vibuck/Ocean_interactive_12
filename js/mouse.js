@@ -1,8 +1,13 @@
 const coords = { x: 0, y: 0 };
 const circles = document.querySelectorAll(".circle");
-circles.forEach(function(circle) {
+const colors=["#182f5b","#1c4a77","#216692","#2883ab","#35a1c1","#48c0d5","#62dfe7","#82fff6"];
+colors.reverse();
+circles.forEach(function(circle, index) {
     circle.x = 0;
     circle.y = 0;
+    let colorIndex = Math.floor((index / circles.length) * colors.length);
+    if (colorIndex >= colors.length) colorIndex = colors.length - 1;
+    circle.style.backgroundColor = colors[colorIndex];
 });
 window.addEventListener("mousemove", function(e) {
     coords.x = e.clientX;
