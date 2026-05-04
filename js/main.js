@@ -95,58 +95,37 @@ diagramZones.forEach(zone => {
 });
 
 // =========================================================
-// GSAP SCROLLTRIGGER: NỀN XUYÊN SUỐT "NHƯ HÌNH VỚI BÓNG"
+// FIX: NỀN XUYÊN SUỐT - DÙNG 1 TIMELINE DUY NHẤT
 // =========================================================
-gsap.registerPlugin(ScrollTrigger);
 
-// Cơ chế thông minh: Tự động tìm đúng cấu trúc HTML của bạn (Dù bạn dùng ID hay Class)
-const zones = [
-    document.querySelector("#sunlight-wrapper") || document.querySelector(".sunlight-zone"),
-    document.querySelector("#twilight-wrapper") || document.querySelector(".twilight-zone"),
-    document.querySelector("#midnight-wrapper") || document.querySelector(".midnight-zone"),
-    document.querySelector("#abyssal-wrapper") || document.querySelector(".abyssal-zone")
+// Đảm bảo ảnh bắt đầu đúng vị trí
+gsap.set("#all-bg", { yPercent: 0 });
+
+const zoneWrappers = [
+    document.querySelector("#sunlight-wrapper")  || document.querySelector(".sunlight-zone"),
+    document.querySelector("#twilight-wrapper")  || document.querySelector(".twilight-zone"),
+    document.querySelector("#midnight-wrapper")  || document.querySelector(".midnight-zone"),
+    document.querySelector("#abyssal-wrapper")   || document.querySelector(".abyssal-zone")
 ];
 
-// GSAP thích yPercent thay vì y: "-20%" để đảm bảo không bị lỗi toán học
-const yStart = [0, -20, -40, -60];
-const yEnd   = [-20, -40, -60, -80]; 
+// Mỗi tầng chỉ animate từ vị trí hiện tại → vị trí tiếp theo
+const yPositions = [0, -20, -40, -60, -80];
 
-zones.forEach((zone, index) => {
-    if (!zone) {
-        console.warn("⚠️ Cảnh báo: Không tìm thấy HTML của tầng biển số " + (index + 2));
-        return; // Nếu HTML gõ sai tên, bỏ qua để không làm chết/kẹt các tầng khác
-    }
+zoneWrappers.forEach((zone, index) => {
+    if (!zone) return;
 
-    // Lệnh trượt nền "Như hình với bóng"
-    gsap.fromTo("#all-bg", 
-        { yPercent: yStart[index] }, // Khóa cứng điểm xuất phát
-        {
-            yPercent: yEnd[index],   // Trượt mượt mà tới điểm tiếp theo
-            ease: "none",
-            scrollTrigger: {
-                trigger: zone,
-                start: "top bottom", // Bắt đầu trượt khi ranh giới tầng mới vừa ló lên ở đáy màn hình
-                end: "top top",      // Dừng lại hoàn toàn khi tầng mới vừa vặn full màn hình
-                scrub: 1,            // Scrub = 1: Nền trượt theo bánh xe chuột một cách mượt mà nhất (1:1 với nội dung)
-                immediateRender: false
-            }
-        }
-    );
-});
-
-// XỬ LÝ LỚP SƯƠNG MỜ CHO CÁC TẦNG DƯỚI (Nếu tìm thấy tầng 2)
-if (zones[0]) {
-    gsap.to("#mist-overlay", {
-        opacity: 1, 
+    gsap.to("#all-bg", {
+        yPercent: yPositions[index + 1],
         ease: "none",
         scrollTrigger: {
-            trigger: zones[0],
+            trigger: zone,
             start: "top bottom",
             end: "top top",
-            scrub: true
+            scrub: 1,
+            immediateRender: false,  // ← Quan trọng! Ngăn GSAP render ngay lập tức
         }
     });
-}
+});
 // =========================================================
 // HIỆU ỨNG TEXT OCEAN REALM TRƯỢT SIÊU MƯỢT
 // =========================================================
@@ -174,13 +153,22 @@ gsap.from("#sunlight-info", {
         toggleActions: "play none none reverse" // Chơi hiệu ứng khi cuộn xuống, đảo ngược khi cuộn lên
     }
 });
-gsap.to("#mist-overlay", {
-    opacity: 1, 
-    ease: "none",
-    scrollTrigger: {
-        trigger: oceanZones[0], // .sunlight-zone
-        start: "top bottom",
-        end: "top top",
-        scrub: true
-    }
+
+// FIX lỗi mist overlay (đổi oceanZones[0] → zoneWrappers[0])
+if (zoneWrappers[0]) {
+    gsap.to("#mist-overlay", {
+        opacity: 1,
+        ease: "none",
+        scrollTrigger: {
+            trigger: zoneWrappers[0],
+            start: "top bottom",
+            end: "top top",
+            scrub: true
+        }
+    });
+}
+
+// FIX: Refresh sau khi mọi thứ load xong
+window.addEventListener('load', () => {
+    ScrollTrigger.refresh();
 });
