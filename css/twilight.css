@@ -492,7 +492,7 @@
     border-radius: 50%;
     filter: blur(1px);
     /* Dùng animation trôi lơ lửng nhẹ nhàng */
-    animation: tw-floating-dust infinite ease-in-out;
+    animation: sl-floating-dust infinite ease-in-out;
 }
 
 /* Hiệu ứng lơ lửng giúp hạt rải đều, không bị tụ lại một chỗ */
@@ -573,4 +573,20 @@
 @keyframes blueFloat {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-20px); }
+}
+/* HIỆU ỨNG LÀN SÓNG CHUYỂN CẢNH */
+.tw-wave-transition {
+    position: fixed;
+    top: 0;
+    left: -100vw; /* Giấu ở ngoài cùng bên trái */
+    width: 100vw;
+    height: 100vh;
+    /* Màu chuyển từ xanh đen -> xanh biển -> xanh ngọc của nước */
+    background: linear-gradient(90deg, #001f3f, #0074D9, #7FDBFF); 
+    z-index: 99999; /* Đảm bảo nổi lên trên tất cả */
+    pointer-events: none; 
+    /* Uốn cong mép bên phải để giống hình lượn sóng */
+    border-top-right-radius: 50% 100%;
+    border-bottom-right-radius: 50% 100%;
+    box-shadow: 20px 0 50px rgba(0, 116, 217, 0.5); /* Tạo vệt sáng của sóng */
 }
