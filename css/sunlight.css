@@ -120,6 +120,12 @@
     100% { transform: translate(0, 0); }
 }
 
+/* Animation lơ lửng cho cá */
+@keyframes fishFloat {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-15px); }
+}
+
 /* Vị trí các bong bóng (Điều chỉnh để nằm gọn trong khung) */
 .bubble-1 { top: 10%; left: 10%; animation: floatInFrame 8s infinite ease-in-out; }
 .bubble-2 { top: 55%; left: 5%; animation: floatInFrame 10s infinite ease-in-out 1s; }
@@ -198,6 +204,7 @@
     margin-bottom: 20px;
     filter: drop-shadow(0 15px 20px rgba(0,0,0,0.6));
     transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.4s ease;
+    animation: fishFloat 3s ease-in-out infinite;
 }
 
 /* Riêng cá nhà táng to hơn */
@@ -218,8 +225,9 @@
 
 /* Hover Effect */
 #sunlight-wrapper .sl-fish-card:hover .sl-fish-img {
-    transform: translateY(-20px) scale(1.05);
-    filter: drop-shadow(0 25px 30px rgba(0, 191, 255, 0.5));
+    transform: translateY(-30px) scale(1.1);
+    filter: drop-shadow(0 30px 40px rgba(0, 191, 255, 0.7));
+    animation: none;
 }
 
 #sunlight-wrapper .sl-fish-card:hover .sl-fish-name {
@@ -346,6 +354,15 @@
 }
 
 .sl-video-item video {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.sl-video-item img {
     width: 100%;
     aspect-ratio: 16 / 9;
     object-fit: cover;
