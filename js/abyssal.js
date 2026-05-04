@@ -51,9 +51,9 @@ document.addEventListener("DOMContentLoaded", () => {
        ============================================================ */
     const fishData = {
         "stomiidae": {
-            title: "Amphipod",
-            desc1: "Amphipod là nhóm giáp xác nhỏ sống từ nước ngọt đến đại dương sâu, có cơ thể cong, nhiều chân và thường sống ở đáy biển. Chúng ăn xác sinh vật và mảnh hữu cơ, đóng vai trò quan trọng trong việc tái chế chất dinh dưỡng.",
-            desc2: "Một số loài sống ở rãnh đại dương rất sâu (hơn 10.000 m) và có hiện tượng “khổng lồ hóa” với kích thước lớn hơn bình thường (tới 20–30 cm). Ngoài ra, nhiều amphipod biển sâu còn chứa vi nhựa, cho thấy ô nhiễm đã lan tới cả những vùng sâu nhất của đại dương.",
+            title: "Bộ giáp mềm",
+            desc1: "Bộ giáp mềm là nhóm giáp xác nhỏ sống từ nước ngọt đến đại dương sâu, có cơ thể cong, nhiều chân và thường sống ở đáy biển. Chúng ăn xác sinh vật và mảnh hữu cơ, đóng vai trò quan trọng trong việc tái chế chất dinh dưỡng.",
+            desc2: "Một số loài sống ở rãnh đại dương rất sâu (hơn 10.000 m) và có hiện tượng “khổng lồ hóa” với kích thước lớn hơn bình thường (tới 20–30 cm). Ngoài ra, nhiều  biển sâu còn chứa vi nhựa, cho thấy ô nhiễm đã lan tới cả những vùng sâu nhất của đại dương.",
             imgMain: "asset/Images/amphipod3.png",
             img1: "asset/Images/amphipod2.jpg",
             img2: "asset/Images/amphipod1.jpg",
@@ -61,7 +61,7 @@ document.addEventListener("DOMContentLoaded", () => {
             
         },
         "lophiiformes": {
-            title: "Dumpo",
+            title: "Bạch tuộc Dumbo",
             desc1: "Bạch tuộc Dumbo là loài bạch tuộc nhỏ (khoảng 30 cm), nổi bật với “tai” giống voi nên trông rất dễ thương. Chúng sống ở độ sâu cực lớn (tới ~7.000 m), thuộc nhóm bạch tuộc ô với các xúc tu có màng như chiếc ô.",
             desc2: "Khác với nhiều loài khác, Dumbo không có túi mực, nuốt con mồi nguyên con và ăn các sinh vật nhỏ dưới đáy biển. Chúng có khả năng sinh sản quanh năm và thích nghi rất tốt với môi trường đại dương sâu khắc nghiệt.",
             imgMain: "asset/Images/dumbo3.png",
@@ -71,9 +71,9 @@ document.addEventListener("DOMContentLoaded", () => {
             model3d: "asset/Model_3D/Fish_model/dumbo_octopus2.glb",
         },
         "vampyroteuthis": {
-            title: "Snailfish",
-            desc1: "Snailfish (cá ốc sên) là nhóm cá biển sâu có cơ thể mềm, gần như trong suốt và ít xương, giúp chịu được áp suất cực lớn. Chúng sống ở vùng nước rất sâu (6.000–8.000 m), thậm chí hơn 8.300 m – thuộc những loài cá sống sâu nhất từng ghi nhận.",
-            desc2: "Nhờ cấu trúc cơ thể đặc biệt và chất TMAO giúp ổn định protein, snailfish có thể tồn tại trong môi trường khắc nghiệt mà nhiều loài khác không sống được. Tuy nhiên, cơ thể chúng rất dễ bị “tan rã” khi đưa lên mặt nước do thay đổi áp suất.",
+            title: "Cá ốc sên",
+            desc1: "Cá ốc sên là nhóm cá biển sâu có cơ thể mềm, gần như trong suốt và ít xương, giúp chịu được áp suất cực lớn. Chúng sống ở vùng nước rất sâu (6.000–8.000 m), thậm chí hơn 8.300 m – thuộc những loài cá sống sâu nhất từng ghi nhận.",
+            desc2: "Nhờ cấu trúc cơ thể đặc biệt và chất TMAO giúp ổn định protein, cá ốc sên có thể tồn tại trong môi trường khắc nghiệt mà nhiều loài khác không sống được. Tuy nhiên, cơ thể chúng rất dễ bị “tan rã” khi đưa lên mặt nước do thay đổi áp suất.",
             imgMain: "asset/Images/snailfish3.png",
             img1: "asset/Images/snailfish2.jpg",
             img2: "asset/Images/snailfish1.jpg",
