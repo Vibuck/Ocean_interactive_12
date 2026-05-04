@@ -190,6 +190,15 @@
     box-shadow: none;
 }
 
+/* ================================
+   HIỆU ỨNG CÁ LƠ LỬNG (Đã đưa ra ngoài)
+   ================================ */
+@keyframes floatingFishSafe {
+    0% { top: 0px; }
+    50% { top: -15px; }
+    100% { top: 0px; }
+}
+
 #twilight-wrapper .tw-fish-img {
     width: 100%;
     height: auto;
@@ -198,35 +207,54 @@
     margin-bottom: 20px;
     filter: drop-shadow(0 15px 20px rgba(0,0,0,0.6));
     transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.4s ease;
+    
+    position: relative; /* Cần thiết để 'top' hoạt động */
+    animation: floatingFishSafe 4s ease-in-out infinite; 
+}
+
+/* Nhịp độ lệch nhau cho tự nhiên */
+#twilight-wrapper .tw-fish-card:nth-child(1) .tw-fish-img {
+    animation-delay: 0s;
+    animation-duration: 5s;
+}
+
+#twilight-wrapper .tw-fish-card:nth-child(2) .tw-fish-img {
+    animation-delay: -1.5s;
+    animation-duration: 3.5s;
+}
+
+#twilight-wrapper .tw-fish-card:nth-child(3) .tw-fish-img {
+    animation-delay: -3s;
+    animation-duration: 4.2s;
 }
 
 /* Riêng cá nhà táng to hơn */
 #twilight-wrapper .tw-fish-card:nth-child(1) .tw-fish-img {
-    max-width: 550px;
+    max-width: 750px;
 }
 
 #twilight-wrapper .tw-fish-name {
-    font-size: 1.4rem; /* Đã thu nhỏ lại */
+    font-size: 1.4rem;
     color: #00bfff;
     margin-bottom: 10px;
     transition: color 0.3s ease, text-shadow 0.3s ease;
 }
 
 #twilight-wrapper .tw-fish-card p {
-    display: none; /* Ẩn ở ngoài lưới */
+    display: none;
 }
 
 /* Hover Effect */
 #twilight-wrapper .tw-fish-card:hover .tw-fish-img {
     transform: translateY(-20px) scale(1.05);
     filter: drop-shadow(0 25px 30px rgba(0, 191, 255, 0.5));
+    animation-play-state: paused; /* Dừng lơ lửng khi chuột chĩa vào */
 }
 
 #twilight-wrapper .tw-fish-card:hover .tw-fish-name {
     color: #ffffff;
     text-shadow: 0 0 15px rgba(0, 191, 255, 0.8);
 }
-
 /* ================================
    2. GIAO DIỆN CHI TIẾT
    ================================ */

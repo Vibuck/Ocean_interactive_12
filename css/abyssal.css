@@ -283,7 +283,77 @@
 #fish-modal.active {
     display: block !important;
 }
+/* ======================================================= */
+/* --- CSS CHO PHẦN 1: CUỘN NGANG (BO GÓC MẠNH, FULL MÀN) --- */
+/* ======================================================= */
 
+/* 1. Đảm bảo phần section chính chiếm full chiều cao màn hình */
+#abyssal-info-scroll {
+    width: 100%;
+    height: 100vh; /* Full chiều cao màn hình */
+    overflow: hidden; /* Giấu thanh cuộn mặc định của trình duyệt */
+    position: relative;
+}
+
+/* 2. Thiết lập wrapper chứa các ảnh xếp hàng ngang */
+.info-horizontal-wrapper {
+    display: flex;
+    height: 100%;
+    /* Thêm width cho tổng 3 ảnh (hoặc dùng JS để điều khiển) */
+    /* width: 300vw; (Nếu cuộn bằng CSS) */
+}
+
+/* 3. Thiết lập khung chứa cho MỖI slide (ảnh) */
+.info-slide {
+    flex: 0 0 100vw; /* Mỗi slide chiếm full chiều rộng màn hình */
+    width: 100vw;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    /* --- CÁCH 1: BO GÓC TRÊN KHUNG CHỨA --- */
+    /* border-radius: 80px; /* Tăng giảm số này để bo mạnh/nhẹ */
+    /* overflow: hidden; /* Cắt bất kỳ thứ gì tràn ra khỏi góc bo */
+}
+
+/* 4. CSS CHÍNH CHO ẢNH - BO GÓC MẠNH VÀ FULL MÀN */
+.info-slide img {
+    /* Đảm bảo ảnh lấp đầy khung chứa */
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Giữ tỷ lệ ảnh, lấp đầy khung, có thể cắt bớt nếu cần */
+    
+    /* --- CÁCH 2 (Dễ kiểm soát hơn): BO GÓC MẠNH TRỰC TIẾP TRÊN ẢNH --- */
+    /* border-radius: 80px; /* Thay thế hoặc dùng kết hợp với cách 1 */
+    
+    display: block;
+}
+
+/* --- VÍ DỤ 2: TẠO HIỆU ỨNG THẺ (CARD) BO GÓC ĐẸP HƠN --- */
+/* (Đây là cách phổ biến để tạo cảm giác "bo góc" trên "full màn") */
+.info-slide {
+    flex: 0 0 100vw;
+    width: 100vw;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    /* Thêm một chút khoảng cách (padding) để góc bo lộ rõ */
+    padding: 30px; /* Khoảng cách xung quanh ảnh */
+    box-sizing: border-box; /* Đảm bảo padding không làm tăng kích thước slide */
+}
+
+.info-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Lấp đầy khung sau khi đã trừ padding */
+    
+    /* --- BO GÓC MẠNH --- */
+    border-radius: 80px; /* Số lớn để bo cực mạnh (ví dụ 80px-120px) */
+    
+}
 .modal-content {
     position: relative;
     margin: 2% auto;
