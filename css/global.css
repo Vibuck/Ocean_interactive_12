@@ -289,3 +289,96 @@ body, html {
     cursor: none !important;
 }
 
+/* ==================== MINIGAME OVERLAY & REWARDS ==================== */
+#game-timer {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 30px;
+    color: #00f2fe;
+    z-index: 1001;
+    font-weight: bold;
+    text-shadow: 0 0 10px rgba(0,242,254,0.8);
+}
+
+#game-over-screen {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 8, 20, 0.95);
+    z-index: 2000;
+    display: none; /* Mặc định ẩn, khi nào hết giờ sẽ đổi thành 'flex' */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+#game-over-screen h1 {
+    font-size: 50px;
+    color: #ff3366;
+    text-shadow: 0 0 20px #ff3366;
+    margin-bottom: 10px;
+}
+
+#game-over-screen h2 {
+    font-size: 30px;
+}
+
+#final-score {
+    color: #00f2fe;
+    font-size: 40px;
+    font-weight: 900;
+}
+
+#reward-container {
+    display: none;
+    position: relative;
+    width: 400px;
+    height: 400px;
+    margin-top: 20px;
+}
+
+#reward-aura {
+    position: absolute;
+    top: 10%; left: 10%; width: 80%; height: 80%;
+    border-radius: 50%;
+    box-shadow: 0 0 80px 40px gold;
+    opacity: 0;
+    pointer-events: none;
+}
+
+#reward-model {
+    width: 100%;
+    height: 100%;
+    transform: scale(0); /* Thu nhỏ để tạo hiệu ứng bung ra */
+}
+
+#reward-text {
+    margin-top: 20px;
+    font-size: 24px;
+    color: gold;
+    font-weight: bold;
+    text-shadow: 0 0 10px gold;
+    text-align: center;
+}
+
+.btn-close-game {
+    margin-top: 30px;
+    padding: 15px 40px;
+    font-size: 20px;
+    background: #00f2fe;
+    color: black;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0 0 15px #00f2fe;
+    transition: all 0.3s ease;
+}
+
+.btn-close-game:hover {
+    background: white;
+    box-shadow: 0 0 25px white;
+    transform: scale(1.05);
+}
+

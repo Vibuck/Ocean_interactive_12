@@ -469,6 +469,9 @@ document.getElementById('start-minigame-btn').addEventListener('click', () => {
     spawnObject();
     animateGame();
     gameDifficultyTimer = setInterval(increaseDifficulty, 5000);
+    if (typeof startGameTimer === 'function') {
+        startGameTimer(); 
+    }
 });
 
 document.getElementById('close-game-btn').addEventListener('click', () => {
@@ -499,3 +502,108 @@ function showComboEffect(combo, x, y) {
         if(comboUI) comboUI.style.transform = 'scale(1) rotate(0deg)';
     }, 150);
 }
+
+// ==================== QUẢN LÝ THỜI GIAN & PHẦN THƯỞNG ====================
+let gameTimeRemaining = 90; // 90 giây
+let timerInterval = null;
+
+// 1. Hàm khởi động thời gian (Hãy gọi hàm này ở sự kiện nút Bắt đầu game)
+function startGameTimer() {
+    gameTimeRemaining = 90;
+    document.getElementById('game-timer').innerText = "01:30";
+    
+    // Đảm bảo không bị trùng lặp interval nếu người chơi bấm start 2 lần
+    if (timerInterval) clearInterval(timerInterval);
+    
+    timerInterval = setInterval(() => {
+        gameTimeRemaining--;
+        
+        let minutes = Math.floor(gameTimeRemaining / 60);
+        let seconds = gameTimeRemaining % 60;
+        
+        // Format hiển thị luôn là 2 chữ số (VD: 01:05)
+        document.getElementById('game-timer').innerText = 
+            `${minutes < 10 ? '0' : ''}${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+
+        if (gameTimeRemaining <= 0) {
+            endGame();
+        }
+    }, 1000);
+}
+
+// 2. Hàm kết thúc game
+function endGame() {
+    clearInterval(timerInterval);
+    isGameRunning = false; // Dừng vòng lặp spawnObject và animateGame
+    
+    // (Tùy chọn) Xóa sạch rác/cá đang bay trên màn hình
+    activeObjects.forEach(obj => gameScene.remove(obj));
+    activeObjects = [];
+
+    // Cập nhật điểm và hiện màn hình kết thúc
+    document.getElementById('game-over-screen').style.display = 'flex';
+    document.getElementById('final-score').innerText = gameScore; // Biến gameScore đang có sẵn trong file của bạn
+
+    triggerReward(gameScore);
+}
+
+// 3. Hàm xử lý logic quà tặng
+function triggerReward(finalScore) {
+    const rewardContainer = document.getElementById('reward-container');
+    const rewardModel = document.getElementById('reward-model');
+    const rewardAura = document.getElementById('reward-aura');
+    const rewardText = document.getElementById('reward-text');
+    
+    let modelSrc = "";
+    let rewardName = "";
+
+    // Cấu hình mốc điểm (Sửa lại đường dẫn model 3D cho đúng với thư mục của bạn)
+    if (finalScore >= 3000) {
+        modelSrc = "asset/Model_3D/Minigame/aquaman.glb"; 
+        rewardName = "THỦY TỀ AQUAMAN";
+    } else if (finalScore >= 2000) {
+        modelSrc = "asset/Model_3D/Minigame/titanic.glb"; 
+        rewardName = "TÀU TITANIC";
+    }
+
+    if (modelSrc !== "") {
+        // Hiện quà
+        rewardContainer.style.display = "block";
+        rewardModel.src = modelSrc;
+        rewardText.innerText = `🎉 CHÚC MỪNG! BẠN NHẬN ĐƯỢC ${rewardName} 🎉`;
+
+        // Reset trạng thái trước khi diễn hoạt hình GSAP
+        gsap.set(rewardModel, { scale: 0, rotationY: 0 });
+        gsap.set(rewardAura, { opacity: 0, scale: 0.5 });
+
+        // Khởi chạy GSAP Animation
+        gsap.to(rewardAura, { opacity: 1, scale: 1, duration: 1, ease: "power2.out" });
+        gsap.to(rewardAura, { opacity: 0.6, scale: 1.1, duration: 1.5, repeat: -1, yoyo: true, ease: "sine.inOut", delay: 1 });
+        gsap.to(rewardModel, { scale: 1, rotationY: 1080, duration: 2.5, ease: "elastic.out(1, 0.6)" });
+    } else {
+        // Không đủ điểm
+        rewardContainer.style.display = "none";
+        rewardText.innerText = "Chưa đủ điểm nhận quà. Hãy rèn luyện và thử lại để đạt mốc 2000 nhé!";
+    }
+}
+
+// 4. Xử lý nút ĐÓNG
+document.getElementById('close-game-btn').addEventListener('click', () => {
+    // Ẩn màn hình kết thúc
+    document.getElementById('game-over-screen').style.display = 'none';
+    
+    // Ẩn modal minigame của bạn
+    const modal = document.getElementById('game-modal'); 
+    if (modal) modal.style.display = 'none';
+    
+    // Reset điểm số về 0 để chơi lại lần sau
+    gameScore = 0;
+    if (scoreEl) scoreEl.innerText = "Score: 0";
+});
+// Thêm đoạn này vào minigame.js
+document.getElementById('exit-game-btn').addEventListener('click', () => {
+    document.getElementById('game-modal').style.display = 'none'; // Ẩn màn hình game
+    isGameRunning = false; // Dừng game
+    clearInterval(gameDifficultyTimer); // Dừng tăng độ khó
+    if (typeof timerInterval !== 'undefined') clearInterval(timerInterval); // Dừng đếm giờ
+});

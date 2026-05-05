@@ -635,7 +635,20 @@
 
 
     <div id="game-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0, 15, 30, 0.95); z-index: 99999; backdrop-filter: blur(8px);">
-        
+        <div id="game-timer">01:30</div>
+
+        <div id="game-over-screen">
+            <h1>HẾT GIỜ!</h1>
+            <h2>Tổng điểm: <span id="final-score">0</span></h2>
+    
+            <div id="reward-container">
+                <div id="reward-aura"></div>
+                <model-viewer id="reward-model" src="" auto-rotate rotation-per-second="30deg" camera-controls></model-viewer>
+            </div>
+    
+            <p id="reward-text"></p>
+            <button id="close-game-btn" class="btn-close-game">ĐÓNG & THOÁT</button>
+        </div>
         <div id="game-window" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 85vw; height: 85vh; max-width: 1200px; max-height: 800px;">
             
             <div style="position: absolute; top: 0; left: 0; width: 100%; padding: 15px 25px; display: flex; justify-content: space-between; align-items: center; box-sizing: border-box; z-index: 1002; background: linear-gradient(to bottom, rgba(0,21,40,0.9), transparent);">
@@ -648,7 +661,7 @@
                     OCEAN CLEANER
                 </div>
                 
-                <button id="close-game-btn" style="background: #ff3333; color: white; border: 2px solid #ffaaaa; padding: 8px 25px; border-radius: 8px; font-size: 16px; font-weight: bold; cursor: pointer; box-shadow: 0 0 15px rgba(255,50,50,0.6);">
+                <button id="exit-game-btn" style="background: #ff3333; color: white; border: 2px solid #ffaaaa; padding: 8px 25px; border-radius: 8px; font-size: 16px; font-weight: bold; cursor: pointer; box-shadow: 0 0 15px rgba(255,50,50,0.6);">
                     ❌ THOÁT
                 </button>
             </div>
