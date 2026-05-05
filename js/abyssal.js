@@ -79,7 +79,7 @@ document.addEventListener("DOMContentLoaded", () => {
             img1: "asset/Images/snailfish2.jpg",
             img2: "asset/Images/snailfish1.jpg",
             video: "asset/Videos/snailfishvideo.mp4",
-            
+            model3d: "asset/Model_3D/Fish_model/snailfish.glb",
         }
     };
 
