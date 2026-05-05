@@ -58,6 +58,7 @@ document.addEventListener("DOMContentLoaded", () => {
             img1: "asset/Images/amphipod2.jpg",
             img2: "asset/Images/amphipod1.jpg",
             video: "asset/Videos/amphipodvideo.mp4",
+            model3d: "asset/Model_3D/Fish_model/amphipod.glb",
             
         },
         "lophiiformes": {
