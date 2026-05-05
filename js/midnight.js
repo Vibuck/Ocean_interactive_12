@@ -64,8 +64,13 @@ midnightSection.addEventListener('mouseleave', () => {
 const fishData = {
     stomiidae: {
         name: 'Cá rồng biển sâu',
-        image: 'asset/Images/Background/Ca_rong_bien_sau.png',
+        image: [ 'asset/Images/Background/Ca_rong_bien_sau_1.jpg',
+                 'asset/Images/Background/Ca_rong_bien_sau_2.webp',
+                 'asset/Images/Background/Ca_rong_bien_sau_3.jpg',
+                 'asset/Images/Background/Ca_rong_bien_sau_4.jpg'
+                ],
         video: 'asset/Videos/Ca_rong_bien_sau.mp4', // Update to your local video path
+        modelPath: 'asset/Model_3D/Fish_model/dragon.glb',
         description: `
             <p><strong>Tên khoa học:</strong>  Stomiidae.</p>
             <p><strong>Kích thước:</strong> khoảng 15–40 cm (tùy loài)</p>
@@ -75,8 +80,13 @@ const fishData = {
     },
     lophiiformes: {
         name: 'Cá cần câu',
-        image: 'asset/Images/Background/Ca_can_cau.png',
+        image: [ 'asset/Images/Background/Ca_can_cau_1.jpg',
+                 'asset/Images/Background/Ca_can_cau_2.jpg',
+                 'asset/Images/Background/Ca_can_cau_3.jpg',
+                 'asset/Images/Background/Ca_can_cau_4.jpg'
+                ],
         video: 'asset/Videos/Ca_can_cau.mp4', // Update to your local video path
+        modelPath: 'asset/Model_3D/Fish_model/anglerfish.glb',
         description: `
             <p><strong>Tên khoa học:</strong> Lophiiformes.</p>
             <p><strong>Kích thước:</strong> khoảng 20–100 cm (tùy loài). </p>
@@ -84,10 +94,15 @@ const fishData = {
             <p><strong>Chế độ ăn:</strong> Ăn các loài cá và sinh vật biển nhỏ hơn. Hầu như không chuyển động, chỉ ngồi chờ con mồi bị mồi của chúng thu hút.</p>
         `
     },
-    'vampyroteuthis infernalis': {
+    vampyroteuthis : {
         name: 'Mực ma cà rồng',
-        image: 'asset/Images/Background/Muc_ma_ca_rong.png',
+        image: [ 'asset/Images/Background/Muc_ma_ca_rong_1.jpg',
+                 'asset/Images/Background/Muc_ma_ca_rong_2.jpg',
+                 'asset/Images/Background/Muc_ma_ca_rong_3.jpg',
+                 'asset/Images/Background/Muc_ma_ca_rong_4.jpg'
+                ],
         video: 'asset/Videos/Muc_ma_ca_rong.mp4', // Update to your local video path
+        modelPath: 'asset/Model_3D/Fish_model/squid.glb',
         description: `
             <p><strong>Tên khoa học:</strong> Vampyroteuthis infernalis.</p>
             <p><strong>Kích thước:</strong> Khoảng 30cm.</p>
@@ -96,119 +111,6 @@ const fishData = {
         `
     }
 };
-
-document.addEventListener('DOMContentLoaded', function() {
-    // Fish Detail Page Functionality
-    const fishCards = document.querySelectorAll('.fish-card');
-    const detailPage = document.getElementById('fish-detail-page');
-    const detailBackBtn = document.querySelector('.fish-detail-back');
-    const detailVideoBtn = document.querySelector('.fish-detail-video');
-    const detailFishImage = document.getElementById('detail-fish-image');
-    const detailFishName = document.getElementById('detail-fish-name');
-    const detailFishDescription = document.getElementById('detail-fish-description');
-    const fishGrid = document.querySelector('.fish-grid');
-    const fishDetailContainer = document.querySelector('.fish-detail-container');
-    const videoContainer = document.getElementById('video-container');
-    const detailVideo = document.getElementById('detail-video');
-
-    let currentFish = null;
-    let isVideoMode = false;
-
-    fishCards.forEach(card => {
-        card.addEventListener('click', function() {
-            const fishType = this.getAttribute('data-fish');
-            const fish = fishData[fishType];
-            
-            if (fish) {
-                currentFish = fish;
-                // Get the clicked image element
-                const clickedImage = this.querySelector('.fish-image');
-                const rect = clickedImage.getBoundingClientRect();
-                
-                // Set detail page content
-                detailFishImage.src = fish.image;
-                detailFishName.textContent = fish.name;
-                detailFishDescription.innerHTML = fish.description;
-                
-                // Show detail page
-                detailPage.classList.remove('hidden');
-                
-                // Animate image with GSAP
-                gsap.fromTo(
-                    detailFishImage,
-                    {
-                        width: rect.width,
-                        height: rect.height,
-                        x: rect.left - (window.innerWidth / 2 - rect.width / 2),
-                        y: rect.top - 60,
-                        opacity: 0.8
-                    },
-                    {
-                        width: '100%',
-                        height: 'auto',
-                        x: 0,
-                        y: 0,
-                        opacity: 1,
-                        duration: 0.8,
-                        ease: 'power2.inOut'
-                    }
-                );
-                
-                // Animate info text
-                gsap.fromTo(
-                    '.fish-detail-info',
-                    {
-                        opacity: 0,
-                        x: 50
-                    },
-                    {
-                        opacity: 1,
-                        x: 0,
-                        duration: 0.8,
-                        delay: 0.2,
-                        ease: 'power2.inOut'
-                    }
-                );
-                
-                // Hide fish grid
-                fishGrid.style.display = 'none';
-            }
-        });
-    });
-
-    // Back button
-    detailBackBtn.addEventListener('click', function() {
-        if (isVideoMode) {
-            // Close video mode
-            videoContainer.classList.add('hidden');
-            fishDetailContainer.classList.remove('hidden');
-            detailVideoBtn.classList.remove('hidden');
-            detailVideo.pause();
-            detailVideo.currentTime = 0;
-            isVideoMode = false;
-        } else {
-            // Normal back
-            detailPage.classList.add('hidden');
-            fishGrid.style.display = 'grid';
-            const midnightElement = document.getElementById('midnight-wrapper');
-            if (midnightElement) {
-                window.scrollTo(0, midnightElement.getBoundingClientRect().top + window.scrollY);
-            }
-        }
-    });
-
-    // Video button
-    detailVideoBtn.addEventListener('click', function() {
-        if (currentFish && currentFish.video) {
-            isVideoMode = true;
-            fishDetailContainer.classList.add('hidden');
-            videoContainer.classList.remove('hidden');
-            detailVideoBtn.classList.add('hidden');
-            detailVideo.src = currentFish.video;
-            detailVideo.load(); // Ensure video is loaded
-            detailVideo.play();
-        }
-    });
 
     const paragraphs = document.querySelectorAll('#midnight-info p');
 
@@ -232,4 +134,74 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
     });
+
+document.addEventListener("DOMContentLoaded", () => {
+    const detailPage = document.getElementById('fish-detail-page');
+    const backBtn = document.querySelector('.fish-detail-back');
+
+    document.addEventListener('click', (e) => {
+        const card = e.target.closest('.fish-card');
+        if (!card) return;
+
+        const fishID = card.getAttribute('data-fish');
+        const data = fishData[fishID]; // Sử dụng đúng tên biến bạn đã đặt ở trên
+
+        if (data) {
+            // 1. Cập nhật chữ
+            document.getElementById('det-name').innerText = data.name;
+            document.getElementById('det-description').innerHTML = data.description;
+            
+            // 2. Cập nhật Video (Hiện ở dưới phần mô tả)
+            const videoContainer = document.getElementById('det-video-container');
+            if (data.video && videoContainer) {
+                videoContainer.innerHTML = `
+                    <video controls width="100%" style="border-radius: 20px; margin-top: 20px; box-shadow: 0 0 15px rgba(0, 208, 255, 0.36);">
+                        <source src="${data.video}" type="video/mp4">
+                    </video>
+                `;
+            }
+
+            // 3. Cập nhật 4 ảnh Gallery (Sửa lỗi sai tên biến image/images)
+            for (let i = 0; i < 4; i++) {
+                const imgElement = document.getElementById(`det-img-${i + 1}`);
+                if (imgElement) {
+                    // Kiểm tra đường dẫn ảnh có tồn tại trong data không
+                    imgElement.src = data.image[i] ? data.image[i] : ""; 
+                }
+            }
+
+            // 4. Cập nhật Model 3D 
+            const modelViewport = document.getElementById('model-viewport');
+            if (data.modelPath) {
+                modelViewport.innerHTML = `
+                    <model-viewer 
+                        src="${data.modelPath}" 
+                        ar 
+                        camera-controls 
+                        auto-rotate 
+                        shadow-intensity="1" 
+                        style="width: 100%; height: 100%; background-color: unset;">
+                    </model-viewer>
+                `;
+            } else {
+                modelViewport.innerHTML = `<div style="text-align:center; padding-top:150px; color:#555;">Model 3D đang được xử lý...</div>`;
+            }
+
+            // Hiện trang
+            detailPage.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+    });
+    
+    // Nút quay lại
+    backBtn.addEventListener('click', () => {
+        detailPage.classList.add('hidden');
+        document.body.style.overflow = 'auto';
+        // Xoá nội dung nặng khi đóng trang
+        if(document.getElementById('det-video-container')) document.getElementById('det-video-container').innerHTML = "";
+        document.getElementById('model-viewport').innerHTML = "";
+    });
 });
+// Tìm khung chứa model
+const modelViewport = document.getElementById('model-viewport');
+

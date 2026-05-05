@@ -400,23 +400,74 @@
     </div>
 </div>
         <section class="zone-part fish-part" id="midnight-fish">
-            <h2>Midnight Zone - Các loài cá</h2>
+    <h2>Midnight Zone - Các loài cá</h2>
+    
+    <!-- Khung giới hạn hiển thị -->
+    <div class="fish-slider">
+        <!-- Đường ray trượt -->
+        <div class="fish-track">
+            <!-- Nhóm 1 (Bản gốc) -->
             <div class="fish-grid">
                 <div class="fish-card" data-fish="stomiidae">
-                    <img src="asset/Images/Background/Ca_rong_bien_sau.png" alt="Anglerfish" class="fish-image">
-                    <h3>Cá rồng biển sâu </h3>
+                    <img src="asset/Images/Background/Ca_rong_bien_sau.png" alt="Stomiidae" class="fish-image">
+                    <h3>Cá rồng biển sâu</h3>
                 </div>
                 <div class="fish-card" data-fish="lophiiformes">
-                    <img src="asset/Images/Background/Ca_can_cau.png" alt="lophiiformes" class="fish-image">
+                    <img src="asset/Images/Background/Ca_can_cau.png" alt="Lophiiformes" class="fish-image">
                     <h3>Cá cần câu</h3>
                 </div>
-                <div class="fish-card" data-fish="vampyroteuthis infernalis">
-                    <img src="asset/Images/Background/Muc_ma_ca_rong.png" alt="vampyroteuthis infernalis" class="fish-image">
+                <div class="fish-card" data-fish="vampyroteuthis">
+                    <img src="asset/Images/Background/Muc_ma_ca_rong.png" alt="Vampyroteuthis" class="fish-image">
                     <h3>Mực ma cà rồng</h3>
                 </div>
             </div>
-        </section>
+
+            <!-- Nhóm 2 (Bản sao để chạy vô hạn) -->
+            <div class="fish-grid">
+                <div class="fish-card" data-fish="stomiidae">
+                    <img src="asset/Images/Background/Ca_rong_bien_sau.png" alt="Stomiidae" class="fish-image">
+                    <h3>Cá rồng biển sâu</h3>
+                </div>
+                <div class="fish-card" data-fish="lophiiformes">
+                    <img src="asset/Images/Background/Ca_can_cau.png" alt="Lophiiformes" class="fish-image">
+                    <h3>Cá cần câu</h3>
+                </div>
+                <div class="fish-card" data-fish="vampyroteuthis">
+                    <img src="asset/Images/Background/Muc_ma_ca_rong.png" alt="Vampyroteuthis" class="fish-image">
+                    <h3>Mực ma cà rồng</h3>
+                </div>
+            </div>
+        </div> 
+    </div> 
+</section>
+
+<!-- Fish Detail Page-->
+<div id="fish-detail-page" class="fish-detail-page hidden">
+    <button class="fish-detail-back">Back</button>
+    <div class="fish-detail-container">
+        <!-- CỘT TRÁI: Gallery & 3D -->
+        <div class="fish-visuals">
+            <div class="fish-gallery">
+                <img id="det-img-1" src="" alt="Gallery 1" class="gallery-img">
+                <img id="det-img-2" src="" alt="Gallery 2" class="gallery-img">
+                <img id="det-img-3" src="" alt="Gallery 3" class="gallery-img">
+                <img id="det-img-4" src="" alt="Gallery 4" class="gallery-img">
+            </div>
+            
+            <div class="fish-model-wrapper">
+                <h3>Mô hình tương tác</h3>
+                <div id="model-viewport"></div>
+            </div>
+        </div>
+
+        <!-- CỘT PHẢI: Info -->
+        <div class="fish-info-content">
+            <h1 id="det-name"></h1>
+            <div id="det-description"></div>
+            <div id="det-video-container" style="margin-top: 20px;"></div>
+        </div>
     </div>
+</div>
 
     <div class="ocean-zone" id="abyssal-wrapper">
         <section class="zone-part info-part" id="abyssal-info">
@@ -567,23 +618,6 @@
         </div>
     </div>
 
-     <!-- Fish Detail Page -->
-    <div id="fish-detail-page" class="fish-detail-page hidden">
-        <button class="fish-detail-back">  Back </button>
-        <button class="fish-detail-video"> Video </button>
-        <div class="fish-detail-container">
-            <div class="fish-detail-image-container">
-                <img id="detail-fish-image" src="" alt="Fish" class="detail-fish-image">
-            </div>
-            <div class="fish-detail-info">
-                <h1 id="detail-fish-name"></h1>
-                <div id="detail-fish-description"></div>
-            </div>
-        </div>
-        <div id="video-container" class="video-container hidden">
-            <video id="detail-video" controls playsinline preload="metadata"></video>
-        </div>
-    </div>
 
     <div id="game-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0, 15, 30, 0.95); z-index: 99999; backdrop-filter: blur(8px);">
         
