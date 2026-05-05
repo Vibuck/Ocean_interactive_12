@@ -107,25 +107,52 @@
     from { opacity: 0; transform: translate(-50%, -55%); }
     to { opacity: 1; transform: translate(-50%, -50%); }
 }
-
-/* Fish Grid Section */
-.fish-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 50px;
-    padding: 80px 0;
+.zone-part.fish-part h2 {
+    color:#00d4ff;
+    font-size: 2.5rem;
+    text-shadow: 0 0 10px rgba(0, 208, 255, 0.645);
+}
+/* 1. Khung bao ngoài cùng: Ẩn đi phần cá bị trượt ra ngoài màn hình */
+.fish-slider {
+    width: 100%;
+    overflow: hidden;
+    padding: 70px 0 50px 0;
 }
 
+/* 2. Đường ray: Chứa 2 nhóm cá và chạy Animation */
+.fish-track {
+    display: flex;
+    width: max-content; /* Ép đường ray giãn hết cỡ để chứa toàn bộ thẻ */
+    animation: mnScrollLeft 15s linear infinite; /* 15s là tốc độ trượt, có thể chỉnh */
+}
+
+/* Dừng băng chuyền khi đưa chuột vào để người dùng dễ click */
+.fish-track:hover {
+    animation-play-state: paused;
+}
+
+/* 3. Lưới cá hiện tại chuyển thành hàng ngang (Flex) */
+.fish-grid {
+    display: flex;
+    gap: 50px;
+    padding-right: 50px; /* Bắt buộc phải có để điểm nối giữa 2 nhóm không bị hụt khoảng cách */
+}
+
+/* 4. Thẻ cá: Thêm kích thước cố định để không bị méo khi cho vào Flexbox */
 .fish-card {
+    width: 450px; /* Cố định chiều rộng */
+    flex-shrink: 0; /* Tuyệt đối không cho bóp méo thẻ */
+    
     background: rgba(0, 210, 255, 0.1);
-    border: 2px solid #00d2ff;
-    border-radius: 20px;
+    border: 3px solid #1a5181;
+    border-radius: 50px;
     padding: 20px;
     text-align: center;
     cursor: pointer;
     transition: all 0.3s ease;
 }
 
+/* Hover thẻ cá (Giữ nguyên của bạn) */
 .fish-card:hover {
     background: rgba(0, 210, 255, 0.2);
     transform: translateY(-10px);
@@ -134,7 +161,7 @@
 
 .fish-image {
     width: 100%;
-    height: 250px;
+    height: 200px;
     object-fit: cover;
     border-radius: 8px;
     margin-bottom: 15px;
@@ -146,177 +173,95 @@
 }
 
 .fish-card h3 {
-    color: #00d2ff;
+    color: #38b3ff;
     font-size: 1.3rem;
     margin: 0;
     font-family: 'Montserrat', sans-serif;
 }
 
+/* 5. Khởi tạo hiệu ứng trôi vô hạn */
+@keyframes mnScrollLeft {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); } /* Trượt đúng một nửa (1 nhóm) rồi reset về đầu */
+}
 
-/* Fish Detail Page */
+/* Trang chi tiết cố định toàn màn hình */
 .fish-detail-page {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, #001a33 0%, #002d66 100%);
-    z-index: 5000;
-    padding: 40px;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: radial-gradient(circle at center, #001a33 0%, #00050a 100%);
+    z-index: 9999;
     overflow-y: auto;
-    display: flex;
-    flex-direction: column;
+    color: white;
+    padding: 60px 20px;
 }
 
-.fish-detail-page.hidden {
-    display: none;
-}
+.fish-detail-page.hidden { display: none; }
 
-.fish-detail-back {
-    position: absolute;
-    top: 50%;
-    right: 0;
-    transform: translateY(-50%);
-    background: none;
-    border: 2px solid #00d2ff;
-    color: #00d2ff;
-    font-size: 16px;
-    font-family: 'Montserrat', sans-serif;
-    padding: 10px 20px;
-    cursor: pointer;
-    border-radius: 20px 0 0 20px;
-    transition: all 0.3s ease;
-    z-index: 5001;
-}
-
-.fish-detail-video {
-    position: absolute;
-    top: calc(50% + 70px);
-    right: 0;
-    transform: translateY(-50%);
-    background: none;
-    border: 2px solid #00d2ff;
-    color: #00d2ff;
-    font-size: 16px;
-    font-family: 'Montserrat', sans-serif;
-    padding: 10px 20px;
-    cursor: pointer;
-    border-radius: 20px 0 0 20px;
-    transition: all 0.3s ease;
-    z-index: 5001;
-}
-
-.fish-detail-back.hidden,
-.fish-detail-video.hidden {
-    display: none;
-}
-
-.fish-detail-back:hover,
-.fish-detail-video:hover {
-    background: #00d2ff;
-    color: #001a33;
-    transform: translateY(-50%) translateX(-10px);
-    box-shadow: 0 0 30px rgba(0, 210, 255, 0.8);
-}
-
+/* Bố cục chính */
 .fish-detail-container {
     display: grid;
+    grid-template-columns: 1.2fr 0.8fr; 
+    gap: 40px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* Lưới 4 ảnh gallery */
+.fish-gallery {
+    display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 50px;
-    align-items: center;
-    margin-top: 60px;
-    max-width: 1200px;
-    margin-left: auto;
-    margin-right: auto;
+    gap: 15px;
+    margin-bottom: 30px;
 }
 
-.fish-detail-image-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 30px;
-    background: rgba(0, 210, 255, 0.05);
-    border: 2px solid #00d2ff;
-    border-radius: 15px;
+.gallery-img {
+    width: 100%; height: 250px;
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0, 208, 255, 0.36);
 }
 
-.detail-fish-image {
-    max-width: 100%;
-    height: auto;
+/* Khung chứa Model 3D */
+.fish-model-wrapper {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 0 15px rgba(0, 208, 255, 0.36);
+}
+.fish-model-wrapper h3 {
+    color:#86d4fe;
+    font-size: 1.3rem;
+    font-family: 'Montserrat', sans-serif;
+}
+
+#model-viewport {
+    width: 100%; height: 450px;
+    background: #000;
     border-radius: 10px;
-    filter: drop-shadow(0 0 30px rgba(0, 210, 255, 0.4));
+    overflow: hidden;
 }
 
-.fish-detail-info h1 {
-    color: #00d2ff;
-    font-size: 3rem;
+/* Cột thông tin chữ */
+.fish-info-content h1 {
+    font-size: 3.5rem;
+    color: #29bbff;
+    text-transform: uppercase;
     margin-bottom: 30px;
     font-family: 'Montserrat', sans-serif;
-    text-shadow: 0 0 20px rgba(0, 210, 255, 0.3);
 }
 
-.fish-detail-info {
-    color: white;
-    padding: 20px;
-}
-
-.video-container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #001a33;
-}
-
-.video-container.hidden {
-    display: none;
-}
-
-#detail-video {
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: contain;
-}
-
-#detail-fish-description p {
-    font-size: 18px;
-    line-height: 1.9;
-    margin-bottom: 20px;
+#det-description {
+    font-size: 1.15rem;
+    line-height: 1.8;
     color: #e0f7ff;
 }
 
-#detail-fish-description strong {
-    color: #00d2ff;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-    .fish-detail-page {
-        padding: 20px;
-    }
-
-    .fish-detail-container {
-        grid-template-columns: 1fr;
-        gap: 30px;
-        margin-top: 80px;
-    }
-
-    .fish-detail-info h1 {
-        font-size: 2rem;
-    }
-
-    .fish-detail-back {
-        top: 20px;
-        left: 20px;
-        font-size: 14px;
-        padding: 8px 15px;
-    }
-    
-    .fish-grid {
-        grid-template-columns: 1fr;
-    }
+/* Nút bấm */
+.fish-detail-back {
+    position: absolute; top: 80px; right: 40px;
+    padding: 10px 20px;
+    background: transparent; border: 2px solid #73e5ff;
+    color: #79e6ff; cursor: pointer; border-radius: 50px;
 }
