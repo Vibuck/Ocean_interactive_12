@@ -172,3 +172,42 @@ if (zoneWrappers[0]) {
 window.addEventListener('load', () => {
     ScrollTrigger.refresh();
 });
+
+const bgMusic = document.getElementById('bg-music');
+bgMusic.volume = 0.5; // Để âm lượng 50% cho đỡ giật mình
+
+// Nhạc sẽ phát ngay khi người dùng click lần đầu vào web
+document.addEventListener('click', () => {
+    bgMusic.play();
+}, { once: true }); // { once: true } để lệnh này chỉ chạy 1 lần duy nhất
+
+const soundBtn = document.getElementById('sound-control');
+const soundIcon = document.getElementById('sound-icon');
+let allAudios = document.querySelectorAll('audio');
+let isMuted = false;
+
+soundBtn.addEventListener('click', () => {
+    isMuted = !isMuted;
+    
+    // Cập nhật lại danh sách audio (để nhận diện các audio mới thêm vào nếu có)
+    allAudios = document.querySelectorAll('audio');
+
+    allAudios.forEach(audio => {
+        audio.muted = isMuted;
+    });
+
+    // Thay đổi giao diện nút
+    if (isMuted) {
+        soundBtn.classList.add('muted');
+        soundBtn.classList.remove('sound-on');
+        soundIcon.innerText = "🔇";
+        // Nếu muốn dừng hẳn nhạc nền khi tắt âm:
+        // bgMusic.pause(); 
+    } else {
+        soundBtn.classList.remove('muted');
+        soundBtn.classList.add('sound-on');
+        soundIcon.innerText = "🔊";
+        // Phát lại nhạc nền nếu nó đang bị dừng
+        // bgMusic.play();
+    }
+});

@@ -671,7 +671,13 @@
             <canvas id="slash-canvas" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1000;"></canvas>
         </div>
     </div>
-
+    <audio id="bg-music" loop>
+        <source src="asset/Audio/Creo - Deep Dive.mp3" type="audio/mpeg">
+    </audio>
+    <div id="sound-control" class="sound-on">
+        <div class="sound-wave"></div>
+        <span id="sound-icon">🔊</span>
+    </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/Flip.min.js"></script>
