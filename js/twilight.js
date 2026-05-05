@@ -27,14 +27,14 @@ document.addEventListener("DOMContentLoaded", () => {
         
         tl.to(layers, {
             x: 1500, // Sóng ập vào
-            duration: 0.85,
+            duration: 0.6,
             ease: "power2.inOut",
             stagger: 0.1 
         })
         .call(onMidpoint) // Tráo đổi giao diện và set vị trí trượt lúc sóng đang che
         .to(layers, {
             x: 3500, // Sóng rút đi
-            duration: 0.85,
+            duration: 0.6,
             ease: "power2.inOut",
             stagger: 0.1,
             onComplete: () => waveContainer.remove()
