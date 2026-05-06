@@ -9,15 +9,14 @@ document.addEventListener("DOMContentLoaded", () => {
             const originalImg = this.querySelector('.sl-fish-img');
             const rect = originalImg.getBoundingClientRect();
 
-            // 1. ĐỔ DỮ LIỆU VÀO KHUNG CHI TIẾT
-            // Đổ ảnh to vào cái thẻ img mình vừa thêm ở HTML
+            
             const mainDetailImg = detail.querySelector('#sl-target-image-container img');
             if (mainDetailImg) {
                 mainDetailImg.src = originalImg.src;
-                mainDetailImg.style.display = 'block'; // Hiện ảnh lên
+                mainDetailImg.style.display = 'block'; 
             }
 
-            // Đổ 4 ảnh nhỏ và Model 3D
+            
             detail.querySelector('#sl-detail-model').src = this.getAttribute('data-model');
             detail.querySelector('#sl-detail-title').innerText = this.querySelector('.sl-fish-name').innerText;
             const descElem = this.querySelector('p');
@@ -31,7 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             }
 
-            // 2. TẠO BẢN SAO ĐỂ PHÓNG TO (HIỆU ỨNG)
+            
             const burst = originalImg.cloneNode(true);
             Object.assign(burst.style, {
                 position: 'fixed',
@@ -43,7 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
             });
             document.body.appendChild(burst);
 
-            // 3. CHẠY HIỆU ỨNG PHÓNG TO RỒI BIẾN MẤT
+            
             gsap.to(burst, {
                 top: "50%",
                 left: "50%",
@@ -58,7 +57,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     grid.style.display = 'none';
                     detail.style.display = 'block';
 
-                    // Chữ và ảnh hiện ra mượt mà
+                    
                     gsap.fromTo(".sl-detail-fade", 
                         { opacity: 0, y: 30 }, 
                         { opacity: 1, y: 0, duration: 0.5, stagger: 0.1 }
@@ -74,7 +73,7 @@ document.addEventListener("DOMContentLoaded", () => {
         grid.style.display = 'grid';
     });
 
-    // VIDEO (Giữ nguyên)
+    
     document.querySelectorAll('.sl-video-item').forEach(item => {
         const video = item.querySelector('video');
         const btn = item.querySelector('.play-pause-btn');
@@ -87,7 +86,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // X\u1eed l\u00fd bong b\u00f3ng th\u00f4ng tin
+    
     const slBubbles = sunlight.querySelectorAll('.sl-bubble-item');
     slBubbles.forEach(bubble => {
         bubble.addEventListener('mousemove', (e) => {
@@ -109,40 +108,40 @@ function initGlobalMarineSnow() {
     const container = document.getElementById('sl-marine-snow-global');
     if (!container) return;
 
-    // Tăng số lượng hạt để phủ kín không gian lớn
+    
     const particleCount = 420; 
 
     for (let i = 0; i < particleCount; i++) {
         const particle = document.createElement('div');
         particle.className = 'sl-snow-particle';
         
-        // Kích thước bong bóng ngẫu nhiên
+        
         const size = Math.random() * 4 + 1 + 'px';
         particle.style.width = size;
         particle.style.height = size;
         
-        // RẢI ĐỀU THEO PHẦN TRĂM: Quan trọng nhất để không bị tụ lại một hàng
+        
         particle.style.left = Math.random() * 100 + '%';
         particle.style.top = Math.random() * 100 + '%';
         
-        // Tốc độ lơ lửng ngẫu nhiên (từ 5s đến 12s)
+        
         const duration = Math.random() * 7 + 5 + 's';
         particle.style.animationDuration = duration;
         
-        // Độ trễ ngẫu nhiên để các hạt không chuyển động cùng lúc
+        
         particle.style.animationDelay = Math.random() * 5 + 's';
 
         container.appendChild(particle);
     }
 }
 
-// Chạy hàm khi trang web đã sẵn sàng
+
 document.addEventListener("DOMContentLoaded", initGlobalMarineSnow);
 
 var currentSunlightFish = null;
 function showSunlightDetail(fishKey, card) {
   currentSunlightFish = fishKey;
-  // Animate card to center, overlay modal giống Midnight
+  
   document.querySelectorAll('.sunlight-fish-card').forEach(function(c) {
     c.classList.remove('selected');
     c.style.zIndex = 1;
@@ -183,7 +182,7 @@ function showSunlightVideo() {
 }
 // 3D Viewer with three.js
 function loadSunlight3DModel(modelPath, fishKey) {
-  // cleanup previous renderer/loop/resize if any
+  
   try {
     if (window.sunlight3dAnimationId) {
       cancelAnimationFrame(window.sunlight3dAnimationId);
@@ -213,7 +212,7 @@ function loadSunlight3DModel(modelPath, fishKey) {
   renderer.shadowMap.enabled = true;
   if (typeof THREE.sRGBEncoding !== 'undefined') renderer.outputEncoding = THREE.sRGBEncoding;
   renderer.setSize(width, height, false);
-  // ensure the canvas will fill the viewer element and be positioned correctly
+  
   renderer.domElement.style.position = 'absolute';
   renderer.domElement.style.top = '0';
   renderer.domElement.style.left = '0';
@@ -227,7 +226,7 @@ function loadSunlight3DModel(modelPath, fishKey) {
   var camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 1000);
   camera.position.set(0, 0, 5);
 
-  // stronger, more balanced lighting so dark PBR models become visible
+  
   var hemi = new THREE.HemisphereLight(0xffffff, 0x202040, 1.2);
   scene.add(hemi);
   var dir = new THREE.DirectionalLight(0xffffff, 2.0);
@@ -236,7 +235,7 @@ function loadSunlight3DModel(modelPath, fishKey) {
   scene.add(dir);
   var ambient = new THREE.AmbientLight(0xffffff, 0.9);
   scene.add(ambient);
-  // small camera-key light to brighten front-facing areas
+  
   var key = new THREE.PointLight(0xffffff, 0.8);
   camera.add(key);
   scene.add(camera);
@@ -254,15 +253,12 @@ function loadSunlight3DModel(modelPath, fishKey) {
   var mixer = null;
 
   var loader = new THREE.GLTFLoader();
-  // show loading indicator if present
+  
   try { var loadingEl = document.getElementById('sunlight-3d-loading'); if (loadingEl) loadingEl.style.display = 'block'; } catch(e){}
   loader.load(modelPath, function(gltf) {
     try {
       var model = gltf.scene || gltf.scenes[0];
-      // If animations contain position keyframes on nodes, those initial
-      // translations can shift the visible model away from the origin. Detect
-      // initial position keyframes and subtract their average from the model
-      // so the animated root appears centered along Z (and other axes).
+      
       try {
         var correction = new THREE.Vector3(0,0,0);
         var correctionCount = 0;
@@ -291,8 +287,7 @@ function loadSunlight3DModel(modelPath, fishKey) {
         }
         if (correctionCount > 0) {
           correction.divideScalar(correctionCount);
-          // subtract the mean initial translation from the model so the root
-          // animation's offset is neutralized.
+          
           model.position.sub(correction);
           console.log('Applied animation position correction:', correction);
         }
@@ -302,14 +297,14 @@ function loadSunlight3DModel(modelPath, fishKey) {
         if (node.isMesh) {
           node.castShadow = true;
           node.receiveShadow = true;
-          // ensure material is visible: prefer double side and gently brighten dark materials
+          
           var mats = Array.isArray(node.material) ? node.material : [node.material];
           mats.forEach(function(m){
             if (!m) return;
             try {
               m.side = THREE.DoubleSide;
               if (m.color) {
-                // lighten base color toward a soft blue tint for visibility
+                
                 m.color.lerp(new THREE.Color(0x88b6ff), 0.6);
               }
               if (m.emissive) m.emissive.lerp(new THREE.Color(0x050505), 0.6);
@@ -320,7 +315,7 @@ function loadSunlight3DModel(modelPath, fishKey) {
         }
       });
 
-      // compute bbox, scale, center
+      
       var bbox = new THREE.Box3().setFromObject(model);
       var size = bbox.getSize(new THREE.Vector3());
       var maxDim = Math.max(size.x, size.y, size.z);
@@ -330,14 +325,14 @@ function loadSunlight3DModel(modelPath, fishKey) {
       var scaleFactor = desiredSize / maxDim;
       model.scale.setScalar(scaleFactor);
 
-      // recenter
+      
       bbox.setFromObject(model);
       var center = bbox.getCenter(new THREE.Vector3());
       model.position.x -= center.x;
       model.position.y -= center.y;
       model.position.z -= center.z;
 
-      // apply override offsets
+      
       if (override.yOffset) model.position.y += override.yOffset;
       if (override.rotation) {
         model.rotation.x = override.rotation.x || 0;
@@ -348,19 +343,18 @@ function loadSunlight3DModel(modelPath, fishKey) {
       model.visible = true;
       group.add(model);
 
-      // compute bounding sphere and position camera (more robust algorithm)
+      
       bbox.setFromObject(model);
       var sphere = bbox.getBoundingSphere(new THREE.Sphere());
       var radius = sphere.radius || (desiredSize/2);
       var fov = camera.fov * (Math.PI / 180);
-      // prefer a camera distance proportional to radius to avoid being inside the model
+      
       var camMultiplier = override.cameraOffsetMultiplier || 2.4;
       var fitMultiplier = override.fitMultiplier || 1.6;
       var cameraZ = Math.max(radius * camMultiplier, Math.abs(radius / Math.sin(fov / 2)) * fitMultiplier);
       if (!isFinite(cameraZ) || cameraZ === 0) cameraZ = Math.max(5, radius * 2.5);
 
-      // If a per-model fixed camera distance is provided, use it (this decouples
-      // camera distance from model radius so we can make specific models appear bigger).
+      
       if (override.cameraDistance) {
         var camZFixed = override.cameraDistance + (override.camZ || 0);
         camera.position.set(0, Math.max(radius * 0.25, 0.1) + (override.camY || 0), camZFixed);
@@ -371,25 +365,25 @@ function loadSunlight3DModel(modelPath, fishKey) {
       controls.target.set(0,0,0);
       controls.update();
 
-      // Force renderer clear color so canvas isn't transparent behind rounded panel
+      
       try { renderer.setClearColor(0x001122, 1); } catch(e){}
 
-      // Add temporary helpers to ensure we can visually debug placement
+      
       try {
         var axes = new THREE.AxesHelper(Math.max(desiredSize, 1));
-        axes.visible = false; // keep off by default
+        axes.visible = false; 
         scene.add(axes);
         var debugDot = new THREE.Mesh(new THREE.SphereGeometry(Math.max(radius*0.06, 0.02), 10, 8), new THREE.MeshBasicMaterial({color:0xff4444}));
         debugDot.position.set(0,0,0);
         debugDot.visible = false;
         scene.add(debugDot);
-        // briefly flash helpers if user has console open
+        
         setTimeout(function(){ axes.visible = true; debugDot.visible = true; setTimeout(function(){ axes.visible = false; debugDot.visible = false; }, 2500); }, 80);
       } catch(e) { console.warn('helper failed', e); }
 
       console.log('3D model loaded:', fishKey, 'radius=', radius, 'cameraZ=', cameraZ);
 
-      // play built-in animations if available; do NOT auto-rotate model when animations exist
+      
       if (gltf.animations && gltf.animations.length) {
         mixer = new THREE.AnimationMixer(model);
         gltf.animations.forEach(function(clip){
@@ -407,7 +401,7 @@ function loadSunlight3DModel(modelPath, fishKey) {
         if (mixer) {
           mixer.update(delta);
         } else {
-          // gentle bob when no animation provided
+          
           var t = clock.getElapsedTime();
           group.position.y = Math.sin(t * 0.8) * 0.03;
         }
@@ -416,7 +410,7 @@ function loadSunlight3DModel(modelPath, fishKey) {
       }
       animate();
 
-      // hide loading indicator
+      
       try { if (loadingEl) loadingEl.style.display = 'none'; } catch(e){}
     } catch(e) {
       console.error('Error processing GLTF', e);

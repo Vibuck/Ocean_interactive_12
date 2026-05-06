@@ -2,7 +2,7 @@
    TWILIGHT ZONE CSS - Đã quy hoạch (Prefix tw- & Nesting)
    ============================================================ */
 
-/* Bố cục chính: Lưới 2 cột */
+
 #twilight-wrapper .tw-zone-layout {
     display: grid;
     grid-template-columns: 1.2fr 1fr;
@@ -12,15 +12,10 @@
     align-items: center;
 }
 
-/* ================================
-   CỘT TRÁI: BONG BÓNG KÍNH
-   ================================ */
-/* ================================
-   KHUNG KÍNH BAO QUANH (BÊN TRÁI)
-   ================================ */
+
 .tw-info-glass-frame {
-    background: rgba(255, 255, 255, 0.08); /* Nền trắng mờ */
-    backdrop-filter: blur(16px);           /* Hiệu ứng mờ đục phía sau */
+    background: rgba(255, 255, 255, 0.08); 
+    backdrop-filter: blur(16px);           
     -webkit-backdrop-filter: blur(16px);
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 25px;
@@ -32,26 +27,26 @@
     position: relative;
 }
 
-/* Giữ tiêu đề cố định và đẹp */
+
 .tw-info-glass-frame .tw-zone-title {
     font-family: 'Montserrat', sans-serif;
     font-size: 2.5rem;
     color: #00bfff;
     text-shadow: 0 0 15px rgba(0, 191, 255, 0.5);
     margin: 0 0 30px 0;
-    z-index: 5; /* Nằm trên bong bóng */
+    z-index: 5; 
 }
 
-/* Khu vực cho bong bóng di chuyển bên trong khung */
+
 .tw-info-bubbles-area {
     position: relative;
-    flex-grow: 1; /* Chiếm hết phần còn lại của khung kính */
+    flex-grow: 1; 
     width: 100%;
 }
 
-/* ================================
-   STYLE BONG BÓNG (GIỮ NGUYÊN & TINH CHỈNH)
-   ================================ */
+/* ==================
+   STYLE BONG BÓNG 
+   ================== */
 .tw-bubble-item {
     background: rgba(0, 191, 255, 0.15);
     border: 1px solid rgba(0, 191, 255, 0.4);
@@ -94,7 +89,7 @@
     line-height: 1.6;
 }
 
-/* Hover: Bung bong bóng */
+
 .tw-bubble-item:hover {
     border-radius: 20px;
     width: 300px;
@@ -112,7 +107,7 @@
     position: relative;
 }
 
-/* Animation trôi nổi bên trong khung */
+
 @keyframes floatInFrame {
     0% { transform: translate(0, 0); }
     33% { transform: translate(10px, -15px); }
@@ -120,14 +115,14 @@
     100% { transform: translate(0, 0); }
 }
 
-/* Vị trí các bong bóng (Điều chỉnh để nằm gọn trong khung) */
+
 .bubble-1 { top: 10%; left: 10%; animation: floatInFrame 8s infinite ease-in-out; }
 .bubble-2 { top: 55%; left: 5%; animation: floatInFrame 10s infinite ease-in-out 1s; }
 .bubble-3 { top: 20%; left: 50%; animation: floatInFrame 9s infinite ease-in-out 0.5s; }
 .bubble-4 { top: 60%; left: 55%; animation: floatInFrame 11s infinite ease-in-out 1.5s; }
-/* ================================
+/* ========================
    CỘT PHẢI: ẢNH VÀ VIDEO
-   ================================ */
+   ======================== */
 #twilight-wrapper .tw-media-stack {
     display: flex;
     flex-direction: column;
@@ -175,7 +170,7 @@
     margin: 0 auto;
 }
 
-/* Vị trí chuẩn zíc zắc */
+
 #twilight-wrapper .tw-fish-card:nth-child(1) { grid-column: 1; grid-row: 1; justify-self: center; }
 #twilight-wrapper .tw-fish-card:nth-child(2) { grid-column: 2; grid-row: 1 / span 2; align-self: center; justify-self: center; }
 #twilight-wrapper .tw-fish-card:nth-child(3) { grid-column: 1; grid-row: 2; justify-self: center; }
@@ -190,9 +185,9 @@
     box-shadow: none;
 }
 
-/* ================================
-   HIỆU ỨNG CÁ LƠ LỬNG (Đã đưa ra ngoài)
-   ================================ */
+/* ======================
+   HIỆU ỨNG CÁ LƠ LỬNG 
+   ====================== */
 @keyframes floatingFishSafe {
     0% { top: 0px; }
     50% { top: -15px; }
@@ -208,11 +203,11 @@
     filter: drop-shadow(0 15px 20px rgba(0,0,0,0.6));
     transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.4s ease;
     
-    position: relative; /* Cần thiết để 'top' hoạt động */
+    position: relative; 
     animation: floatingFishSafe 4s ease-in-out infinite; 
 }
 
-/* Nhịp độ lệch nhau cho tự nhiên */
+
 #twilight-wrapper .tw-fish-card:nth-child(1) .tw-fish-img {
     animation-delay: 0s;
     animation-duration: 5s;
@@ -228,7 +223,7 @@
     animation-duration: 4.2s;
 }
 
-/* Riêng cá nhà táng to hơn */
+
 #twilight-wrapper .tw-fish-card:nth-child(1) .tw-fish-img {
     max-width: 750px;
 }
@@ -244,11 +239,11 @@
     display: none;
 }
 
-/* Hover Effect */
+
 #twilight-wrapper .tw-fish-card:hover .tw-fish-img {
     transform: translateY(-20px) scale(1.05);
     filter: drop-shadow(0 25px 30px rgba(0, 191, 255, 0.5));
-    animation-play-state: paused; /* Dừng lơ lửng khi chuột chĩa vào */
+    animation-play-state: paused; 
 }
 
 #twilight-wrapper .tw-fish-card:hover .tw-fish-name {
@@ -336,10 +331,10 @@
     color: #00bfff;
     margin-bottom: 15px;
 }
-/* Container tổng của cả phần video */
+
 .tw-video-library-container {
     width: 100%;
-    padding: 100px 20px; /* Khoảng cách rộng rãi với phần cá phía trên */
+    padding: 100px 20px; 
     text-align: center;
     clear: both;
 }
@@ -351,14 +346,14 @@
     text-shadow: 0 0 15px rgba(0, 191, 255, 0.6);
 }
 
-/* "Cái khung" chứa 3 video */
+
 .tw-video-main-frame {
     display: flex;
     justify-content: center;
     gap: 30px;
     max-width: 1100px;
     margin: 0 auto;
-    background: rgba(255, 255, 255, 0.05); /* Nền hơi sáng nhẹ tạo cảm giác khung kính */
+    background: rgba(255, 255, 255, 0.05); 
     padding: 40px;
     border-radius: 20px;
     border: 1px solid rgba(0, 191, 255, 0.2);
@@ -388,13 +383,13 @@
     opacity: 0.8;
 }
 
-/* Hover nhẹ cho sinh động */
+
 .tw-video-item:hover video {
     transform: scale(1.05);
     border-color: #00bfff;
 }
 
-/* Responsive cho điện thoại */
+
 @media (max-width: 768px) {
     .tw-video-main-frame {
         flex-direction: column;
@@ -418,13 +413,13 @@
     align-items: center;
     justify-content: center;
     background: rgba(0, 0, 0, 0.3);
-    opacity: 0; /* Ẩn nút đi */
+    opacity: 0; 
     transition: opacity 0.3s ease;
-    pointer-events: none; /* Tránh cản trở việc click vào video nếu cần */
+    pointer-events: none; 
 }
 
 .video-wrapper:hover .video-controls {
-    opacity: 1; /* Hiện nút khi hover */
+    opacity: 1; 
     pointer-events: auto;
 }
 
@@ -445,75 +440,75 @@
     transform: scale(1.1);
     background: rgba(0, 191, 255, 0.9);
 }
-/* Lớp dùng để phóng to cá đột biến */
+
 .tw-fish-burst {
     position: fixed !important;
     z-index: 9999 !important;
-    pointer-events: none; /* Để không cản trở việc click các nút khác */
+    pointer-events: none; 
     filter: drop-shadow(0 0 30px rgba(0, 191, 255, 0.8));
 }
 
-/* Đảm bảo các thành phần thông tin ẩn lúc đầu để hiện dần lên */
+
 .tw-detail-fade {
     opacity: 0;
 }
-/* Lớp dùng để định vị con cá bản sao khi đang bay */
+
 .tw-fish-burst {
     position: fixed !important;
-    z-index: 9999 !important; /* Phải nằm trên cùng */
-    pointer-events: none; /* Không cản trở click */
-    filter: drop-shadow(0 0 30px rgba(0, 191, 255, 0.8)); /* Hiệu ứng bóng sáng */
-    margin: 0 !important; /* Xóa margin thừa */
+    z-index: 9999 !important; 
+    pointer-events: none; 
+    filter: drop-shadow(0 0 30px rgba(0, 191, 255, 0.8)); 
+    margin: 0 !important; 
 }
 
-/* Các thành phần nội dung chi tiết ẩn ban đầu để GSAP làm chúng hiện dần */
+
 .tw-detail-fade {
     opacity: 0;
 }
 .tw-fish-burst {
     transition: none !important;
     filter: drop-shadow(0 0 20px rgba(0, 191, 255, 0.7));
-}/* Container bao phủ toàn bộ vùng Twilight */
+}
 #tw-marine-snow-global {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%; /* Đảm bảo chiều cao bao phủ hết wrapper */
+    height: 100%; 
     overflow: hidden;
     pointer-events: none; 
     z-index: 1; 
 }
 
-/* Style hạt bong bóng */
+
 .tw-snow-particle {
     position: absolute;
     background: rgba(255, 255, 255, 0.4);
     border-radius: 50%;
     filter: blur(1px);
-    /* Dùng animation trôi lơ lửng nhẹ nhàng */
+    
     animation: sl-floating-dust infinite ease-in-out;
 }
 
-/* Hiệu ứng lơ lửng giúp hạt rải đều, không bị tụ lại một chỗ */
+
 @keyframes tw-floating-dust {
     0%, 100% {
         transform: translate(0, 0);
         opacity: 0.3;
     }
     50% {
-        /* Hạt di chuyển nhẹ sang ngang và lên trên một chút */
+        
         transform: translate(15px, -25px);
         opacity: 0.7;
     }
 }
-/* Đảm bảo thẻ cá là gốc tọa độ */
+
 .tw-fish-card {
     position: relative;
     overflow: visible !important;
 }
 
-/* Giao diện bong bóng xanh */
+
 .tw-fun-fact-bubble.ff-blue {
     position: absolute;
     width: 45px;
@@ -526,17 +521,16 @@
     justify-content: center;
     cursor: help;
     z-index: 50; 
-    animation: blueFloat 4s infinite ease-in-out; /* Bay dập dềnh */
+    animation: blueFloat 4s infinite ease-in-out; 
 }
 
-/* Định vị riêng cho từng bong bóng để nó nằm rải rác quanh con cá */
-/* CÁ NHÀ TÁNG: Nằm ở góc trên bên trái */
+
 .ff-pos-1 { top: -20px; left: -10px; } 
 
-/* CÁ LỒNG ĐÈN: Nằm ở góc trên bên phải */
+
 .ff-pos-2 { top: 10px; right: -30px; animation-delay: 1s !important; }
 
-/* MỰC ĐOM ĐÓM: Nằm ở góc trên bên trái */
+
 .ff-pos-3 { top: -10px; left: -20px; animation-delay: 0.5s !important; }
 
 
@@ -545,7 +539,7 @@
     font-weight: bold;
 }
 
-/* Khung chữ thông tin */
+
 .ff-blue .tw-ff-content {
     position: absolute;
     bottom: 55px;
@@ -569,24 +563,24 @@
     visibility: visible;
 }
 
-/* Hiệu ứng dập dềnh (bay lơ lửng tại chỗ) */
+
 @keyframes blueFloat {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-20px); }
 }
-/* HIỆU ỨNG LÀN SÓNG CHUYỂN CẢNH */
+
 .tw-wave-transition {
     position: fixed;
     top: 0;
-    left: -100vw; /* Giấu ở ngoài cùng bên trái */
+    left: -100vw; 
     width: 100vw;
     height: 100vh;
-    /* Màu chuyển từ xanh đen -> xanh biển -> xanh ngọc của nước */
+    
     background: linear-gradient(90deg, #001f3f, #0074D9, #7FDBFF); 
-    z-index: 99999; /* Đảm bảo nổi lên trên tất cả */
+    z-index: 99999; 
     pointer-events: none; 
-    /* Uốn cong mép bên phải để giống hình lượn sóng */
+    
     border-top-right-radius: 50% 100%;
     border-bottom-right-radius: 50% 100%;
-    box-shadow: 20px 0 50px rgba(0, 116, 217, 0.5); /* Tạo vệt sáng của sóng */
+    box-shadow: 20px 0 50px rgba(0, 116, 217, 0.5); 
 }

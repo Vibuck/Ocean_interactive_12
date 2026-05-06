@@ -11,14 +11,13 @@ const GAME_ASSETS = [
 let gameScene, gameCamera, gameRenderer;
 let activeObjects = [];
 let activeParticles = []; 
-let bubbleParticles = []; // Mảng quản lý bong bóng
+let bubbleParticles = []; 
 let loadedModels = [];
 let gameScore = 0;
 let isGameRunning = false;
 let currentCombo = 0;
 let comboTimeout = null;
 let comboUI = null;
-
 let spawnIntervalTime = 1200; 
 let baseSpeed = 0.45; 
 let gameDifficultyTimer;
@@ -33,28 +32,26 @@ let gameWidth, gameHeight;
 
 // ==================== XỬ LÝ BONG BÓNG 2D ====================
 
-// Hàm reset vị trí bong bóng (dùng khi mới tạo và khi bay vượt màn hình)
+// Hàm reset vị trí bong bóng 
 function resetBubble(bubble) {
-    bubble.position.x = (Math.random() - 0.5) * 30; // Phân bổ chiều ngang
-    bubble.position.y = -10 - Math.random() * 20;    // Dưới đáy màn hình
-    bubble.position.z = -3 - Math.random() * 3;     // Đẩy ra sau để không đè lên rác/cá
+    bubble.position.x = (Math.random() - 0.5) * 30; 
+    bubble.position.y = -10 - Math.random() * 20;    
+    bubble.position.z = -3 - Math.random() * 3;     
 
     let scale = 0.2 + Math.random() * 0.4;
     bubble.scale.set(scale, scale, 1);
 
     bubble.userData = {
-        speedY: 0.01 + Math.random() * 0.03, // Tốc độ nổi ngẫu nhiên
-        sineOffset: Math.random() * Math.PI * 2, // Góc sin ban đầu
-        sineSpeed: 0.01 + Math.random() * 0.02,  // Tốc độ lắc lư
+        speedY: 0.01 + Math.random() * 0.03, 
+        sineOffset: Math.random() * Math.PI * 2,
+        sineSpeed: 0.01 + Math.random() * 0.02,  
         originalX: bubble.position.x
     };
 }
 
 // Hàm khởi tạo toàn bộ bong bóng
 function createBubbles() {
-    // LƯU Ý NHỎ: Ảnh JPG thường không có nền trong suốt, nếu bong bóng bị viền đen, ông hãy đổi sang file PNG nhé.
-    const bubbleTexture = new THREE.TextureLoader().load('asset/Images/Minigame/bubble.png'); 
-    
+    const bubbleTexture = new THREE.TextureLoader().load('asset/Images/Minigame/bubble.png');     
     const bubbleMaterial = new THREE.SpriteMaterial({ 
         map: bubbleTexture, 
         transparent: true, 
@@ -93,7 +90,6 @@ function initMiniGame() {
     dirLight.position.set(0, 10, 5);
     gameScene.add(dirLight);
 
-    // ĐÃ FIX: Gọi hàm sinh bong bóng ngay khi khởi tạo scene
     createBubbles();
 
     const loader = new THREE.GLTFLoader();
@@ -231,17 +227,14 @@ function animateGame() {
         }
     }
 
-    // 3. ĐÃ FIX: Cập nhật bong bóng bay uốn lượn
+    // 3. Cập nhật bong bóng bay uốn lượn
     for (let i = 0; i < bubbleParticles.length; i++) {
         let bubble = bubbleParticles[i];
         
-        // Bay dần lên
         bubble.position.y += bubble.userData.speedY;
-        // Lắc lư qua lại
         bubble.userData.sineOffset += bubble.userData.sineSpeed;
         bubble.position.x = bubble.userData.originalX + Math.sin(bubble.userData.sineOffset) * 0.4;
 
-        // Nếu bay vượt quá màn hình bên trên thì reset lại xuống dưới
         if (bubble.position.y > 10) {
             resetBubble(bubble);
         }
@@ -286,24 +279,24 @@ function setupSlicing() {
         
         if (slashPoints.length > 1) {
             ctx.lineCap = 'round';
-            ctx.lineJoin = 'round'; // Chỗ gấp khúc sẽ được bo tròn mượt mà
+            ctx.lineJoin = 'round'; 
 
-            // LỚP 1: Viền Hào Quang (Glow xanh neon)
+            // LỚP 1
             for (let i = 1; i < slashPoints.length; i++) {
                 ctx.beginPath();
                 ctx.moveTo(slashPoints[i-1].x, slashPoints[i-1].y);
                 ctx.lineTo(slashPoints[i].x, slashPoints[i].y);
                 
-                let ratio = i / slashPoints.length; // Tỷ lệ: 0 là đuôi kiếm, 1 là mũi kiếm
+                let ratio = i / slashPoints.length; 
                 
-                ctx.lineWidth = ratio * 20; // Mũi kiếm to 20px, vuốt nhọn dần về đuôi
-                ctx.strokeStyle = `rgba(0, 242, 254, ${ratio * 0.7})`; // Đuôi kiếm mờ dần đi
+                ctx.lineWidth = ratio * 20; 
+                ctx.strokeStyle = `rgba(0, 242, 254, ${ratio * 0.7})`; 
                 ctx.shadowColor = '#00f2fe';
                 ctx.shadowBlur = ratio * 20;
                 ctx.stroke();
             }
 
-            // LỚP 2: Lõi Kiếm (Màu trắng, nét căng)
+            // LỚP 2
             for (let i = 1; i < slashPoints.length; i++) {
                 ctx.beginPath();
                 ctx.moveTo(slashPoints[i-1].x, slashPoints[i-1].y);
@@ -311,17 +304,14 @@ function setupSlicing() {
                 
                 let ratio = i / slashPoints.length;
                 
-                ctx.lineWidth = ratio * 6; // Lõi mỏng hơn, mũi kiếm lõi 6px
+                ctx.lineWidth = ratio * 6; 
                 ctx.strokeStyle = `rgba(255, 255, 255, ${ratio})`;
-                ctx.shadowBlur = 0; // Tắt blur ở lõi để tạo độ sắc nét
+                ctx.shadowBlur = 0; 
                 ctx.stroke();
             }
         }
-        
-        // Tăng chiều dài đuôi từ 12 lên 18 điểm để vệt chém dài và ngầu hơn
         if(slashPoints.length > 18) slashPoints.shift();
-        // ===============================================================
-
+        
         mouse.x = (x / gameWidth) * 2 - 1;
         mouse.y = -(y / gameHeight) * 2 + 1;
         raycaster.setFromCamera(mouse, gameCamera);
@@ -350,16 +340,14 @@ function setupSlicing() {
                 if (points > 0) {
                     // 1. Chém trúng Rác -> Tăng Combo
                     currentCombo++;
-                    finalPoints = points * currentCombo; // Nhân điểm lên x2, x3...
+                    finalPoints = points * currentCombo; 
                     
                     // Reset đồng hồ 3 giây đếm ngược
                     clearTimeout(comboTimeout);
                     comboTimeout = setTimeout(() => {
-                        currentCombo = 0; // Quá 3s thì mất chuỗi
-                        if(comboUI) comboUI.style.opacity = 0; // Mờ chữ combo đi
+                        currentCombo = 0; 
+                        if(comboUI) comboUI.style.opacity = 0; 
                     }, 3000);
-                    
-                    // Bắn chữ Combo ra màn hình
                     showComboEffect(currentCombo, x, y);
                     
                 } else {
@@ -399,21 +387,15 @@ function increaseDifficulty() {
 
 document.getElementById('start-minigame-btn').addEventListener('click', () => {
     modal.style.display = 'flex'; 
-// --- 1. SỬA LỖI CUỘN TRANG & NỀN TRONG SUỐT ---
-    document.body.style.overflow = 'hidden'; // Khóa chết cuộn chuột của web ở background
-    modal.style.backgroundColor = 'rgba(0, 0, 0, 0.9)'; // Phủ đen background bên ngoài game
+    document.body.style.overflow = 'hidden'; 
+    modal.style.backgroundColor = 'rgba(0, 0, 0, 0.9)'; 
 
     const gameWin = document.getElementById('game-window');
     gameWin.style.background = 'radial-gradient(circle at 50% 30%, #00f2fe 0%, #11998e 55%, #003056 100%)'; 
     gameWin.style.border = '2px solid #ffd700'; 
     gameWin.style.boxShadow = '0 0 15px #00f2fe, inset 0 0 15px rgba(0, 242, 254, 0.2)';
     gameWin.style.borderRadius = '15px';
-
-    // --- 2. DỌN SẠCH MỎ NEO CŨ (NẾU CÓ) ---
-    const oldGlow = document.getElementById('ultimate-ocean-border');
-    if (oldGlow) oldGlow.remove();
-
-    // --- 3. GẮN 4 MỎ NEO DÍNH CHẶT VÀO 4 GÓC ---
+    
     const borderGlow = document.createElement('div');
     borderGlow.id = 'ultimate-ocean-border';
     borderGlow.style.cssText = `
@@ -424,7 +406,7 @@ document.getElementById('start-minigame-btn').addEventListener('click', () => {
     // SVG Mỏ neo
     const anchorSVG = "url(\"data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 576 512'%3E%3Cpath fill='%2300f2fe' d='M312 24V34.5c6.4 1.2 12.6 2.7 18.2 4.2c12.8 3.4 20.4 16.6 17 29.4s-16.6 20.4-29.4 17c-10.9-2.9-21.1-4.9-34-4.9s-23.1 2-34 4.9c-12.8 3.4-26-4.2-29.4-17s4.2-26 17-29.4c5.6-1.5 11.8-3 18.2-4.2V24C256 10.7 266.7 0 280 0s24 10.7 24 24zM142.4 162.2l-39.6-39.6c-9.4-9.4-24.6-9.4-33.9 0l-45.3 45.3c-9.4 9.4-9.4 24.6 0 33.9l39.6 39.6c9.4 9.4 24.6 9.4 33.9 0l45.3-45.3c9.4-9.4 9.4-24.6 0-33.9zM433.6 162.2c-9.4 9.4-9.4 24.6 0 33.9l45.3 45.3c9.4 9.4 24.6 9.4 33.9 0l39.6-39.6c9.4-9.4 9.4-24.6 0-33.9l-45.3-45.3c-9.4-9.4-24.6-9.4-33.9 0l-39.6 39.6zM280 416c-79.5 0-144-64.5-144-144v-32c0-13.3-10.7-24-24-24s-24 10.7-24 24v32c0 97.4 72.8 178 166 190.5V512c0 13.3 10.7 24 24 24s24-10.7 24-24V462.5C395.2 450 468 369.4 468 272v-32c0-13.3-10.7-24-24-24s-24 10.7-24 24v32c0 79.5-64.5 144-144 144zM240 272v32c0 22.1 17.9 40 40 40s40-17.9 40-40v-32c0-22.1-17.9-40-40-40s-40 17.9-40 40z'/%3E%3C/svg%3E\")";
 
-    // Ép vị trí lấn ra ngoài viền 2px để ôm trọn cái góc
+    
     const positions = [
         { top: '-2px', left: '-2px' },
         { top: '-2px', right: '-2px' },
@@ -441,7 +423,7 @@ document.getElementById('start-minigame-btn').addEventListener('click', () => {
     });
 
     gameWin.appendChild(borderGlow);
-    // ------------------------------------------------------------
+    
     currentCombo = 0;
     clearTimeout(comboTimeout);
     if (comboUI) comboUI.style.opacity = 0;
@@ -466,8 +448,6 @@ document.getElementById('start-minigame-btn').addEventListener('click', () => {
     activeObjects = [];
     activeParticles.forEach(p => gameScene.remove(p));
     activeParticles = [];
-
-    // Reset lại bong bóng luôn cho mượt
     bubbleParticles.forEach(bubble => resetBubble(bubble));
 
     spawnObject();
@@ -485,21 +465,21 @@ document.getElementById('close-game-btn').addEventListener('click', () => {
 });
 
 function showComboEffect(combo, x, y) {
-    if (combo < 2) return; // Combo x1 thì chưa cần hiện cho đỡ vướng mắt
+    if (combo < 2) return; 
     
     if (!comboUI) {
         comboUI = document.createElement('div');
-        // CSS cho chữ Combo siêu ngầu, viền đen bóng vàng
+        
         comboUI.style.cssText = 'position: absolute; color: #ffd700; font-size: 36px; font-weight: 900; font-family: "Segoe UI", Arial, sans-serif; text-shadow: 0 0 20px #ff9800, 2px 2px 0px #000; pointer-events: none; opacity: 0; transition: all 0.15s ease-out; z-index: 10001;';
         document.getElementById('game-window').appendChild(comboUI);
     }
     
     comboUI.innerText = `Combo x${combo}!`;
-    // Đặt lệch ra phải + trên một chút so với mũi kiếm để dễ nhìn
+    
     comboUI.style.left = (x + 30) + 'px';
     comboUI.style.top = (y - 30) + 'px';
     
-    // Hiệu ứng giật (Scale to rồi thu lại)
+    
     comboUI.style.opacity = 1;
     comboUI.style.transform = 'scale(1.5) rotate(-5deg)';
     setTimeout(() => {
@@ -508,15 +488,15 @@ function showComboEffect(combo, x, y) {
 }
 
 // ==================== QUẢN LÝ THỜI GIAN & PHẦN THƯỞNG ====================
-let gameTimeRemaining = 90; // 90 giây
+let gameTimeRemaining = 90; 
 let timerInterval = null;
 
-// 1. Hàm khởi động thời gian (Hãy gọi hàm này ở sự kiện nút Bắt đầu game)
+
 function startGameTimer() {
     gameTimeRemaining = 90;
     document.getElementById('game-timer').innerText = "01:30";
     
-    // Đảm bảo không bị trùng lặp interval nếu người chơi bấm start 2 lần
+    
     if (timerInterval) clearInterval(timerInterval);
     
     timerInterval = setInterval(() => {
@@ -524,8 +504,6 @@ function startGameTimer() {
         
         let minutes = Math.floor(gameTimeRemaining / 60);
         let seconds = gameTimeRemaining % 60;
-        
-        // Format hiển thị luôn là 2 chữ số (VD: 01:05)
         document.getElementById('game-timer').innerText = 
             `${minutes < 10 ? '0' : ''}${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
 
@@ -538,15 +516,11 @@ function startGameTimer() {
 // 2. Hàm kết thúc game
 function endGame() {
     clearInterval(timerInterval);
-    isGameRunning = false; // Dừng vòng lặp spawnObject và animateGame
-    
-    // (Tùy chọn) Xóa sạch rác/cá đang bay trên màn hình
+    isGameRunning = false; 
     activeObjects.forEach(obj => gameScene.remove(obj));
     activeObjects = [];
-
-    // Cập nhật điểm và hiện màn hình kết thúc
     document.getElementById('game-over-screen').style.display = 'flex';
-    document.getElementById('final-score').innerText = gameScore; // Biến gameScore đang có sẵn trong file của bạn
+    document.getElementById('final-score').innerText = gameScore; 
 
     triggerReward(gameScore);
 }
@@ -561,7 +535,6 @@ function triggerReward(finalScore) {
     let modelSrc = "";
     let rewardName = "";
 
-    // Cấu hình mốc điểm (Sửa lại đường dẫn model 3D cho đúng với thư mục của bạn)
     if (finalScore >= 3000) {
         modelSrc = "asset/Model_3D/Minigame/aquaman.glb"; 
         rewardName = "THỦY TỀ AQUAMAN";
@@ -571,21 +544,15 @@ function triggerReward(finalScore) {
     }
 
     if (modelSrc !== "") {
-        // Hiện quà
         rewardContainer.style.display = "block";
         rewardModel.src = modelSrc;
         rewardText.innerText = `🎉 CHÚC MỪNG! BẠN NHẬN ĐƯỢC ${rewardName} 🎉`;
-
-        // Reset trạng thái trước khi diễn hoạt hình GSAP
         gsap.set(rewardModel, { scale: 0, rotationY: 0 });
         gsap.set(rewardAura, { opacity: 0, scale: 0.5 });
-
-        // Khởi chạy GSAP Animation
         gsap.to(rewardAura, { opacity: 1, scale: 1, duration: 1, ease: "power2.out" });
         gsap.to(rewardAura, { opacity: 0.6, scale: 1.1, duration: 1.5, repeat: -1, yoyo: true, ease: "sine.inOut", delay: 1 });
         gsap.to(rewardModel, { scale: 1, rotationY: 1080, duration: 2.5, ease: "elastic.out(1, 0.6)" });
     } else {
-        // Không đủ điểm
         rewardContainer.style.display = "none";
         rewardText.innerText = "Chưa đủ điểm nhận quà. Hãy rèn luyện và thử lại để đạt mốc 2000 nhé!";
     }
@@ -593,21 +560,21 @@ function triggerReward(finalScore) {
 
 // 4. Xử lý nút ĐÓNG
 document.getElementById('close-game-btn').addEventListener('click', () => {
-    // Ẩn màn hình kết thúc
+    
     document.getElementById('game-over-screen').style.display = 'none';
     
-    // Ẩn modal minigame của bạn
+    
     const modal = document.getElementById('game-modal'); 
     if (modal) modal.style.display = 'none';
     
-    // Reset điểm số về 0 để chơi lại lần sau
+    
     gameScore = 0;
     if (scoreEl) scoreEl.innerText = "Score: 0";
 });
-// Thêm đoạn này vào minigame.js
+
 document.getElementById('exit-game-btn').addEventListener('click', () => {
-    document.getElementById('game-modal').style.display = 'none'; // Ẩn màn hình game
-    isGameRunning = false; // Dừng game
-    clearInterval(gameDifficultyTimer); // Dừng tăng độ khó
-    if (typeof timerInterval !== 'undefined') clearInterval(timerInterval); // Dừng đếm giờ
+    document.getElementById('game-modal').style.display = 'none'; 
+    isGameRunning = false; 
+    clearInterval(gameDifficultyTimer); 
+    if (typeof timerInterval !== 'undefined') clearInterval(timerInterval); 
 });

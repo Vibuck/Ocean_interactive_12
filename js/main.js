@@ -18,7 +18,7 @@ document.getElementById('nav-home').onclick = () => {
 
 
 
-// HIỆU ỨNG XUẤT HIỆN NỘI DUNG KHI CUỘN (TÙY CHỌN - GIỮ LẠI ĐỂ WEB KHÔNG BỊ TRỐNG)
+// HIỆU ỨNG XUẤT HIỆN NỘI DUNG KHI CUỘN 
 const sections = gsap.utils.toArray('.zone-part');
 sections.forEach(sec => {
     gsap.from(sec.querySelectorAll('h2'), {
@@ -40,14 +40,14 @@ const navDiagramBtn = document.getElementById('nav-diagram');
 const miniDiagram = document.getElementById('mini-diagram');
 const diagramHeader = document.getElementById('diagram-header');
 
-// Bật tắt Diagram khi bấm trên Nav
+
 if(navDiagramBtn) {
     navDiagramBtn.onclick = () => {
         miniDiagram.classList.toggle('show');
     };
 }
 
-// Chức năng Kéo Thả (Drag & Drop)
+
 let isDragging = false;
 let offsetX = 0, offsetY = 0;
 
@@ -57,7 +57,7 @@ diagramHeader.addEventListener('mousedown', (e) => {
     offsetX = e.clientX - rect.left;
     offsetY = e.clientY - rect.top;
     
-    // Xóa right/bottom mặc định để chuyển sang dùng top/left khi kéo
+    
     miniDiagram.style.right = 'auto'; 
     miniDiagram.style.bottom = 'auto';
 });
@@ -85,7 +85,6 @@ diagramZones.forEach(zone => {
     const target = zone.getAttribute('data-target');
     
     btn.onclick = () => {
-        // Gsap sẽ lo việc cuộn, nếu đang ở đúng chỗ nó sẽ tự động không làm gì cả
         gsap.to(window, { 
             scrollTo: target, 
             duration: 1.5, 
@@ -98,7 +97,6 @@ diagramZones.forEach(zone => {
 // FIX: NỀN XUYÊN SUỐT - DÙNG 1 TIMELINE DUY NHẤT
 // =========================================================
 
-// Đảm bảo ảnh bắt đầu đúng vị trí
 gsap.set("#all-bg", { yPercent: 0 });
 
 const zoneWrappers = [
@@ -108,7 +106,7 @@ const zoneWrappers = [
     document.querySelector("#abyssal-wrapper")   || document.querySelector(".abyssal-zone")
 ];
 
-// Mỗi tầng chỉ animate từ vị trí hiện tại → vị trí tiếp theo
+
 const yPositions = [0, -20, -40, -60, -80];
 
 zoneWrappers.forEach((zone, index) => {
@@ -122,7 +120,7 @@ zoneWrappers.forEach((zone, index) => {
             start: "top bottom",
             end: "top top",
             scrub: 1,
-            immediateRender: false,  // ← Quan trọng! Ngăn GSAP render ngay lập tức
+            immediateRender: false,  
         }
     });
 });
@@ -130,31 +128,31 @@ zoneWrappers.forEach((zone, index) => {
 // HIỆU ỨNG TEXT OCEAN REALM TRƯỢT SIÊU MƯỢT
 // =========================================================
 gsap.to("#text", {
-    y: -300,        // Trượt nhẹ chữ lên trên khi cuộn
-    opacity: 0,     // Chữ mờ dần đi
+    y: -300,        
+    opacity: 0,     
     ease: "none",
     scrollTrigger: {
         trigger: ".Ocean_explore",
         start: "top top",
-        end: "bottom top", // Kết thúc hiệu ứng khi trang chủ khuất khỏi màn hình
-        scrub: true        // "Scrub: true" chính là bảo bối giúp animation dính 1:1 với tốc độ lăn chuột
+        end: "bottom top", 
+        scrub: true        
     }
 });
 
-// Animate cho nội dung Sunlight Zone
+
 gsap.from("#sunlight-info", {
-    y: 100, // Bắt đầu từ dưới lên
+    y: 100, 
     opacity: 0,
-    duration: 1.5, // Kéo dài thời gian để mượt hơn
+    duration: 1.5, 
     ease: "power2.out",
     scrollTrigger: {
         trigger: "#sunlight-wrapper",
-        start: "top 80%", // Bắt đầu khi mép trên của Sunlight Zone vào 80% màn hình
-        toggleActions: "play none none reverse" // Chơi hiệu ứng khi cuộn xuống, đảo ngược khi cuộn lên
+        start: "top 80%", 
+        toggleActions: "play none none reverse" 
     }
 });
 
-// FIX lỗi mist overlay (đổi oceanZones[0] → zoneWrappers[0])
+
 if (zoneWrappers[0]) {
     gsap.to("#mist-overlay", {
         opacity: 1,
@@ -168,7 +166,7 @@ if (zoneWrappers[0]) {
     });
 }
 
-// FIX: Refresh sau khi mọi thứ load xong
+
 window.addEventListener('load', () => {
     ScrollTrigger.refresh();
 });
@@ -176,10 +174,10 @@ window.addEventListener('load', () => {
 const bgMusic = document.getElementById('bg-music');
 bgMusic.volume = 0.1; 
 
-// Nhạc sẽ phát ngay khi người dùng click lần đầu vào web
+
 document.addEventListener('click', () => {
     bgMusic.play();
-}, { once: true }); // { once: true } để lệnh này chỉ chạy 1 lần duy nhất
+}, { once: true }); 
 
 const soundBtn = document.getElementById('sound-control');
 const soundIcon = document.getElementById('sound-icon');
@@ -189,25 +187,23 @@ let isMuted = false;
 soundBtn.addEventListener('click', () => {
     isMuted = !isMuted;
     
-    // Cập nhật lại danh sách audio (để nhận diện các audio mới thêm vào nếu có)
+    
     allAudios = document.querySelectorAll('audio');
 
     allAudios.forEach(audio => {
         audio.muted = isMuted;
     });
 
-    // Thay đổi giao diện nút
+    
     if (isMuted) {
         soundBtn.classList.add('muted');
         soundBtn.classList.remove('sound-on');
         soundIcon.innerText = "🔇";
-        // Nếu muốn dừng hẳn nhạc nền khi tắt âm:
-        // bgMusic.pause(); 
+         
     } else {
         soundBtn.classList.remove('muted');
         soundBtn.classList.add('sound-on');
         soundIcon.innerText = "🔊";
-        // Phát lại nhạc nền nếu nó đang bị dừng
-        // bgMusic.play();
+        
     }
 });
