@@ -156,7 +156,11 @@
 #sunlight-wrapper video.sl-media-box {
     height: 250px;
 }
-
+#sunlight-wrapper img.sl-media-box[src$="sunlight.gif"] {
+    height: auto;
+    object-fit: contain;
+    max-width: 100%;
+}
 /* ================================
    1. BỐ CỤC ZÍC ZẮC 3 CON CÁ
    ================================ */
