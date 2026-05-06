@@ -174,7 +174,7 @@ window.addEventListener('load', () => {
 });
 
 const bgMusic = document.getElementById('bg-music');
-bgMusic.volume = 0.3; 
+bgMusic.volume = 0.1; 
 
 // Nhạc sẽ phát ngay khi người dùng click lần đầu vào web
 document.addEventListener('click', () => {

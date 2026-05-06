@@ -27,6 +27,8 @@ const modal = document.getElementById('game-modal');
 const container = document.getElementById('game-canvas-container');
 const scoreEl = document.getElementById('game-score');
 const slashCanvas = document.getElementById('slash-canvas');
+const slashSound = new Audio('asset/Audio/Slash.mp3');
+slashSound.volume = 0.5;
 let gameWidth, gameHeight;
 
 // ==================== XỬ LÝ BONG BÓNG 2D ====================
@@ -338,6 +340,8 @@ function setupSlicing() {
 
             if(hitObject && hitObject.userData.points && !hitObject.userData.isHit) {
                 hitObject.userData.isHit = true; 
+                slashSound.currentTime = 0; // Reset lại audio để chém liên tục không bị mất tiếng
+                slashSound.play().catch(e => console.log("Lỗi phát âm thanh:", e));
                 
                 // === HỆ THỐNG COMBO ===
                 let points = hitObject.userData.points;
