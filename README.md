@@ -28,7 +28,7 @@
 * **Rewards**: `titanic.glb` (Mốc 2000 điểm), `aquaman.glb` (Mốc 3000 điểm).
 
 ### Audio (`.mp3`)
-* **BGM**: `ocean_bgm.mp3` (Nhạc nền đại dương).
+* **BGM**: `Creo-Deep dive.mp3` (Nhạc nền đại dương).
 * **SFX**: `slash.mp3` (Âm thanh chém rác), `reward.mp3` (Âm thanh nhận thưởng).
 
 ## 🎮 Hệ thống Minigame (Ocean Cleaner)
