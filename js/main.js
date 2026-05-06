@@ -174,7 +174,7 @@ window.addEventListener('load', () => {
 });
 
 const bgMusic = document.getElementById('bg-music');
-bgMusic.volume = 0.5; // Để âm lượng 50% cho đỡ giật mình
+bgMusic.volume = 0.3; // Để âm lượng 50% cho đỡ giật mình
 
 // Nhạc sẽ phát ngay khi người dùng click lần đầu vào web
 document.addEventListener('click', () => {
