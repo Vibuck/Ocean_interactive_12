@@ -117,7 +117,7 @@
 
             <div class="sl-fish-card" 
                  data-model="asset/Model_3D/Fish_model/sea_horse (2).glb" 
-                 data-img1="asset/Images/Background/seahorse1.jpg" 
+                 data-img1="asset/Images/Background/seahorse1.jpeg" 
                  data-img2="asset/Images/Background/seahorse2.jpg" 
                  data-img3="asset/Images/Background/seahorse3.jpg" 
                  data-img4="asset/Images/Background/seahorse4.jpg">
@@ -367,13 +367,13 @@
 </section>
 </div>
     <div class="ocean-zone" id="midnight-wrapper">
-    <!-- Lớp 1: Video nền cho riêng Midnight Zone -->
+    
     <video autoplay muted loop class="midnight-bg-video">
         <source src="asset/Videos/Midnight_zone.mp4" type="video/mp4">
     </video>
-    <!-- Lớp 2: Tiêu đề tầng biển -->
+    
     <h1 class="midnight-title">Midnight<br>Zone</h1>
-    <!-- Lớp 3: Container chứa các bong bóng lơ lửng -->
+    
     <div id="midnight-bubbles-container">
         <div class="mn-bubble" data-id="light">Ánh sáng</div>
         <div class="mn-bubble" data-id="temp">Nhiệt độ</div>
@@ -382,15 +382,12 @@
         <div class="mn-bubble" data-id="ecosystem">Thực vật</div>
     </div>
 
-    <!-- Lớp 4: Bảng thông tin chi tiết (Pop-up) -->
+    
     <div id="mn-info-card" class="mn-hidden">
         <button id="mn-close-btn">&times;</button>
-        <div id="mn-card-body">
-            <!-- Nội dung sẽ tự đổ vào đây từ phần data phía dưới -->
+        <div id="mn-card-body">            
         </div>
     </div>
-
-    <!-- Nguồn dữ liệu ẩn bám sát văn bản bạn đã chuẩn bị -->
     <div id="mn-raw-data" style="display: none;">
         <section id="mn-data-light">
             <h2>Ánh sáng</h2>
@@ -417,11 +414,11 @@
         <section class="zone-part fish-part" id="midnight-fish">
     <h2>Midnight Zone - Các loài cá</h2>
     
-    <!-- Khung giới hạn hiển thị -->
+    
     <div class="fish-slider">
-        <!-- Đường ray trượt -->
+        
         <div class="fish-track">
-            <!-- Nhóm 1 (Bản gốc) -->
+            
             <div class="fish-grid">
                 <div class="fish-card" data-fish="stomiidae">
                     <img src="asset/Images/Background/Ca_rong_bien_sau.png" alt="Stomiidae" class="fish-image">
@@ -437,7 +434,7 @@
                 </div>
             </div>
 
-            <!-- Nhóm 2 (Bản sao để chạy vô hạn) -->
+            
             <div class="fish-grid">
                 <div class="fish-card" data-fish="stomiidae">
                     <img src="asset/Images/Background/Ca_rong_bien_sau.png" alt="Stomiidae" class="fish-image">
@@ -456,11 +453,11 @@
     </div> 
 </section>
 
-<!-- Fish Detail Page-->
+
 <div id="fish-detail-page" class="fish-detail-page hidden">
     <button class="fish-detail-back">Back</button>
     <div class="fish-detail-container">
-        <!-- CỘT TRÁI: Gallery & 3D -->
+        
         <div class="fish-visuals">
             <div class="fish-gallery">
                 <img id="det-img-1" src="" alt="Gallery 1" class="gallery-img">
@@ -475,7 +472,7 @@
             </div>
         </div>
 
-        <!-- CỘT PHẢI: Info -->
+        
         <div class="fish-info-content">
             <h1 id="det-name"></h1>
             <div id="det-description"></div>
@@ -492,7 +489,7 @@
         Đây là một trong những vùng rộng lớn nhất của đại dương, bao phủ phần lớn diện tích đáy biển trên Trái Đất.
         </section>
 <div class="ocean-zone" id="abyssal-wrapper">
-    <!-- PHẦN 1: CUỘN NGANG THÔNG TIN (3 ẢNH) -->
+    
     <section id="abyssal-info-scroll">
         <div class="info-horizontal-wrapper">
             <div class="info-slide"><img src="asset/Images/anh1.png" alt="Info 1"></div>
@@ -501,10 +498,10 @@
         </div>
     </section>
 
-    <!-- PHẦN 2: HIỆU ỨNG CÁ BUNG (GIỮ NGUYÊN CODE CỦA BẠN) -->
+    
     <section id="abyssal-fish-animation">
     <div class="fish-container">
-        <!-- Thêm data-fish="tên_định_danh" vào từng thẻ -->
+        
         <div class="fish-item fish-left" data-fish="stomiidae">
             <div class="card-inner">
                 <img src="asset/Images/amphipod.png" alt="Fish">
@@ -525,13 +522,13 @@
         </div>
     </div>
 </section>
-            <!-- Modal Chi tiết cá -->
+            
 <div id="fish-modal" class="fish-modal">
     <div class="modal-content">
         <span class="close-modal">&times;</span>
         
         <div class="modal-layout">
-            <!-- Cột trái: Ảnh và Thông tin -->
+            
             <div class="modal-left">
                 <div class="info-box">
                     <h2 id="modal-title">Tên Cá</h2>
@@ -543,7 +540,7 @@
                 </div>
             </div>
 
-            <!-- Cột giữa: Video và Ảnh chính -->
+            
             <div class="modal-center">
                 <div class="video-box">
                     <video id="modal-video" controls>
@@ -555,7 +552,7 @@
                 </div>
             </div>
 
-            <!-- Cột phải: Ảnh và Model 3D -->
+            
             <div class="modal-right">
                 <div class="image-box">
                     <img id="modal-img-2" src="" alt="Ảnh 2">

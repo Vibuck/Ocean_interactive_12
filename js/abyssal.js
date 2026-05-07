@@ -91,7 +91,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const fishId = this.getAttribute('data-fish'); 
             const data = fishData[fishId];
 
-            console.log("Đang mở cá:", fishId); // Kiểm tra xem máy có nhận lệnh click không
+            console.log("Đang mở cá:", fishId); 
 
             if(data) {
                 const modal = document.getElementById('fish-modal');
@@ -109,8 +109,8 @@ document.addEventListener("DOMContentLoaded", () => {
                     modelViewer.src = data.model3d ? data.model3d : ""; 
                 }
 
-                modal.style.display = 'block'; // Hiện modal
-                document.body.style.overflow = 'hidden'; // Khóa cuộn trang
+                modal.style.display = 'block'; 
+                document.body.style.overflow = 'hidden'; 
             } else {
                 console.error("Không tìm thấy dữ liệu cho cá:", fishId);
             }

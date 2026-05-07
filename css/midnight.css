@@ -3,30 +3,30 @@
     width: 100%;
     height: 100vh;
     overflow: hidden;
-    background: #07284e; /* Màu nền dự phòng */
+    background: #07284e; 
 }
 .midnight-title {
     position: absolute;
-    top: 10%;            /* Cách đỉnh màn hình 15% */
+    top: 10%;            
     left: 15%;
     transform: translateX(-20%);
-    z-index: 2;          /* Cao hơn video (1) nhưng thấp hơn bong bóng nếu cần */
+    z-index: 2;          
     
-    font-size: 80px;     /* Độ lớn của chữ */
+    font-size: 80px;     
     font-weight: 900;
     text-transform: uppercase;
     color: rgba(255, 255, 255, 0.601); 
     
-    pointer-events: none; /* Quan trọng: Để không cản trở việc click vào bong bóng */
-    letter-spacing: 15px; /* Khoảng cách giữa các chữ cái rộng ra */
-    user-select: none;    /* Không cho người dùng bôi đen tiêu đề này */
+    pointer-events: none; 
+    letter-spacing: 15px; 
+    user-select: none;    
 }
 /* Điều chỉnh nội dung bên trong ô thông tin */
 #mn-card-body p {
-    line-height: 1.8;      /* Tăng khoảng cách giữa các dòng văn bản */
-    margin-top: 15px;      /* Khoảng cách giữa tiêu đề và đoạn văn */
-    font-size: 16px;       /* Cỡ chữ vừa phải để nhìn thoáng hơn */
-    text-align: justify;   /* Căn đều hai bên cho chuyên nghiệp */
+    line-height: 1.8;      
+    margin-top: 15px;      
+    font-size: 16px;       
+    text-align: justify;   
 }
 /* Video nền riêng cho Midnight */
 .midnight-bg-video {
@@ -73,7 +73,7 @@
     position: fixed;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -55%); /* Hơi lệch lên trên một chút để lúc hiện sẽ trượt xuống */
+    transform: translate(-50%, -55%); 
     width: 450px;
     padding: 30px;
     background: rgba(0, 31, 63, 0.885);
@@ -82,18 +82,18 @@
     color: white;
     z-index: 1000;
     
-    /* PHẦN QUAN TRỌNG ĐỂ CÓ HIỆU ỨNG */
-    opacity: 0;                /* Mặc định là trong suốt */
-    visibility: hidden;       /* Mặc định là ẩn hoàn toàn */
-    transition: all 0.4s ease; /* Tạo hiệu ứng mượt cho tất cả thay đổi */
-    pointer-events: none;      /* Không cho click xuyên qua khi đang ẩn */
+    
+    opacity: 0;                
+    visibility: hidden;       
+    transition: all 0.4s ease; 
+    pointer-events: none;      
 }
 
 #mn-info-card.mn-show {
-    opacity: 1;                /* Hiện rõ */
-    visibility: visible;      /* Có thể tương tác */
-    transform: translate(-50%, -50%); /* Trượt về vị trí chính giữa */
-    pointer-events: auto;      /* Cho phép click vào nội dung */
+    opacity: 1;                
+    visibility: visible;      
+    transform: translate(-50%, -50%); 
+    pointer-events: auto;      
 }
 #mn-info-card.mn-show { display: block; animation: mnFadeIn 0.3s ease; }
 
@@ -112,36 +112,36 @@
     font-size: 2.5rem;
     text-shadow: 0 0 10px rgba(0, 208, 255, 0.645);
 }
-/* 1. Khung bao ngoài cùng: Ẩn đi phần cá bị trượt ra ngoài màn hình */
+
 .fish-slider {
     width: 100%;
     overflow: hidden;
     padding: 70px 0 50px 0;
 }
 
-/* 2. Đường ray: Chứa 2 nhóm cá và chạy Animation */
+
 .fish-track {
     display: flex;
-    width: max-content; /* Ép đường ray giãn hết cỡ để chứa toàn bộ thẻ */
-    animation: mnScrollLeft 15s linear infinite; /* 15s là tốc độ trượt, có thể chỉnh */
+    width: max-content; 
+    animation: mnScrollLeft 15s linear infinite;
 }
 
-/* Dừng băng chuyền khi đưa chuột vào để người dùng dễ click */
+
 .fish-track:hover {
     animation-play-state: paused;
 }
 
-/* 3. Lưới cá hiện tại chuyển thành hàng ngang (Flex) */
+
 .fish-grid {
     display: flex;
     gap: 50px;
-    padding-right: 50px; /* Bắt buộc phải có để điểm nối giữa 2 nhóm không bị hụt khoảng cách */
+    padding-right: 50px; 
 }
 
-/* 4. Thẻ cá: Thêm kích thước cố định để không bị méo khi cho vào Flexbox */
+
 .fish-card {
-    width: 450px; /* Cố định chiều rộng */
-    flex-shrink: 0; /* Tuyệt đối không cho bóp méo thẻ */
+    width: 450px; 
+    flex-shrink: 0; 
     
     background: rgba(0, 210, 255, 0.1);
     border: 3px solid #1a5181;
@@ -152,7 +152,7 @@
     transition: all 0.3s ease;
 }
 
-/* Hover thẻ cá (Giữ nguyên của bạn) */
+
 .fish-card:hover {
     background: rgba(0, 210, 255, 0.2);
     transform: translateY(-10px);
@@ -182,7 +182,7 @@
 /* 5. Khởi tạo hiệu ứng trôi vô hạn */
 @keyframes mnScrollLeft {
     0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); } /* Trượt đúng một nửa (1 nhóm) rồi reset về đầu */
+    100% { transform: translateX(-50%); } 
 }
 
 /* Trang chi tiết cố định toàn màn hình */
@@ -243,7 +243,7 @@
     overflow: hidden;
 }
 
-/* Cột thông tin chữ */
+
 .fish-info-content h1 {
     font-size: 3.5rem;
     color: #29bbff;
@@ -258,7 +258,6 @@
     color: #e0f7ff;
 }
 
-/* Nút bấm */
 .fish-detail-back {
     position: absolute; top: 80px; right: 40px;
     padding: 10px 20px;

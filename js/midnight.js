@@ -69,7 +69,7 @@ const fishData = {
                  'asset/Images/Background/Ca_rong_bien_sau_3.jpg',
                  'asset/Images/Background/Ca_rong_bien_sau_4.jpg'
                 ],
-        video: 'asset/Videos/Ca_rong_bien_sau.mp4', // Update to your local video path
+        video: 'asset/Videos/Ca_rong_bien_sau.mp4', 
         modelPath: 'asset/Model_3D/Fish_model/dragon.glb',
         description: `
             <p><strong>Tên khoa học:</strong>  Stomiidae.</p>
@@ -85,7 +85,7 @@ const fishData = {
                  'asset/Images/Background/Ca_can_cau_3.jpg',
                  'asset/Images/Background/Ca_can_cau_4.jpg'
                 ],
-        video: 'asset/Videos/Ca_can_cau.mp4', // Update to your local video path
+        video: 'asset/Videos/Ca_can_cau.mp4', 
         modelPath: 'asset/Model_3D/Fish_model/anglerfish.glb',
         description: `
             <p><strong>Tên khoa học:</strong> Lophiiformes.</p>
@@ -101,7 +101,7 @@ const fishData = {
                  'asset/Images/Background/Muc_ma_ca_rong_3.jpg',
                  'asset/Images/Background/Muc_ma_ca_rong_4.jpg'
                 ],
-        video: 'asset/Videos/Muc_ma_ca_rong.mp4', // Update to your local video path
+        video: 'asset/Videos/Muc_ma_ca_rong.mp4', 
         modelPath: 'asset/Model_3D/Fish_model/squid.glb',
         description: `
             <p><strong>Tên khoa học:</strong> Vampyroteuthis infernalis.</p>
@@ -115,20 +115,15 @@ const fishData = {
     const paragraphs = document.querySelectorAll('#midnight-info p');
 
     paragraphs.forEach(p => {
-        p.addEventListener('mouseenter', function() {
-            // Thêm hiệu ứng dưới nước cho đoạn này
+        p.addEventListener('mouseenter', function() {            
             this.classList.add('underwater');
-
-            // Làm mờ và nhỏ các đoạn khác
             paragraphs.forEach(other => {
                 if (other !== this) {
                     other.classList.add('dimmed');
                 }
             });
         });
-
         p.addEventListener('mouseleave', function() {
-            // Gỡ bỏ hiệu ứng
             paragraphs.forEach(par => {
                 par.classList.remove('underwater', 'dimmed');
             });
@@ -144,14 +139,14 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!card) return;
 
         const fishID = card.getAttribute('data-fish');
-        const data = fishData[fishID]; // Sử dụng đúng tên biến bạn đã đặt ở trên
+        const data = fishData[fishID]; 
 
         if (data) {
-            // 1. Cập nhật chữ
+            
             document.getElementById('det-name').innerText = data.name;
             document.getElementById('det-description').innerHTML = data.description;
             
-            // 2. Cập nhật Video (Hiện ở dưới phần mô tả)
+            
             const videoContainer = document.getElementById('det-video-container');
             if (data.video && videoContainer) {
                 videoContainer.innerHTML = `
@@ -159,13 +154,10 @@ document.addEventListener("DOMContentLoaded", () => {
                         <source src="${data.video}" type="video/mp4">
                     </video>
                 `;
-            }
-
-            // 3. Cập nhật 4 ảnh Gallery (Sửa lỗi sai tên biến image/images)
+            }            
             for (let i = 0; i < 4; i++) {
                 const imgElement = document.getElementById(`det-img-${i + 1}`);
-                if (imgElement) {
-                    // Kiểm tra đường dẫn ảnh có tồn tại trong data không
+                if (imgElement) {                    
                     imgElement.src = data.image[i] ? data.image[i] : ""; 
                 }
             }
@@ -186,22 +178,16 @@ document.addEventListener("DOMContentLoaded", () => {
             } else {
                 modelViewport.innerHTML = `<div style="text-align:center; padding-top:150px; color:#555;">Model 3D đang được xử lý...</div>`;
             }
-
-            // Hiện trang
             detailPage.classList.remove('hidden');
             document.body.style.overflow = 'hidden';
         }
     });
-    
-    // Nút quay lại
     backBtn.addEventListener('click', () => {
         detailPage.classList.add('hidden');
         document.body.style.overflow = 'auto';
-        // Xoá nội dung nặng khi đóng trang
         if(document.getElementById('det-video-container')) document.getElementById('det-video-container').innerHTML = "";
         document.getElementById('model-viewport').innerHTML = "";
     });
 });
-// Tìm khung chứa model
 const modelViewport = document.getElementById('model-viewport');
 

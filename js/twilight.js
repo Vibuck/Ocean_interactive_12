@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // --- 1. LẤY CÁC THÀNH PHẦN GIAO DIỆN ---
+    
     const twilight = document.querySelector('#twilight-wrapper');
     if (!twilight) return; 
     
@@ -7,8 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const detail = twilight.querySelector('#tw-detail-view');
     const backBtn = twilight.querySelector('#tw-back-btn');
 
-    // --- HÀM TẠO HIỆU ỨNG SÓNG CHÂN THỰC 3 LỚP (SVG) ---
-    // Đã thêm tiền tố tw_ để không bị đụng code với người khác
+    
     function tw_playOceanWave(onMidpoint) {
         const waveContainer = document.createElement('div');
         waveContainer.innerHTML = `
@@ -26,14 +25,14 @@ document.addEventListener("DOMContentLoaded", () => {
         const tl = gsap.timeline();
         
         tl.to(layers, {
-            x: 1500, // Sóng ập vào
+            x: 1500, 
             duration: 0.6,
             ease: "power2.inOut",
             stagger: 0.1 
         })
-        .call(onMidpoint) // Tráo đổi giao diện và set vị trí trượt lúc sóng đang che
+        .call(onMidpoint) 
         .to(layers, {
-            x: 3500, // Sóng rút đi
+            x: 3500, 
             duration: 0.6,
             ease: "power2.inOut",
             stagger: 0.1,
@@ -43,12 +42,12 @@ document.addEventListener("DOMContentLoaded", () => {
         return tl; 
     }
 
-    // --- 2. SỰ KIỆN CLICK VÀO TỪNG THẺ CÁ ---
+    // --- SỰ KIỆN CLICK VÀO TỪNG THẺ CÁ ---
     twilight.querySelectorAll('.tw-fish-card').forEach(card => {
         card.addEventListener('click', function() {
             const originalImg = this.querySelector('.tw-fish-img');
 
-            // Đổ dữ liệu
+            
             const mainDetailImg = detail.querySelector('#tw-target-image-container img');
             if (mainDetailImg) {
                 mainDetailImg.src = originalImg.src;
@@ -62,47 +61,45 @@ document.addEventListener("DOMContentLoaded", () => {
                 const thumb = detail.querySelector(`#tw-detail-img${i}`);
                 if(thumb) thumb.src = this.getAttribute(`data-img${i}`);
             }
-
-            // GỌI HIỆU ỨNG SÓNG KẾT HỢP TRƯỢT VÀO
             tw_playOceanWave(() => {
                 grid.style.display = 'none';
                 detail.style.display = 'block';
                 
-                // Chuẩn bị vị trí: Khối detail đẩy sang trái một chút để lát trượt vào
+                
                 gsap.set(detail, { x: -100, opacity: 0 });
-                // Chuẩn bị vị trí: Các chữ bên trong cũng lùi lại
+                
                 gsap.set(".tw-detail-fade", { opacity: 0, x: -30 });
             })
-            // Sóng vừa rút thì khối Detail trượt theo từ trái sang phải
+            
             .to(detail, {
                 x: 0, opacity: 1, duration: 0.6, ease: "power2.out"
             }, "-=0.7")
-            // Chữ bên trong tiếp nối trượt ra
+            
             .to(".tw-detail-fade", {
                 opacity: 1, x: 0, duration: 0.5, stagger: 0.1
             }, "-=0.4");
         });
     });
 
-    // --- 3. SỰ KIỆN NÚT QUAY LẠI ---
+    // --- SỰ KIỆN NÚT QUAY LẠI ---
     if (backBtn) {
         backBtn.addEventListener('click', () => {
-            // Sóng đánh vào -> Lưới cá cuộn từ trái ra
+            
             tw_playOceanWave(() => {
                 detail.style.display = 'none';
                 grid.style.display = 'grid'; 
                 
-                // Chuẩn bị vị trí: Đẩy lưới cá lùi sang trái
+                
                 gsap.set(grid, { x: -100, opacity: 0 });
             })
-            // Kéo danh sách cá từ bên trái trở lại mượt mà cùng lúc sóng rút
+            
             .to(grid, {
                 x: 0, opacity: 1, duration: 0.6, ease: "power2.out"
             }, "-=0.7");
         });
     }
 
-    // --- 4. SỰ KIỆN NÚT VIDEO ---
+    // --- SỰ KIỆN NÚT VIDEO ---
     document.querySelectorAll('.tw-video-item').forEach(item => {
         const video = item.querySelector('video');
         const btn = item.querySelector('.play-pause-btn');
@@ -115,7 +112,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // --- 5. BONG BÓNG LÔNG CHUỘT ---
+    // --- BONG BÓNG LÔNG CHUỘT ---
     const bubbles = document.querySelectorAll('.tw-bubble-item');
     bubbles.forEach(bubble => {
         bubble.addEventListener('mousemove', (e) => {
@@ -134,12 +131,12 @@ document.addEventListener("DOMContentLoaded", () => {
         bubble.addEventListener('mouseleave', () => bubble.style.transform = ``);
     });
 
-    // Khởi tạo tuyết bằng hàm đã đổi tên
+    
     tw_initGlobalMarineSnow();
 });
 
 // --- HÀM TẠO TUYẾT BIỂN ---
-// Đã thêm tiền tố tw_ bảo mật
+
 function tw_initGlobalMarineSnow() {
     const container = document.getElementById('tw-marine-snow-global');
     if (!container) return;
