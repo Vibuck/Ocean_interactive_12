@@ -83,10 +83,10 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     };
 
-    // Gán sự kiện click cho các thẻ cá
-   // Gán sự kiện click cho các thẻ cá
+    
+   
     document.querySelectorAll('.fish-item').forEach(item => {
-        item.style.cursor = "pointer"; // Hiện bàn tay khi hover
+        item.style.cursor = "pointer"; 
         item.addEventListener('click', function() {
             const fishId = this.getAttribute('data-fish'); 
             const data = fishData[fishId];
@@ -105,7 +105,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 document.getElementById('modal-video').src = data.video;
                 const modelViewer = document.getElementById('modal-model-viewer');
                 if (modelViewer) {
-                    // Nếu có link 3D thì gán vào, không thì để trống
+                    
                     modelViewer.src = data.model3d ? data.model3d : ""; 
                 }
 
@@ -117,13 +117,13 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // Sự kiện Đóng Modal
+    
     const closeBtn = document.querySelector('.close-modal');
     if (closeBtn) {
         closeBtn.onclick = () => {
             document.getElementById('fish-modal').style.display = 'none';
             document.getElementById('modal-video').pause(); 
-            // Mở lại cuộn trang
+            
             document.body.style.overflow = 'auto';
         };
     }

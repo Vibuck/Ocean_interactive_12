@@ -162,7 +162,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             }
 
-            // 4. Cập nhật Model 3D 
+            // Cập nhật Model 3D 
             const modelViewport = document.getElementById('model-viewport');
             if (data.modelPath) {
                 modelViewport.innerHTML = `
